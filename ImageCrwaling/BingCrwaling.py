@@ -1,11 +1,12 @@
 # git clone https://github.com/ndb796/bing_image_downloader
+# pip install --upgrade bing-image-downloader
 
 # 디렉토리를 만들기 위해 os 모듈 사용
 import os
 # 파일 및 디렉토리 작업을 수행(복사, 이동, 이름 바꾸기, 생성, 삭제)하기 위한 함수를 제공
 import shutil # shutil == shell utility
 # 데이터를 수집하기 위해 이미지 다운로더를 사용
-from bing_image_downloader.bing_image_downloader import downloader
+from bing_image_downloader import downloader
 
 # 디렉토리 경로를 저장한 변수
 directory_list = [
@@ -45,15 +46,14 @@ def dataset_split(query, train_cnt):  # query 검색어 / train_cnt train에 넣
     # rmtree 함수를 사용하여 query 변수에서 지정한 경로를 삭제(해당 경로에 있는 모든 파일과 디렉토리를 제거)
     shutil.rmtree(query)
 
-
 # querylist = ["Tyrannosaurus","Triceratops","Velociraptor","Parasaurolophus","Iguanodon","Pteranodon","Ankylosaurus","Argentinosaurus","Pachycephalosaurus","Elasmosaurus"]
-# querylist = ["Mosasaurus","Ouranosaurus","Incisibosaurus","Lambeosaurus","Nodosaurus","Oviraptor","Quetzalcoatlus","Kentrosaurus","Spinosaurus","Stegosaurus"]
-querylist =  ["Brachiosaurus","Allosaurus","Dilophosaurus","Dimetrodon","Chintaosaurus","Compsognathus","Giganotosaurus","Dimorphodon","Sauropaganax","Chasmosaurus"]
+querylist = ["Mosasaurus","Ouranosaurus","Incisibosaurus","Lambeosaurus","Nodosaurus","Oviraptor","Quetzalcoatlus","Kentrosaurus","Spinosaurus","Stegosaurus"]
+# querylist =  ["Brachiosaurus","Allosaurus","Dilophosaurus","Dimetrodon","Chintaosaurus","Compsognathus","Giganotosaurus","Dimorphodon","Sauropaganax","Chasmosaurus"]
 querylist.sort()
 print(len(querylist))
 print(querylist)
-# for query in querylist:
-#     # bing downloader를 이용하여 데이터 저장(query == 검색어, limit= 다운받을 데이터의 수,  output_dir==데이터를 저장할 디렉토리 경로, adult_filter_off==검색결과 필터, force_replace==이미지가 이미 존재할 경우 덮어쓸지 여부, timeout==다운로드 타임아웃 시간 (초))
-#     downloader.download(query, limit=150,  output_dir='./', adult_filter_off=True, force_replace=False, timeout=60)
-#     # 데이터를 수집하고 학습 데이터와 평가 데이터로 구분하는 함수를 통해 데이터 생성(qeury = 검색어, 숫자 = 데이터 숫자)
-#     dataset_split(query, 0)
+for query in querylist:
+    # bing downloader를 이용하여 데이터 저장(query == 검색어, limit= 다운받을 데이터의 수,  output_dir==데이터를 저장할 디렉토리 경로, adult_filter_off==검색결과 필터, force_replace==이미지가 이미 존재할 경우 덮어쓸지 여부, timeout==다운로드 타임아웃 시간 (초))
+    downloader.download(query, limit=150, output_dir='./', adult_filter_off=True, force_replace=False, timeout=60, verbose = True)
+    # 데이터를 수집하고 학습 데이터와 평가 데이터로 구분하는 함수를 통해 데이터 생성(qeury = 검색어, 숫자 = 데이터 숫자)
+    dataset_split(query, 0)
