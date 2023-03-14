@@ -47,8 +47,8 @@ def dataset_split(query, train_cnt):  # query 검색어 / train_cnt train에 넣
     shutil.rmtree(query)
 
 # querylist = ["Tyrannosaurus","Triceratops","Velociraptor","Parasaurolophus","Iguanodon","Pteranodon","Ankylosaurus","Argentinosaurus","Pachycephalosaurus","Elasmosaurus"]
-querylist = ["Mosasaurus","Ouranosaurus","Incisibosaurus","Lambeosaurus","Nodosaurus","Oviraptor","Quetzalcoatlus","Kentrosaurus","Spinosaurus","Stegosaurus"]
-# querylist =  ["Brachiosaurus","Allosaurus","Dilophosaurus","Dimetrodon","Chintaosaurus","Compsognathus","Giganotosaurus","Dimorphodon","Sauropaganax","Chasmosaurus"]
+# querylist = ["Mosasaurus","Ouranosaurus","Incisibosaurus","Lambeosaurus","Nodosaurus","Oviraptor","Quetzalcoatlus","Kentrosaurus","Spinosaurus","Stegosaurus"]
+querylist =  ["Brachiosaurus","Allosaurus","Dilophosaurus","Dimetrodon","Chintaosaurus","Compsognathus","Giganotosaurus","Dimorphodon","Sauropaganax","Chasmosaurus"]
 querylist.sort()
 print(len(querylist))
 print(querylist)
