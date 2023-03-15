@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "853599333471",
+    "project_id": "dimongflutter",
+    "storage_bucket": "dimongflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853599333471:android:c3e03b7c2d5adce7d1ffea",
+        "android_client_info": {
+          "package_name": "com.example.dimong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853599333471-5btjdst47t4sia6ihdbbqhir5lsl019j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dimong",
+            "certificate_hash": "9d1c2f5c8231971355bdb35934244e08a5761479"
+          }
+        },
+        {
+          "client_id": "853599333471-8l5vo43jdskmmsc8dpc5vcrpchbfgvef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dimong",
+            "certificate_hash": "c4c7a0bd806a934b6f3d2d24fdc29be2ea5d5ce5"
+          }
+        },
+        {
+          "client_id": "853599333471-shbfv3b29tpi3anad3qlhp95ucdp9ccn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpBSmkKFYpLabcbYoHoF8gW0aC2vyw36s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853599333471-shbfv3b29tpi3anad3qlhp95ucdp9ccn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
