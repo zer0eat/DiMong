@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prac/widgets/card.dart';
+import 'card.dart';
 
 class HomePage extends StatelessWidget {
   @override

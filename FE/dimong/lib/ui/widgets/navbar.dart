@@ -1,7 +1,7 @@
 // 기본 디자인 widget 제공
 import 'package:flutter/material.dart';
 // 기능 import
-import 'package:dimong/ui/screens/home/home.dart';
+import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/ui/screens/drawing/drawing.dart';
 import 'package:dimong/ui/screens/dic_dino/dic_dino.dart';
 import 'package:dimong/ui/screens/dic_etc/dic_etc.dart';
@@ -21,7 +21,7 @@ class _NavBarState extends State<NavBar> {
   // selectedIndex
   int selectedIndex = 0;
   final screen = [
-    //HomePage(),
+    HomePage(),
     //EncyclopediaDino(),
     //DictionaryEtc(),
     DrawingDino(),
@@ -42,14 +42,14 @@ class _NavBarState extends State<NavBar> {
       Container(
         decoration: BoxDecoration(
           color: Color(0xFFACC864),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 10,
-              offset: Offset(0, 3),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.withOpacity(0.5),
+          //     spreadRadius: 2,
+          //     blurRadius: 10,
+          //     offset: Offset(0, 3),
+          //   ),
+          // ],
         ),
         child: CurvedNavigationBar(
           height: 50,
