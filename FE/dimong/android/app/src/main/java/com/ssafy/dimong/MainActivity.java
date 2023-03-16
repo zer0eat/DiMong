@@ -1,4 +1,4 @@
-package com.example.dimong;
+package com.ssafy.dimong;
 
 import io.flutter.embedding.android.FlutterActivity;
 
