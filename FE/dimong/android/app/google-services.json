@@ -30,6 +30,67 @@
           }
         },
         {
+          "client_id": "853599333471-kcl0qlhof726k4ig99dj9qto7ucv6l3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dimong",
+            "certificate_hash": "3a7e53a4091ef7528b6ff93a52a4023e26371767"
+          }
+        },
+        {
+          "client_id": "853599333471-shbfv3b29tpi3anad3qlhp95ucdp9ccn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpBSmkKFYpLabcbYoHoF8gW0aC2vyw36s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853599333471-shbfv3b29tpi3anad3qlhp95ucdp9ccn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853599333471:android:de871e53f301d462d1ffea",
+        "android_client_info": {
+          "package_name": "com.ssafy.dimong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853599333471-ai2kj34dntn6dl98eus0alt1d5r34gaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ssafy.dimong",
+            "certificate_hash": "c4c7a0bd806a934b6f3d2d24fdc29be2ea5d5ce5"
+          }
+        },
+        {
+          "client_id": "853599333471-fvkcfqv8bdmuhrtrp4s510fl1d80g6p5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ssafy.dimong",
+            "certificate_hash": "3a7e53a4091ef7528b6ff93a52a4023e26371767"
+          }
+        },
+        {
+          "client_id": "853599333471-hu1leqfe997j7lnv4b7c6gbti11cbq95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ssafy.dimong",
+            "certificate_hash": "9d1c2f5c8231971355bdb35934244e08a5761479"
+          }
+        },
+        {
           "client_id": "853599333471-shbfv3b29tpi3anad3qlhp95ucdp9ccn.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dimong/ui/screens/login/login_page.dart';
-import 'package:dimong/ui/screens/home/home.dart';
+import 'package:dimong/ui/screens/home/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
