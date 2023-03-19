@@ -1,6 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 import 'package:dimong/ui/widgets/camera.dart';
+import 'package:dimong/ui/screens/capture/camera_page.dart';
+import 'package:dimong/ui/screens/capture/gallery_page.dart';
+import 'package:image_picker/image_picker.dart';
 
 class FabMenu extends StatefulWidget {
   const FabMenu({super.key});
@@ -76,11 +80,15 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
                           width: 40.0,
                           height: 40.0,
                           child: InkWell(
-                            onTap: () {
+                            onTap: () async{
+                              File? image_camera = await getImageFile(ImageSource.camera);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const CameraPage()),
+                                    builder:
+                                        (context) =>  CameraPage(file: File(image_camera!.path)),
+                              //const CameraPage()),
+                              ),
                               );
                             },
                             child: const Center(
@@ -111,7 +119,17 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
                           width: 40.0,
                           height: 40.0,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () async{
+                              File? image_gallery = await getImageFile(ImageSource.gallery);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) =>  GalleryPage(file: File(image_gallery!.path)),
+                                  //const CameraPage()),
+                                ),
+                              );
+                            },
                             child: const Center(
                               child: Icon(
                                 Icons.image,

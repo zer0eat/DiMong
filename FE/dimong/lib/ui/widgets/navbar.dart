@@ -22,7 +22,7 @@ class _NavBarState extends State<NavBar> {
   int selectedIndex = 0;
   final screen = [
     HomePage(),
-    //EncyclopediaDino(),
+    DicDino(),
     //DictionaryEtc(),
     DrawingDino(),
     // MyPage(),
