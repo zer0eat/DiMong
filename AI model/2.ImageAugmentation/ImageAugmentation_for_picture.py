@@ -5,13 +5,6 @@ import imgaug.augmenters as iaa
 import numpy as np
 from PIL import Image
 
-
-# 증강할 이미지 폴더 경로
-img_dir = "C:\\Users\\SSAFY\\Desktop\\ttt\\ooo"
-
-# 증강된 이미지를 저장할 폴더 경로
-aug_dir = "C:\\Users\\SSAFY\\Desktop\\ttt\\aaa"
-
 # 증강 기법 설정
 seq = iaa.Sequential([
     # [이미지 크기 조정]
@@ -86,14 +79,28 @@ seq = iaa.Sequential([
     iaa.Sometimes(0.3, iaa.Cartoon(blur_ksize=3, segmentation_size=1.0, saturation=2.0, edge_prevalence=1.0)),
 ])
 
-# 이미지 증강 및 저장
-for img_file in os.listdir(img_dir):
-    img_path = os.path.join(img_dir, img_file)
-    img = Image.open(img_path)
-    img = img.convert('RGB') # RGBA 형식을 RGB 형식으로 변경
+querylist = ["Tyrannosaurus","Triceratops","Velociraptor","Parasaurolophus","Iguanodon","Pteranodon","Ankylosaurus","Argentinosaurus","Pachycephalosaurus","Elasmosaurus",
+             "Mosasaurus","Ouranosaurus","Incisibosaurus","Lambeosaurus","Nodosaurus","Oviraptor","Quetzalcoatlus","Kentrosaurus","Spinosaurus","Stegosaurus",
+             "Brachiosaurus","Allosaurus","Dilophosaurus","Dacentrurus","Chintaosaurus","Compsognathus","Giganotosaurus","Dimorphodon","Sauropaganax","Chasmosaurus"]
 
-    for i in range(1, 101):
-        img_aug = seq(image=np.array(img))
-        aug_file = os.path.splitext(img_file)[0] + "_aug{}.jpg".format(i)
-        aug_path = os.path.join(aug_dir, aug_file)
-        Image.fromarray(img_aug).save(aug_path)
+querylist.sort()
+print(querylist)
+for query in querylist:
+    print(query)
+
+    # 증강할 이미지 폴더 경로
+    img_dir = f"C:\\Users\\SSAFY\\Desktop\\DimongData\\train\\{query}"
+    # 증강된 이미지를 저장할 폴더 경로
+    aug_dir = f"C:\\Users\\SSAFY\\Desktop\\DimongData\\aug\\{query}"
+
+    # 이미지 증강 및 저장
+    for img_file in os.listdir(img_dir):
+        img_path = os.path.join(img_dir, img_file)
+        img = Image.open(img_path)
+        img = img.convert('RGB') # RGBA 형식을 RGB 형식으로 변경
+
+        for i in range(1, 101):
+            img_aug = seq(image=np.array(img))
+            aug_file = os.path.splitext(img_file)[0] + "_aug{}.jpg".format(i)
+            aug_path = os.path.join(aug_dir, aug_file)
+            Image.fromarray(img_aug).save(aug_path)
