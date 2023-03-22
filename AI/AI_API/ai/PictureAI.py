@@ -14,7 +14,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # dimong 분석모델 load
 model = torch.load("C:\\Users\\SSAFY\\Desktop\\fastapi_test\\ai\\models\\dimong_model.pth", map_location=torch.device('cpu'))
 model.eval()
-dinosaur_names = ['Iguanodon', 'raptor', 'trex']
+dinosaur_names = ['Allosaurus', 'Ankylosaurus', 'Argentinosaurus', 'Brachiosaurus', 'Chasmosaurus', 'Compsognathus', 'Dacentrurus', 'Dilophosaurus', 'Dimorphodon', 'Elasmosaurus', 'Giganotosaurus', 'Iguanodon', 'Incisibosaurus', 'Kentrosaurus', 'Lambeosaurus', 'Mosasaurus', 'Nodosaurus', 'Ouranosaurus', 'Oviraptor', 'Pachycephalosaurus', 'Parasaurolophus', 'Pteranodon', 'Quetzalcoatlus', 'Sauropaganax', 'Spinosaurus', 'Stegosaurus', 'Triceratops', 'Tsintaosaurus', 'Tyrannosaurus', 'Velociraptor']
 
 # 이미지파일 전처리
 transformations = transforms.Compose([
