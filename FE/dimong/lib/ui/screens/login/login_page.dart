@@ -4,15 +4,15 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:developer' as developer;
 import 'package:provider/provider.dart';
 import 'package:dimong/modules/user_profile/user_provider.dart';
-import 'package:dimong/ui/widgets/google_api_login.dart';
+import 'package:dimong/core/login/google_api_login.dart';
 import 'package:dimong/ui/screens/login/google_login_page.dart';
 import 'package:dimong/ui/widgets/navbar.dart';
 import 'package:dimong/ui/widgets/background.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
-
   Future<UserCredential?> loginWithGoogle(BuildContext context) async {
+    GoogleSignIn(forceCodeForRefreshToken: true);
     GoogleSignInAccount? user = await GoogleSignInApi.login();
 
     GoogleSignInAuthentication? googleAuth = await user!.authentication;
@@ -25,13 +25,9 @@ class LoginPage extends StatelessWidget {
         .signInWithCredential(credential);
 
     if (userCredential != null) {
-      print('로그인 성공 === Google');
-      print(userCredential);
-
       // UserProvider에 UserCredential 데이터 저장
       Provider.of<UserProvider>(context, listen: false)
           .setUserCredential(userCredential);
-
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => NavBar()
       ));

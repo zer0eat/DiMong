@@ -42,14 +42,6 @@ class _NavBarState extends State<NavBar> {
       Container(
         decoration: BoxDecoration(
           color: Color(0xFFACC864),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.grey.withOpacity(0.5),
-          //     spreadRadius: 2,
-          //     blurRadius: 10,
-          //     offset: Offset(0, 3),
-          //   ),
-          // ],
         ),
         child: CurvedNavigationBar(
           height: 50,
