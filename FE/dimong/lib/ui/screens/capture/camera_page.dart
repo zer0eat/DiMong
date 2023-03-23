@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/widgets/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/modals/modal.dart';
+import 'package:dimong/core/network.dart';
 
 // Camera Widget을 생성
 class CameraPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _CameraPageState extends State<CameraPage> {
 
   final picker = ImagePicker();
   File? _image;
-
+  DioService dioService = DioService();
   void initState(){
     super.initState();
     _image = widget.file!=null ? File(widget.file.path) : null;
@@ -86,12 +87,12 @@ class _CameraPageState extends State<CameraPage> {
                         onPressed: () async{
                         // File? sendToFile = await compressImage(widget.file);
                         if(widget.file!=null) {
-                        // 통신 코드 추가 밑에 modalText에 결과 출력
-                        showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context) {
-                        return TextModal(modalText: '123123');
-                        },
+                          dioService.networkManger(widget.file);
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                            return TextModal(modalText: '123123');
+                          },
                         );
                         setState(() {
                         _image = widget.file;

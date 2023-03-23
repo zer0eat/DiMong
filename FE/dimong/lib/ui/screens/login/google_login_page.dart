@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
-import 'package:dimong/ui/widgets/google_api_login.dart';
+import 'package:dimong/core/login/google_api_login.dart';
 import 'package:dimong/ui/widgets/navbar.dart';
 
 class GoogleLoggedInPage extends StatelessWidget {
