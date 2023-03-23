@@ -26,8 +26,8 @@ class LoginPage extends StatelessWidget {
 
     if (userCredential != null) {
       // UserProvider에 UserCredential 데이터 저장
-      Provider.of<UserProvider>(context, listen: false)
-          .setUserCredential(userCredential);
+      // Provider.of<UserProvider>(context, listen: false)
+      //     .setUserCredential(userCredential);
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => NavBar()
       ));
