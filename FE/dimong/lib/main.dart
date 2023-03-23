@@ -1,8 +1,10 @@
+import 'package:dimong/ui/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dimong/ui/screens/login/login_page.dart';
 import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/ui/screens/drawing/drawing.dart';
+import 'package:dimong/ui/screens/dic_dino/dic_dino.dart';
 
 import 'package:dimong/ui/screens/drawing/dino_canvas.dart';
 import 'package:provider/provider.dart';

@@ -25,7 +25,7 @@ class _NavBarState extends State<NavBar> {
     DicDino(),
     //DictionaryEtc(),
     DrawingDino(),
-    // MyPage(),
+    MyPage(),
   ];
 
   //swipe
@@ -46,7 +46,7 @@ class _NavBarState extends State<NavBar> {
         child: CurvedNavigationBar(
           height: 50,
           color: Colors.white, //bar색상
-          backgroundColor: Color(0xFFACC864), //선택 색상
+          backgroundColor: Colors.white, //선택 색상
           index: selectedIndex,
           items: [
             SvgPicture.asset(
