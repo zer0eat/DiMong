@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:developer' as developer;
+import 'package:provider/provider.dart';
+import 'package:dimong/modules/user_profile/user_provider.dart';
 import 'package:dimong/ui/widgets/google_api_login.dart';
 import 'package:dimong/ui/screens/login/google_login_page.dart';
 import 'package:dimong/ui/widgets/navbar.dart';
@@ -26,6 +28,10 @@ class LoginPage extends StatelessWidget {
       print('로그인 성공 === Google');
       print(userCredential);
 
+      // UserProvider에 UserCredential 데이터 저장
+      Provider.of<UserProvider>(context, listen: false)
+          .setUserCredential(userCredential);
+
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => NavBar()
       ));
@@ -35,7 +41,6 @@ class LoginPage extends StatelessWidget {
           .showSnackBar(SnackBar(content: Text('로그인 실패 === Google')
       ));
     }
-    return userCredential;
   }
 
   @override
