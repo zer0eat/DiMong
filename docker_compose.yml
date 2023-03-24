@@ -15,7 +15,7 @@ services:
     container_name: ai
 
     # image: fastapi
-    command: sh -c "cd app"
+    command: sh -c "pwd && ls && cd app && pwd"
 
     volumes:
       - ./app:/code/app
