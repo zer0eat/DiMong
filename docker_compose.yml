@@ -15,7 +15,7 @@ services:
     container_name: ai
 
     # image: fastapi
-    command: sh -c "cd app && uvicorn main:app --proxy-headers --host 0.0.0.0 --port 8080"
+    command: cd app
 
     volumes:
       - ./app:/code/app
