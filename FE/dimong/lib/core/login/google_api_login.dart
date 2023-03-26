@@ -1,16 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:dimong/core/auth/auth_provider.dart';
 
-class GoogleSignInApi {
-  static final _googleSignIn = GoogleSignIn();
+class Auth {
+  AuthProvider authProvider = AuthProvider();
 
-  static Future<GoogleSignInAccount?> login() {
-    return _googleSignIn.signIn();
+  Future<void> login() async {
+    await authProvider.loginWithGoogle();
   }
 
-  static Future logout() async {
-    await FirebaseAuth.instance.signOut();
-    await _googleSignIn.disconnect();
+  Future<void> logOut() async {
+    await authProvider.logout();
   }
 
 }

@@ -1,44 +1,31 @@
 // annotation: 주석처럼 코드를 작성하여 특별한 의미를 부여하는 것
 import 'package:json_annotation/json_annotation.dart';
+import '../api/rest_client.dart';
+import '../api/api.dart';
+
 part 'dino.g.dart';
 
-// Serialization: 통신, 저장과 재구축이 가능한 포맷으로 object를 변환하는 과정을 말한다.
-// Serialization의 예: json으로 변환 / deserialization의 예: dart object로 변환
-// dart:convert를 이용한 수동 Json 직렬화를 사용하지 않은 이유
-// 이상한 데이터를 받았을 때 오류가 나서, 앱 사용에 지장을 주는 경우를 방지하기 위해
-// 공룡의 정보로 다양한 값의 데이터를 받아오기 때문에 관리하기 쉽고, 비교적 간결한 @JsonSerializable 사용
 @JsonSerializable()
-class DinosaurInfo {
-  Dino info;
-  DinosaurInfo({required this.info});
+class SendPeriodResponse {
+  @JsonKey(name: 'dinosaurId')
+  final int? dinosaurId;
+  @JsonKey(name: 'dinosaurUrl')
+  final String? dinosaurUrl;
+  @JsonKey(name: 'dinosaurName')
+  final String? dinosaurName;
 
-  // factory: class instance를 return해주는 constructor
-  // Map: dart에서 사용하는 key-value collection type으로 key: String, value dynamic으로 선언
-  // dynamic: json data는 다양한 타입의 데이터를 가질 수 있는데,(원하지 않던 데이터일 경우도 있다)
-  // 이에 대응하기 위해 컴파일할 때 타입 검사를 하지 않는 dynamic을 사용한다.
-  factory DinosaurInfo.fromJson(Map<String, dynamic> receiveData) => _$DinosaurInfoFromJson(receiveData);
+  SendPeriodResponse({this.dinosaurId, this.dinosaurUrl, this.dinosaurName});
 
-  Map<String, dynamic> toJson() => _$DinosaurInfoToJson(this);
+  factory SendPeriodResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendPeriodResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendPeriodResponseToJson(this);
 }
 
 @JsonSerializable()
-class DinosaurFind{
-  final List<String> id;
-
-  DinosaurFind({required this.id});
-
-  factory DinosaurFind.fromJson(Map<String, dynamic> receiveData){
-    var nameData = receiveData['result'] as List;
-    List<String> dinoId = nameData.map((i) => i['id'] as String).toList();
-    return DinosaurFind(id: dinoId);
-  }
-}
-
-@JsonSerializable()
-class Dino {
-  //@JsonKey(id: 'id')
-  final int id;
-  final String name;
+class SendInfoResponse {
+  final int dinosaurId;
+  final String dinosaurName;
   final String long;
   final String weight;
   final String when;
@@ -47,10 +34,10 @@ class Dino {
   final String eat;
   final String characteristic;
 
-  Dino(
+  SendInfoResponse(
       {
-        required this.id,
-        required this.name,
+        required this.dinosaurId,
+        required this.dinosaurName,
         required this.long,
         required this.weight,
         required this.when,
@@ -60,10 +47,25 @@ class Dino {
         required this.characteristic,
       });
 
-  factory Dino.fromJson(Map<String, dynamic> receiveData) => _$DinoFromJson(receiveData);
+  factory SendInfoResponse.fromJson(Map<String, dynamic> receiveData) => _$SendInfoResponseFromJson(receiveData);
 
-  Map<String, dynamic> toJson() => _$DinoToJson(this);
+  Map<String, dynamic> toJson() => _$SendInfoResponseToJson(this);
 }
+
+@JsonSerializable()
+class SendImageResponse {
+  @JsonKey(name: 'body')
+  final int? dinosaurId;
+  final String? dinosaurName;
+
+  SendImageResponse({this.dinosaurId, this.dinosaurName});
+
+  factory SendImageResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendImageResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendImageResponseToJson(this);
+}
+
 
 // @JsonSerializable() 사용 x
 /*
