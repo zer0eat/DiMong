@@ -33,7 +33,7 @@ MODEL_DIR = os.path.join(os.path.join(BASE_DIR, "models"), "drawing_model.pth")
 
 
 
-class PictureAI:
+class DrawingAI:
     def __init__(
         self
     ) -> None:
