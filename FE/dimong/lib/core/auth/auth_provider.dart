@@ -41,13 +41,10 @@ class AuthProvider with ChangeNotifier {
       final UserCredential authResult = await _firebaseAuth.signInWithCredential(credential);
       if (authResult != null){
         final User? user = authResult.user;
-
         final bool isNewUser = authResult.additionalUserInfo!.isNewUser;
-
         if (isNewUser) {
           await _createUserInFirestore(user);
         }
-
         await _updateTokens(authResult);
       }
       else{
@@ -85,24 +82,21 @@ class AuthProvider with ChangeNotifier {
   }
   Future<void> _loginNewTokens() async {
     try {
-      final currentUser = FirebaseAuth.instance.currentUser;
-      await currentUser!.getIdToken(true);
       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-
       final GoogleSignInAuthentication googleSignInAuthentication =
       await googleSignInAccount!.authentication;
-
+      final String idToken = googleSignInAuthentication.idToken!;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
+        idToken: idToken,
       );
       final UserCredential authResult = await _firebaseAuth.signInWithCredential(credential);
       if (authResult != null){
         final User? user = authResult.user;
         final bool isNewUser = authResult.additionalUserInfo!.isNewUser;
-        if (isNewUser) {
+          if (isNewUser) {
           await _createUserInFirestore(user);
-        }
+          }
         await _updateTokens(authResult);
       }
     } catch (error) {

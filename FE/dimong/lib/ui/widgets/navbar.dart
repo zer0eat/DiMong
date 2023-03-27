@@ -25,7 +25,7 @@ class _NavBarState extends State<NavBar> {
     DicDino(),
     //DictionaryEtc(),
     DrawingDino(),
-    // MyPage(),
+    MyPage(),
   ];
 
   //swipe

@@ -1,3 +1,4 @@
+/*
 import 'dart:io';
 import 'dart:convert';
 import 'package:dio/dio.dart';
@@ -39,7 +40,8 @@ abstract class RestClient{
   // 시대별 공룡 목록
   @GET(Paths.dinoList)
   Future<SendPeriodResponse> getDinosaurs(@Path('period') String period);
-  /*
+  */
+/*
   @GET(Paths.etcList)
   Future<Response> getOrganisms(@Path('kind') String kind);
   @GET(Paths.dinoDetail)
@@ -63,7 +65,8 @@ abstract class RestClient{
   @GET(Paths.drawingDetail)
   Future<Response> getDrawingDetail(@Path('dinosaurId') int dinosaurId);
   @POST(Paths.badgeCheck)
-  Future<Response> getBadgeCheck();*/
+  Future<Response> getBadgeCheck();*//*
+
   @POST(Paths.cameraDino)
   @MultiPart()
   Future<SendImageResponse> postCameraDino(@Part(name: 'image')  String json);
@@ -71,3 +74,4 @@ abstract class RestClient{
   Future<SendInfoResponse> refreshToken(@Body() Map<String, dynamic> refreshToken);
 }
 
+*/
