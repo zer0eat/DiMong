@@ -12,11 +12,45 @@ class DicDino extends StatefulWidget {
 class _DicDinoState extends State<DicDino> {
   @override
   Widget build(BuildContext context) {
-    return const Stack(
-      children: [
-        DinoGrid(),
-        FabMenu(),
-      ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Container(
+            color: Colors.transparent,
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: TabBar(
+              tabs: [
+                Tab(text: '쥐라기'),
+                Tab(text: '백악기'),
+              ],
+              indicatorColor: const Color(0xFF476930),
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor: const Color(0xFF476930),
+            ),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: TabBarView(
+            children: [
+              Stack(
+                children: [
+                  DinoGrid(),
+                  FabMenu(),
+                ],
+              ),
+              Stack(
+                children: [
+                  DinoGrid(),
+                  FabMenu(),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
