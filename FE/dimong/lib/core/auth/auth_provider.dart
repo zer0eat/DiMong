@@ -47,10 +47,10 @@ class AuthProvider with ChangeNotifier {
         if (isNewUser) {
           await _createUserInFirestore(user);
         }
-
         await _updateTokens(authResult);
       }
       else{
+        print('111111111111111111111111');
         _loginNewTokens();
       }
 
