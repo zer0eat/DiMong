@@ -5,7 +5,7 @@ dinosaur_kor = {
 }
 
 
-class Picture:
+class Drawing:
     image_bytes: bytes
     dinosaurName1: str
     dinosaurName2: str
