@@ -16,7 +16,7 @@ services:
 
     # image: fastapi
     # command: sh -c "pwd && cd app && pwd && ls && tail -f /dev/null"
-    command: uvicorn app.main:app --proxy-headers --host 0.0.0.0 --port 8000
+    command: sh -c "cd app && uvicorn main:app --proxy-headers --host 0.0.0.0 --port 8000"
 
 
     # volumes:
