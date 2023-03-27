@@ -7,7 +7,7 @@ import 'package:dimong/core/utils/api_routes.dart';
 class DictionaryApiClient {
   final dio = DataServerDio.instance();
 
-  Future<List<SendPeriodResponse>> sendPeriod(String period) async {
+  Future<List<SendPeriodResponse>> sendPeriod(String? period) async {
     try {
       final response = await dio.get(Paths.dinoList);
       print(response);

@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/widgets/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/modals/modal.dart';
-import './data/data.dart';
+import './data/repository.dart';
 
 // Camera Widget을 생성
 class GalleryPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class GalleryPage extends StatefulWidget {
 }
 
 class _GalleryPageState extends State<GalleryPage> {
-  final cameraClient  = CameraApiClient();
+  final CameraRepository _cameraRepository = CameraRepository();
   final picker = ImagePicker();
   File? _image;
   void initState(){
@@ -86,7 +86,7 @@ class _GalleryPageState extends State<GalleryPage> {
                       color: Colors.white,
                       onPressed: () async{
                         if(widget.file!=null) {
-                          final res = await cameraClient.sendImage(_image);
+                          final res = await _cameraRepository.sendImage(_image);
                           print(res);
                           showModalBottomSheet(
                             context: context,

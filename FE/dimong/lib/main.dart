@@ -9,6 +9,8 @@ import 'package:dimong/core/auth/auth_provider.dart';
 import 'package:dimong/ui/screens/drawing/dino_canvas.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/ui/screens/drawing/draw_provider.dart';
+import 'package:dimong/route.dart';
+import 'package:dimong/ui/screens/dic_dino/dic_detail.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,8 +33,18 @@ class MyApp extends StatelessWidget {
         title: 'My App',
         initialRoute: '/login',
         routes: {
-          '/login': (context) => LoginPage(),
+          RoutePaths.login: (context) => LoginPage(),
+          RoutePaths.dinoDetail : (context) => DinoDetail(id: 0),
           //'/home': (context) => HomePage(),
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == RoutePaths.dinoDetail) {
+            final id = settings.arguments as int;
+            return MaterialPageRoute(
+              builder: (context) => DinoDetail(id: id),
+            );
+          }
+          return null;
         },
       ),
     );
