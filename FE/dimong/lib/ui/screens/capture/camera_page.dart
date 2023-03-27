@@ -7,6 +7,8 @@ import 'package:dimong/ui/modals/modal.dart';
 import 'package:dimong/core/api/api.dart';
 import './data/data.dart';
 import 'package:dimong/core/api/api.dart';
+import '../dic_dino/data/data.dart';
+
 // Camera Widget을 생성
 class CameraPage extends StatefulWidget {
   final File file;
@@ -17,6 +19,7 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
+  //final periodClient = DictionaryApiClient();
   final cameraClient  = CameraApiClient();
   final picker = ImagePicker();
   File? _image;
@@ -93,11 +96,14 @@ class _CameraPageState extends State<CameraPage> {
                           onPressed: () async{
                             if(_image!=null) {
                               // 통신 코드 추가 밑에 modalText에 결과 출력
-                              final id = await cameraClient.sendImage(_image);
+                              final res = await cameraClient.sendImage(_image);
+                              print(res);
+                              //final resp = await periodClient.sendPeriod("트라이아스기");
                               showModalBottomSheet(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return TextModal(modalText: id.toString());
+                                  return TextModal(modalText: res.dinosaurId.toString());
+                                  //return TextModal(modalText: resp[0].dinosaurId.toString());
                                 },
                               );
                               setState(() {
