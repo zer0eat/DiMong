@@ -10,8 +10,6 @@ import '../auth/auth_provider.dart';
 import '../local_storage/secure_storage.dart';
 import '../utils/api_routes.dart';
 
-part 'rest_client.g.dart';
-
 Future<String?> getIdToken(AuthProvider authProvider) async {
   final idToken = await SecureStorage().getIdToken();
   return idToken;

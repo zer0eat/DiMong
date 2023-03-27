@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/ui/screens/drawing/drawing.dart';
 import 'package:dimong/ui/screens/dic_dino/dic_dino.dart';
-import 'package:dimong/ui/screens/dic_etc/dic_etc.dart';
 import 'package:dimong/ui/screens/mypage/mypage.dart';
 
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
+import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+import 'package:motion_tab_bar_v2/motion-tab-item.dart';
 
 // NavBar Widget을 생성
 class NavBar extends StatefulWidget {
@@ -16,90 +16,89 @@ class NavBar extends StatefulWidget {
   _NavBarState createState() => _NavBarState();
 }
 
-//
-class _NavBarState extends State<NavBar> {
-  // selectedIndex
-  int selectedIndex = 0;
-  final screen = [
-    HomePage(),
-    DicDino(),
-    //DictionaryEtc(),
-    DrawingDino(),
-    MyPage(),
-  ];
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Motion Tab Bar Sample',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Motion Tab Bar Sample'),
+    );
+  }
 
-  //swipe
-  final _pageController = PageController();
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, this.title}) : super(key: key);
+
+  final String? title;
+
+  @override
+  _NavBarState createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar>
+    with SingleTickerProviderStateMixin {
+  TabController? _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      initialIndex: 1,
+      length: 4,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController!.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('CurvedNavigationBar'),
-      //   backgroundColor: Colors.blue,
-      // ),
-      bottomNavigationBar:
-      Container(
-        decoration: BoxDecoration(
-          color: Color(0xFFACC864),
+      bottomNavigationBar: MotionTabBar(
+        initialSelectedTab: "Home",
+        useSafeArea: true, // default: true, apply safe area wrapper
+        labels: const ["Home", "Dino", "Draw", "MyPage"],
+        icons: const [
+          Icons.home,
+          Icons.book,
+          Icons.color_lens,
+          Icons.person,
+        ],
+
+        tabSize: 50,
+        tabBarHeight: 55,
+        textStyle: const TextStyle(
+          fontSize: 14,
+          color: const Color(0xFFACC864),
+          fontWeight: FontWeight.w500,
         ),
-        child: CurvedNavigationBar(
-          height: 50,
-          color: Colors.white, //bar색상
-          backgroundColor: Colors.white, //선택 색상
-          index: selectedIndex,
-          items: [
-            SvgPicture.asset(
-              'assets/images/home.svg',
-              width: 30,
-              height: 30,
-              color: selectedIndex == 0 ? Color(0xFFACC864) : Color(0xff6B6B6B),
-            ),
-            SvgPicture.asset(
-              'assets/images/dictionaryDino.svg',
-              width: 30,
-              height: 30,
-              color: selectedIndex == 1 ? Color(0xFFACC864) : Color(0xff6B6B6B),
-            ),
-            SvgPicture.asset(
-              'assets/images/dictionaryOthers.svg',
-              width: 30,
-              height: 30,
-              color: selectedIndex == 2 ? Color(0xFFACC864) : Color(0xff6B6B6B),
-            ),
-            SvgPicture.asset(
-              'assets/images/paint.svg',
-              width: 30,
-              height: 30,
-              color: selectedIndex == 3 ? Color(0xFFACC864) : Color(0xff6B6B6B),
-            ),
-            SvgPicture.asset(
-              'assets/images/person.svg',
-              width: 30,
-              height: 30,
-              color: selectedIndex == 4 ? Color(0xFFACC864) : Color(0xff6B6B6B),
-            ),
-          ],
-          onTap: (index) {
-            setState(() {
-               selectedIndex = index;
-            });
-            _pageController.jumpToPage(index);
-            },
-            buttonBackgroundColor: Colors.white,
-            animationCurve: Curves.easeInOutQuart,
-            animationDuration: const Duration(milliseconds: 200),
-          ),
-        ),
-        body: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-          children: screen,
-        ),
-      );
+        tabIconColor: const Color(0xFF6B6B6B),
+        tabIconSize: 28.0,
+        tabIconSelectedSize: 26.0,
+        tabSelectedColor: const Color(0xFFACC864),
+        tabIconSelectedColor: Colors.white,
+        tabBarColor: const Color(0xFFFFFFFF),
+        onTabItemSelected: (int value) {
+          setState(() {
+            _tabController!.index = value;
+          });
+        },
+      ),
+      body: TabBarView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: _tabController,
+        children: <Widget>[
+          HomePage(),
+          DicDino(),
+          DrawingDino(),
+          MyPage(),
+        ],
+      ),
+    );
   }
 }
