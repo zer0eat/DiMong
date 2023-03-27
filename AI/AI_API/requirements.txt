@@ -3,4 +3,4 @@ fastapi
 torch
 torchvision
 python-multipart
-pydantic
+pydantic[dotenv]
