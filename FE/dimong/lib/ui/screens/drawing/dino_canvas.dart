@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import './draw_provider.dart';
 import 'line_info.dart';
+import 'dart:ui' as ui;
 
 class DinoCanvas extends StatefulWidget {
-  const DinoCanvas({Key? key}) : super(key: key);
+  const DinoCanvas({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<DinoCanvas> createState() => _DinoCanvasState();
@@ -22,6 +24,37 @@ class _DinoCanvasState extends State<DinoCanvas> {
     Colors.deepPurple,
     Colors.black,
   ];
+  @override
+  void initState() {
+    super.initState();
+    // var p = Provider.of<DrawProvider>(context);
+    // if (p.lines.isNotEmpty) {
+    //   p.eraseAll();
+    // }
+  }
+
+  // setRenderedImage(BuildContext context) async {
+  //   ui.Image renderedImage = await signatureKey.currentState.rendered;
+  //
+  //   print('image ${renderedImage.toString()}');
+  //   setState(() {
+  //     image = renderedImage;
+  //   });
+  //   var pngBytes =
+  //       await renderedImage.toByteData(format: ui.ImageByteFormat.png);
+  //   Navigator.of(context).push(MaterialPageRoute(
+  //       builder: (BuildContext context) => FullScreenImage(
+  //             pngBytes: pngBytes,
+  //           )));
+//    showImage(context);
+//   }
+  // Future<void> saveImage() async {
+  //   try {
+  //     final boundary = _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
+  //     final image = await boundary.toImage();
+  //     final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +134,7 @@ class _DinoCanvasState extends State<DinoCanvas> {
                   '지우개',
                   style: TextStyle(
                     fontSize: 17,
-                    color: p.eraseMode ? Colors.blue : Colors.black,
+                    color: p.eraseMode ? Color(0xFFACC864) : Colors.black,
                     fontWeight:
                         p.eraseMode ? FontWeight.w900 : FontWeight.normal,
                   ),
@@ -163,11 +196,16 @@ class DrawingPainter extends CustomPainter {
       double? size;
       var l = <Offset>[];
       var p = Path();
-      for (var oneDot in oneLine) {
+      for (var i = 0; i < oneLine.length; i++) {
+        var oneDot = oneLine[i];
         // ??= null일 때만 값 지정
         color ??= oneDot.color;
         size ??= oneDot.size;
         l.add(oneDot.offset);
+        if (i == 0) {
+          //moveTo로 시작점 설정
+          p.moveTo(oneDot.offset.dx, oneDot.offset.dy);
+        }
       }
       p.addPolygon(l, false);
       canvas.drawPath(
