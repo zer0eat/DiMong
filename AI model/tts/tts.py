@@ -7,8 +7,8 @@ import csv
 #aws credential 설정 필요
 session = Session(profile_name="default")
 polly = session.client("polly")
-MP3_DIR = os.path.dirname(os.path.abspath(__file__))+"\\mp3\\"
-WAV_DIR = os.path.dirname(os.path.abspath(__file__))+"\\wav\\"
+MP3_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),"mp3")
+WAV_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),"wav")
 def tts(text,name):
     try:
     # Request speech synthesis
@@ -49,5 +49,3 @@ with open('dinodetail.csv', newline='', encoding='cp949') as csvfile:
         tts(text = detail,name = name)
         i+=1
         print("#",i,":finished")
-        
-    
