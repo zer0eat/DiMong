@@ -4,6 +4,8 @@ from configs.Environment import get_environment_variables
 from metadata.Tags import Tags
 # from models.BaseModel import init
 from routers.v1.PictureRouter import PictureRouter
+from routers.v1.DrawingRouter import DrawingRouter
+
 
 
 # Application Environment Configuration
@@ -18,6 +20,7 @@ app = FastAPI(
 
 # Add Routers
 app.include_router(PictureRouter)
+app.include_router(DrawingRouter)
 
 
 # Initialise Data Model Attributes

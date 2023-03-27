@@ -14,7 +14,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # dimong 분석모델
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_DIR = os.path.join(os.path.join(BASE_DIR, "models"), "dimong_model.pth")
+MODEL_DIR = os.path.join(os.path.join(BASE_DIR, "models"), "picture_model.pth")
 
 model = torch.load(MODEL_DIR, map_location=torch.device('cpu'))
 model.eval()
