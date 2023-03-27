@@ -12,81 +12,84 @@ class _RestClient implements RestClient {
   _RestClient(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'api server';
-  }
+  });
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<List<int>> getId() async {
+  Future<SendPeriodResponse> getDinosaurs(period) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<SendPeriodResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/findDino',
+              '/api/v1/dinosaurs?period=${period}',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!.cast<int>();
+    final value = SendPeriodResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<Response<dynamic>> sendImage(imageFile) async {
+  Future<SendImageResponse> postCameraDino(json) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'image',
+      json,
+    ));
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<Response<dynamic>>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<SendImageResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              '/api/ai/b1/pictures/dinosaurs',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SendImageResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendInfoResponse> refreshToken(refreshToken) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(refreshToken);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<SendInfoResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/image',
+              '/auth/refresh_token',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = await compute(deserializeResponse<dynamic>, _result.data!);
-    return value;
-  }
-
-  @override
-  Future<Response<dynamic>> sendToImage(map) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(map);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<Response<dynamic>>(Options(
-      method: 'PATCH',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/image',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = await compute(deserializeResponse<dynamic>, _result.data!);
+    final value = SendInfoResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -1,46 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:developer' as developer;
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dimong/modules/user_profile/user_provider.dart';
-import 'package:dimong/core/login/google_api_login.dart';
+import 'package:dimong/core/auth/auth_provider.dart';
+//import 'package:dimong/modules/user_profile/user_provider.dart';
 import 'package:dimong/ui/screens/login/google_login_page.dart';
 import 'package:dimong/ui/widgets/navbar.dart';
 import 'package:dimong/ui/widgets/background.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
-  Future<UserCredential?> loginWithGoogle(BuildContext context) async {
-    GoogleSignIn(forceCodeForRefreshToken: true);
-    GoogleSignInAccount? user = await GoogleSignInApi.login();
-
-    GoogleSignInAuthentication? googleAuth = await user!.authentication;
-    var credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken
-    );
-
-    UserCredential? userCredential = await FirebaseAuth.instance
-        .signInWithCredential(credential);
-
-    if (userCredential != null) {
-      // UserProvider에 UserCredential 데이터 저장
-      // Provider.of<UserProvider>(context, listen: false)
-      //     .setUserCredential(userCredential);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => NavBar()
-      ));
-    } else {
-      print('로그인 실패');
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('로그인 실패 === Google')
-      ));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Material(
@@ -59,7 +29,13 @@ class LoginPage extends StatelessWidget {
               icon: Image.asset('assets/images/login_btn_google.png'),
               iconSize: 50.0,
               onPressed: () async {
-                await loginWithGoogle(context);
+                await authProvider.loginWithGoogle();
+                if (authProvider.isSignedIn) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => NavBar()),
+                  );
+                }
               },
             ),
           ),

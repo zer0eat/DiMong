@@ -1,12 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
-import 'package:dimong/core/login/google_api_login.dart';
+import 'package:dimong/core/auth/auth_provider.dart';
 import 'package:dimong/ui/widgets/navbar.dart';
 
 class GoogleLoggedInPage extends StatelessWidget {
   final UserCredential userCredential;
-
   GoogleLoggedInPage({
     Key? key,
     required this.userCredential,
@@ -14,6 +14,7 @@ class GoogleLoggedInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Logged In'),
@@ -28,7 +29,7 @@ class GoogleLoggedInPage extends StatelessWidget {
             TextButton(
               child: const Text('Logout'),
               onPressed: () async {
-                await GoogleSignInApi.logout();
+                await authProvider.logout();
 
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => NavBar(),

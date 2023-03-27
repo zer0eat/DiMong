@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/widgets/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/modals/modal.dart';
-import 'package:dimong/core/network.dart';
+import 'package:dimong/core/network/network.dart';
 
 // Camera Widget을 생성
 class GalleryPage extends StatefulWidget {
@@ -40,7 +40,7 @@ class _GalleryPageState extends State<GalleryPage> {
   @override
   Widget build(BuildContext context) {
     // 화면 세로 고정
-    DioService dioService = DioService();
+    //DioService dioService = DioService();
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -87,7 +87,7 @@ class _GalleryPageState extends State<GalleryPage> {
                       onPressed: () async{
                         // File? sendToFile = await compressImage(widget.file);
                         if(widget.file!=null) {
-                          dioService.networkManger(widget.file);
+                          //dioService.sendImage(widget.file);
                           showModalBottomSheet(
                             context: context,
                             builder: (BuildContext context) {
