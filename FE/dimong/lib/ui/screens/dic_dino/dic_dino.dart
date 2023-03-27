@@ -20,20 +20,26 @@ class _DicDinoState extends State<DicDino> {
             preferredSize: Size.fromHeight(kToolbarHeight),
             child: Container(
               color: Colors.transparent,
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              padding: const EdgeInsets.symmetric(
+                  vertical: 10.0,),
               child: TabBar(
                 tabs: [
-                  Tab(text: '쥐라기'),
+                  Tab(text: '쥬라기'),
                   Tab(text: '백악기'),
                 ],
                 indicatorColor: const Color(0xFF476930),
                 indicatorSize: TabBarIndicatorSize.label,
                 labelColor: const Color(0xFF476930),
+                labelStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
               ),
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.symmetric(
+                vertical: 8.0,
+                horizontal: 10.0),
             child: TabBarView(
               children: [
                 Stack(

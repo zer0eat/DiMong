@@ -65,7 +65,7 @@ class _NavBarState extends State<NavBar>
         labels: const ["Home", "Dino", "Draw", "MyPage"],
         icons: const [
           Icons.home,
-          Icons.book,
+          Icons.menu_book_rounded,
           Icons.color_lens,
           Icons.person,
         ],

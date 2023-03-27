@@ -64,8 +64,8 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Stack(children: [
       Positioned(
-          bottom: 144.0,
-          right: 24.0,
+          bottom: 138.0,
+          right: 18.0,
           child: Row(
             children: [
               ScaleTransition(
@@ -74,11 +74,11 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
                 child: Material(
                     color: const Color(0xFFFFFFFF),
                     type: MaterialType.circle,
-                    elevation: 2.0,
+                    elevation: 5.0,
                     child: GestureDetector(
                       child: SizedBox(
-                          width: 40.0,
-                          height: 40.0,
+                          width: 50.0,
+                          height: 50.0,
                           child: InkWell(
                             onTap: () async{
                               File? image_camera = await getImageFile(ImageSource.camera);
@@ -103,8 +103,8 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
             ],
           )),
       Positioned(
-          bottom: 88.0,
-          right: 24.0,
+          bottom: 80.0,
+          right: 18.0,
           child: Row(
             children: [
               ScaleTransition(
@@ -113,11 +113,11 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
                 child: Material(
                     color: const Color(0xFFFFFFFF),
                     type: MaterialType.circle,
-                    elevation: 2.0,
+                    elevation: 5.0,
                     child: GestureDetector(
                       child: SizedBox(
-                          width: 40.0,
-                          height: 40.0,
+                          width: 50.0,
+                          height: 50.0,
                           child: InkWell(
                             onTap: () async{
                               File? image_gallery = await getImageFile(ImageSource.gallery);
