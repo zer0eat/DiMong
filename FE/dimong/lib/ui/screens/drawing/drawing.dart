@@ -1,130 +1,101 @@
 import 'package:flutter/material.dart';
-import './dino_canvas.dart';
+import 'draw_dino_slider.dart';
+import 'draw_free_page.dart';
 
-// class DrawingDino extends StatelessWidget{
-//   const DrawingDino({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context){
-//     return Center(
-//       child: Text('This is Painting'),
-//     );
-//   }
-// }
 class DrawingDino extends StatelessWidget {
   const DrawingDino({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text('Open route'),
-          onPressed: () {
-            // 눌렀을 때 두 번째 route로 이동합니다.
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DinoCanvas()),
-            );
-          },
+      body: SafeArea(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 내 맘대로 그리기
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 30,
+                  top: 50,
+                ),
+                child: const Text(
+                  '내 맘대로 그리기',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Color(0xff6B6B6B),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+
+              // 내 맘대로 그리기 설명
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 30,
+                  left: 30,
+                ),
+                child: Text(
+                  '내가 그리고 싶었던 것들을 \n마음껏 그려보세요',
+                ),
+              ),
+
+              // 그리러가기 버튼
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 30,
+                  left: 30,
+                ),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      primary: const Color(0xff6B6B6B),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 14,
+                        horizontal: 30,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DrawFreePage(),
+                          ));
+                    },
+                    child: Text('그리러가기')),
+              ),
+
+              SizedBox(
+                height: 70,
+              ),
+
+              // 주제 맞춰 그리기
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 30,
+                  top: 50,
+                ),
+                child: const Text(
+                  '주제 맞춰 그리기',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Color(0xff6B6B6B),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+
+              Container(
+                child: DinoDrawCard(),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-//
-// class DrawingDino extends StatefulWidget {
-//   const DrawingDino({Key? key}) : super(key: key);
-//
-//   @override
-//   State<DrawingDino> createState() => _DrawingDinoState();
-// }
-//
-// class _DrawingDinoState extends State<DrawingDino> {
-//   Color selectedColor = Colors.black;
-//   List<Color> colors = [
-//     Colors.red,
-//     Colors.orange,
-//     Colors.yellow,
-//     Colors.green,
-//     Colors.blue,
-//     Colors.deepPurple,
-//     Colors.black,
-//   ];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         children: [
-//           // Expanded -> Expanded 없는 부분 영역 제외 모든 영역을 가져간다.
-//           Expanded(
-//               child: Stack(children: [
-//             GestureDetector(
-//               // 처음 눌렀을 때 값 전달
-//               onPanStart: (s) {},
-//               // 움직일 때 값 전달
-//               onPanUpdate: (s) {},
-//             )
-//           ])),
-//           Container(
-//             color: Colors.grey[300],
-//             padding: EdgeInsets.all(10),
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: List.generate(
-//                 colors.length,
-//                 (index) => _ChooseColor(colors[index]),
-//               ),
-//             ),
-//           ),
-//           Row(children: [
-//             Expanded(
-//               child: Padding(
-//                 padding: EdgeInsets.all(10),
-//                 child: Slider(
-//                   activeColor: selectedColor,
-//                   inactiveColor: Colors.grey.shade200,
-//                   value: 1,
-//                   onChanged: (size) {},
-//                   min: 1,
-//                   max: 30,
-//                 ),
-//               ),
-//             ),
-//             Padding(
-//               padding: EdgeInsets.only(left: 20, right: 5),
-//               child: Text(
-//                 'erase',
-//                 style: TextStyle(fontSize: 20),
-//               ),
-//             )
-//           ]),
-//         ],
-//       ),
-//     );
-//   }
-//
-//   Widget _ChooseColor(Color color) {
-//     bool isSelected = selectedColor == color;
-//     return GestureDetector(
-//       behavior: HitTestBehavior.translucent,
-//       onTap: () => setState(() => selectedColor = color),
-//       child: Container(
-//         height: 40,
-//         width: 40,
-//         decoration: BoxDecoration(
-//           color: color,
-//           shape: BoxShape.circle,
-//           border: Border.all(
-//             color: Colors.white,
-//             width: 3,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
