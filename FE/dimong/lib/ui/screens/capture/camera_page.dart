@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/widgets/camera.dart';
 import 'package:dimong/ui/modals/modal.dart';
-import 'package:dimong/core/network/network.dart';
-
+import 'package:dimong/core/api/api.dart';
+import './data/data.dart';
+import 'package:dimong/core/api/api.dart';
 // Camera Widget을 생성
 class CameraPage extends StatefulWidget {
   final File file;
@@ -16,10 +17,9 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
-
+  final cameraClient  = CameraApiClient();
   final picker = ImagePicker();
   File? _image;
-  DioService dioService = DioService();
   void initState(){
     super.initState();
     _image = widget.file!=null ? File(widget.file.path) : null;
@@ -93,7 +93,7 @@ class _CameraPageState extends State<CameraPage> {
                           onPressed: () async{
                             if(_image!=null) {
                               // 통신 코드 추가 밑에 modalText에 결과 출력
-                              int? id = await dioService.sendImage(_image);
+                              final id = await cameraClient.sendImage(_image);
                               showModalBottomSheet(
                                 context: context,
                                 builder: (BuildContext context) {
