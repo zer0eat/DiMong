@@ -5,7 +5,7 @@ WORKDIR /code
 COPY ./requirements.txt /code/requirements.txt
 # COPY . /code/
 
-RUN "/usr/local/bin/python -m pip install --upgrade pip && pip install --no-cache-dir --upgrade -r /code/requirements.txt"
+RUN "pip install --upgrade pip && pip install --no-cache-dir --upgrade -r /code/requirements.txt"
 
 # CMD ["pwd"]
 
