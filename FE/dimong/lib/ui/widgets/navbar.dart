@@ -11,19 +11,18 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // NavBar Widget을 생성
-class NavBar extends StatefulWidget {
+class NavBar1 extends StatefulWidget {
   @override
   _NavBarState createState() => _NavBarState();
 }
 
 //
-class _NavBarState extends State<NavBar> {
+class _NavBarState extends State<NavBar1> {
   // selectedIndex
   int selectedIndex = 0;
   final screen = [
     HomePage(),
     DicDino(),
-    //DictionaryEtc(),
     DrawingDino(),
     MyPage(),
   ];
@@ -56,28 +55,22 @@ class _NavBarState extends State<NavBar> {
               color: selectedIndex == 0 ? Color(0xFFACC864) : Color(0xff6B6B6B),
             ),
             SvgPicture.asset(
-              'assets/images/dictionaryDino.svg',
+              'assets/images/dictionaryOthers.svg',
               width: 30,
               height: 30,
               color: selectedIndex == 1 ? Color(0xFFACC864) : Color(0xff6B6B6B),
             ),
             SvgPicture.asset(
-              'assets/images/dictionaryOthers.svg',
+              'assets/images/paint.svg',
               width: 30,
               height: 30,
               color: selectedIndex == 2 ? Color(0xFFACC864) : Color(0xff6B6B6B),
             ),
             SvgPicture.asset(
-              'assets/images/paint.svg',
-              width: 30,
-              height: 30,
-              color: selectedIndex == 3 ? Color(0xFFACC864) : Color(0xff6B6B6B),
-            ),
-            SvgPicture.asset(
               'assets/images/person.svg',
               width: 30,
               height: 30,
-              color: selectedIndex == 4 ? Color(0xFFACC864) : Color(0xff6B6B6B),
+              color: selectedIndex == 3 ? Color(0xFFACC864) : Color(0xff6B6B6B),
             ),
           ],
           onTap: (index) {
