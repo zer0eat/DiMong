@@ -44,7 +44,7 @@ class _NavBarState extends State<NavBar>
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 4,
       vsync: this,
     );
@@ -60,11 +60,11 @@ class _NavBarState extends State<NavBar>
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: MotionTabBar(
-        initialSelectedTab: "Home",
+        initialSelectedTab: "홈",
         useSafeArea: true, // default: true, apply safe area wrapper
-        labels: const ["Home", "Dino", "Draw", "MyPage"],
+        labels: const ["홈", "공룡백과", "그림", "내정보"],
         icons: const [
-          Icons.home,
+          Icons.home_rounded,
           Icons.menu_book_rounded,
           Icons.color_lens,
           Icons.person,
@@ -73,9 +73,9 @@ class _NavBarState extends State<NavBar>
         tabSize: 50,
         tabBarHeight: 55,
         textStyle: const TextStyle(
-          fontSize: 14,
+          fontSize: 13,
           color: const Color(0xFFACC864),
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.bold,
         ),
         tabIconColor: const Color(0xFF6B6B6B),
         tabIconSize: 28.0,
