@@ -20,6 +20,6 @@ services:
 
 
     # volumes:
-    #   - ./app:/code/app
+    #   - ./AI/AI_API/app:/code/app
 
     restart: "no"
