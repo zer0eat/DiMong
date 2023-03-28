@@ -15,22 +15,30 @@ class ImageServerDio {
     final dio = Dio();
 
     // Set the base URL for Server 1
+    //android emulator - flask 간 기본 url
     dio.options.baseUrl = 'http://10.0.2.2:5000/';
-    dio.options.connectTimeout = Duration(milliseconds: 3000);
+    dio.options.connectTimeout = Duration(milliseconds: 5000);
     dio.options.receiveTimeout = Duration(milliseconds: 3000);
     final idToken = getIdToken(authProvider);
     // Set up the headers for the Dio instance
     dio.options.headers = {
+      HttpHeaders.contentTypeHeader:'multipart/form-data',
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $idToken',
     };
 
     // Add any interceptors or other configurations as needed
-    final tokenInterceptor =
-    TokenInterceptor(
-        dio: dio, authProvider: authProvider, secureStorage: SecureStorage());
-    dio.interceptors.add(tokenInterceptor);
+    //final tokenInterceptor =
+    // TokenInterceptor(
+    //     dio: dio, authProvider: authProvider, secureStorage: SecureStorage());
+    //dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler){
+        return handler.next(options);
+      },
+      onResponse: (options, handler){
+        return handler.next(options);
+      },
       onError: (DioError error, handler) {
         if (error.response?.statusCode == 401) {
           authProvider.logout();
@@ -49,7 +57,7 @@ class DataServerDio {
 
     // Set the base URL for Server 1
     dio.options.baseUrl = 'http://10.0.2.2:5000/';
-    dio.options.connectTimeout = Duration(milliseconds: 3000);
+    dio.options.connectTimeout = Duration(milliseconds: 5000);
     dio.options.receiveTimeout = Duration(milliseconds: 3000);
     final idToken = getIdToken(authProvider);
     // Set up the headers for the Dio instance
@@ -59,11 +67,17 @@ class DataServerDio {
     };
 
     // Add any interceptors or other configurations as needed
-    final tokenInterceptor =
-    TokenInterceptor(
-        dio: dio, authProvider: authProvider, secureStorage: SecureStorage());
-    dio.interceptors.add(tokenInterceptor);
+    //final tokenInterceptor =
+    // TokenInterceptor(
+    //     dio: dio, authProvider: authProvider, secureStorage: SecureStorage());
+    //dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler){
+        return handler.next(options);
+      },
+      onResponse: (options, handler){
+        return handler.next(options);
+      },
       onError: (DioError error, handler) {
         if (error.response?.statusCode == 401) {
           authProvider.logout();
