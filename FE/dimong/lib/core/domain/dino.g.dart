@@ -48,12 +48,12 @@ Map<String, dynamic> _$SendInfoResponseToJson(SendInfoResponse instance) =>
 
 SendImageResponse _$SendImageResponseFromJson(Map<String, dynamic> json) =>
     SendImageResponse(
-      dinosaurId: json['body'] as int?,
+      dinosaurId: json['dinosaurId'] as int?,
       dinosaurName: json['dinosaurName'] as String?,
     );
 
 Map<String, dynamic> _$SendImageResponseToJson(SendImageResponse instance) =>
     <String, dynamic>{
-      'body': instance.dinosaurId,
+      'dinosaurId': instance.dinosaurId,
       'dinosaurName': instance.dinosaurName,
     };
