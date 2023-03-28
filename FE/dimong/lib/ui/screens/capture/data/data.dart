@@ -21,7 +21,7 @@ class CameraApiClient {
       print(dinosaursJson['dinosaurId']);
       final sendImageResponse = SendImageResponse.fromJson(dinosaursJson);
       print(sendImageResponse.runtimeType);
-      print(sendImageResponse.dinosaurId);
+      print(sendImageResponse.dinosaurName);
       return sendImageResponse;
     } catch (e) {
       // Handle the error as needed

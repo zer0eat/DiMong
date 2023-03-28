@@ -108,9 +108,9 @@ class _CameraPageState extends State<CameraPage> {
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        Image.asset('~/assets/images/analyzing.png'),
+                                        //Image.asset('~/assets/images/analyzing.png'),
                                         SizedBox(height: 16),
-                                        LinearProgressIndicator(),
+                                        CircularProgressIndicator(),
                                       ],
                                     ),
                                   );
