@@ -40,7 +40,14 @@ class _DinoGridState extends State<DinoGrid> {
                       Positioned(
                         child: ClipOval(
                           child: Container(
-                            color: const Color(0x40FFFFFF),
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                colors: [Color(0x33FFFFFF),Color(0x99D2DCC4)],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                            ),
                             width: 200,
                             height: 200,
                           ),

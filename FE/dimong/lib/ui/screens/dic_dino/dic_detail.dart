@@ -228,7 +228,7 @@ class DinoDetail extends StatelessWidget {
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
-                      colors: [Color(0x99ACC864),Color(0x99D1EAD7)],
+                      colors: [Color(0x1AFFFFFF),Color(0x99D2DCC4)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
