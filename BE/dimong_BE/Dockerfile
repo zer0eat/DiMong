@@ -28,7 +28,7 @@ RUN java -Djarmode=layertools -jar application.jar extract
 
 FROM openjdk:17-jre-alpine
 WORKDIR application
-ENV port 8080
+ENV port 8086
 ENV spring.profiles.active local
 COPY --from=builder application/dependencies/ ./
 COPY --from=builder application/spring-boot-loader/ ./
