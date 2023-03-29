@@ -24,5 +24,4 @@ public class DimongBeApplication {
 	// BCryptPasswordEncoder passwordEncoder() {
 	// 	return new BCryptPasswordEncoder();
 	// }
-
 }
