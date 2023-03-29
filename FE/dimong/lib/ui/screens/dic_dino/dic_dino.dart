@@ -17,28 +17,27 @@ class _DicDinoState extends State<DicDino> {
       child: SafeArea(
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(kToolbarHeight),
+            preferredSize: const Size.fromHeight(200.0),
             child: Container(
               color: Colors.transparent,
               padding: const EdgeInsets.symmetric(
                   vertical: 10.0,),
-              child: TabBar(
+              child: const TabBar(
                 tabs: [
-                  Tab(text: '쥬라기'),
-                  Tab(text: '백악기'),
+                  Tab(text: '쥬 라 기'),
+                  Tab(text: '백 악 기'),
                 ],
-                indicatorColor: const Color(0xFF476930),
+                indicatorColor: Color(0xFF476930),
                 indicatorSize: TabBarIndicatorSize.label,
-                labelColor: const Color(0xFF476930),
+                labelColor: Color(0xFF476930),
                 labelStyle: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(
-                vertical: 8.0,
+          body: const Padding(
+            padding: EdgeInsets.symmetric(
                 horizontal: 10.0),
             child: TabBarView(
               children: [
