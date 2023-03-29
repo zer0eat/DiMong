@@ -20,13 +20,13 @@
 #COPY ${EXTRACTED}/application/ ./
 #ENTRYPOINT ["java","org.springframework.boot.loader.JarLauncher"]
 
-FROM eclipse/ubuntu_jre as builder
+FROM joengenduvel/jre17 as builder
 WORKDIR application
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
-FROM eclipse/ubuntu_jre
+FROM joengenduvel/jre17
 WORKDIR application
 ENV port 8086
 ENV spring.profiles.active local
