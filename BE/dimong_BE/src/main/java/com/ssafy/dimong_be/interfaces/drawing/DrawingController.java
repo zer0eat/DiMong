@@ -16,11 +16,15 @@ import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@Slf4j
 public class DrawingController {
+
+	private static final String FREE_DRAWING_FOLDER_NAME = "user_drawing/";
 
 	private final DrawingService drawingService;
 	private final FileUploadService fileUploadService;
@@ -29,10 +33,13 @@ public class DrawingController {
 	@Transactional
 	public ResponseEntity getDinosaurList(@RequestParam("file") MultipartFile file, String fileName, Long userId) throws
 		IOException {
-		String imageUrl = fileUploadService.uploadFile(file, fileName);
+		String imageUrl = fileUploadService.uploadFile(file, FREE_DRAWING_FOLDER_NAME + fileName);
+
+		log.info("imageUrl: " + imageUrl);
 
 		drawingService.saveDrawing(
 			MyDrawingDto.builder()
+				.userId(userId)
 				.myDrawingUrl(imageUrl)
 				.drawingType(DrawingType.FREE)
 				.build()

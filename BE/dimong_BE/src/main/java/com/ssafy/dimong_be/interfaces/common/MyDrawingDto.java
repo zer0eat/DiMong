@@ -1,6 +1,5 @@
 package com.ssafy.dimong_be.interfaces.common;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
 
@@ -11,12 +10,12 @@ import lombok.Getter;
 @Builder
 public class MyDrawingDto {
 
-	Long drawingId;
+	private Long drawingId;
+	private String myDrawingUrl;
+	private Long userId;
 
-	String myDrawingUrl;
-
-	@JsonIgnore
-	DrawingType drawingType;
+	// @JsonIgnore
+	private DrawingType drawingType;
 
 	public static MyDrawingDto fromEntity(Drawing drawing) {
 		return MyDrawingDto.builder()
@@ -27,6 +26,7 @@ public class MyDrawingDto {
 
 	public static Drawing toEntity(MyDrawingDto drawingDto) {
 		return Drawing.builder()
+			.userId(drawingDto.getUserId())
 			.drawingImageUrl(drawingDto.getMyDrawingUrl())
 			.drawingType(drawingDto.getDrawingType())
 			.build();

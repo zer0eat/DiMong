@@ -11,9 +11,9 @@ import lombok.Getter;
 @Builder
 public class UserBadgeDto implements Serializable {
 
-	Long badgeId;
-	String badgeImageUrl;
-	String badgeName;
+	private Long badgeId;
+	private String badgeImageUrl;
+	private String badgeName;
 
 	public static UserBadgeDto fromEntity(Badge badge) {
 		return UserBadgeDto.builder()

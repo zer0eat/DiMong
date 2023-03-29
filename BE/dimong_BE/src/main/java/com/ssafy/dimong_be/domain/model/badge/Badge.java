@@ -2,10 +2,13 @@ package com.ssafy.dimong_be.domain.model.badge;
 
 import java.io.Serializable;
 
+import com.ssafy.dimong_be.domain.model.common.BaseEntity;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -21,20 +24,21 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name = "BADGES")
-public class Badge implements Serializable {
+public class Badge extends BaseEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "badge_id")
-	Long badgeId;
+	private Long badgeId;
 
 	@Column(name = "badge_name")
-	String badgeName;
+	private String badgeName;
 
 	@Column(name = "badge_image_url")
-	String badgeImageUrl;
+	private String badgeImageUrl;
 
 	@OneToOne
 	@JoinColumn(name = "dinosaur_id")
-	Dinosaur dinosaur;
+	private Dinosaur dinosaur;
 
 }
