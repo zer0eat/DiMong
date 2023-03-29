@@ -7,33 +7,32 @@ class BadgeCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          vertical: 7,
-          horizontal: 16.0),
+          vertical: 10,
+          horizontal: 50.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black12,
-                    blurRadius: 10.0,
+                    blurRadius: 5.0,
                   ),
                 ],
               ),
               child: IconButton(
-                icon: Icon(Icons.people),
+                icon: Icon(Icons.ac_unit_rounded),
                 onPressed: () {},
               ),
             ),
           ),
-          SizedBox(width: 16.0),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
                 boxShadow: [
@@ -44,15 +43,14 @@ class BadgeCards extends StatelessWidget {
                 ],
               ),
               child: IconButton(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.apple_rounded),
                 onPressed: () {},
               ),
             ),
           ),
-          SizedBox(width: 16.0),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
                 boxShadow: [
@@ -63,7 +61,7 @@ class BadgeCards extends StatelessWidget {
                 ],
               ),
               child: IconButton(
-                icon: Icon(Icons.help),
+                icon: Icon(Icons.auto_awesome_rounded),
                 onPressed: () {},
               ),
             ),
