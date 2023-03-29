@@ -1,8 +1,16 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import './draw_provider.dart';
 import 'line_info.dart';
-import 'dart:ui' as ui;
+import 'dart:async';
+import './data/imagedata.dart';
 
 class DinoCanvas extends StatefulWidget {
   const DinoCanvas({
@@ -15,6 +23,7 @@ class DinoCanvas extends StatefulWidget {
 
 class _DinoCanvasState extends State<DinoCanvas> {
   // 지정 색상 리스트 <Color>타입
+  final DinosaurApiClient dinosaurApiClient = DinosaurApiClient();
   List<Color> colors = [
     Colors.red,
     Colors.orange,
@@ -24,6 +33,7 @@ class _DinoCanvasState extends State<DinoCanvas> {
     Colors.deepPurple,
     Colors.black,
   ];
+  GlobalKey _globalKey = GlobalKey();
   @override
   void initState() {
     super.initState();
@@ -33,28 +43,48 @@ class _DinoCanvasState extends State<DinoCanvas> {
     // }
   }
 
-  // setRenderedImage(BuildContext context) async {
-  //   ui.Image renderedImage = await signatureKey.currentState.rendered;
-  //
-  //   print('image ${renderedImage.toString()}');
-  //   setState(() {
-  //     image = renderedImage;
-  //   });
-  //   var pngBytes =
-  //       await renderedImage.toByteData(format: ui.ImageByteFormat.png);
-  //   Navigator.of(context).push(MaterialPageRoute(
-  //       builder: (BuildContext context) => FullScreenImage(
-  //             pngBytes: pngBytes,
-  //           )));
-//    showImage(context);
-//   }
-  // Future<void> saveImage() async {
-  //   try {
-  //     final boundary = _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
-  //     final image = await boundary.toImage();
-  //     final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-  //   }
-  // }
+  Future<void> _handleSavePressed() async {
+// // Create a temporary file to save the image
+    final recorder = PictureRecorder();
+    Canvas canvas = Canvas(recorder);
+    final picture = recorder.endRecording();
+    print(picture.runtimeType);
+    final image = await picture.toImage(300, 500);
+    print(image.runtimeType);
+    final pngBytes = await image.toByteData(format: ImageByteFormat.png);
+    print(pngBytes.runtimeType);
+    final directory = await getTemporaryDirectory();
+    print(directory.path);
+    final imagePath = '${directory.path}/image.png';
+
+    final imageFile = File(imagePath);
+    //await imageFile.writeAsBytes(imageBytes);
+    print(imageFile.runtimeType);
+
+    final imageToSend =
+        await saveImageToTempDirectory(pngBytes!.buffer.asUint8List());
+    await dinosaurApiClient.sendImage(imageToSend);
+  }
+
+  Future<File> saveImageToTempDirectory(Uint8List imageBytes) async {
+    final directory = await getTemporaryDirectory();
+    final imagePath = '${directory.path}/my_image.png';
+    final file = File(imagePath);
+    await file.writeAsBytes(imageBytes);
+    return file;
+  }
+// Save the image to the file
+//     await imageFile.writeAsBytes(img.encodePng(image));
+//     // try {
+//     final RenderRepaintBoundary boundary =
+//         _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+//     print('11111 $boundary');
+//     ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+//     print('22222 $image');
+//     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+//     Uint8List pngBytes = byteData!.buffer.asUint8List();
+//     print(pngBytes);
+//     return pngBytes;
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +174,9 @@ class _DinoCanvasState extends State<DinoCanvas> {
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
-                p.eraseAll();
+                _handleSavePressed();
+                // capturePng();
+                // p.eraseAll();
               },
               child: const Padding(
                   padding: EdgeInsets.only(left: 10, right: 20),
@@ -189,6 +221,8 @@ class _DinoCanvasState extends State<DinoCanvas> {
 class DrawingPainter extends CustomPainter {
   DrawingPainter(this.lines);
   final List<List<LineInfo>> lines;
+  // final recorder = PictureRecorder();
+  // final canvas = Canvas(recorder);
   @override
   void paint(Canvas canvas, Size size) {
     for (var oneLine in lines) {

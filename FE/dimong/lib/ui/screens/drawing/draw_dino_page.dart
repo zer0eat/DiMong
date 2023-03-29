@@ -3,10 +3,28 @@ import 'package:flutter/material.dart';
 import 'dino_canvas.dart';
 
 class DrawDinoPage extends StatelessWidget {
-  const DrawDinoPage({Key? key}) : super(key: key);
+  final String name;
+  static const List<Map<String, dynamic>> DinoList = [
+    {
+      "name": "티라노사우루스",
+      "description":
+          "티라노사우루스의 특징은?\n\n몸집에 비해 팔이 매우 짧아요!\n무시무시한 이빨과 강력한 턱이 있어요!\n두 발로 서 있어요!",
+    },
+    {
+      "name": "트리케라톱스",
+      "description": "트리케라톱스에 대한 설명입니다.",
+    },
+    {
+      "name": "아르헨티노사우루스",
+      "description": "아르헨티노사우루스에 대한 설명입니다.",
+    },
+  ];
+  const DrawDinoPage({required this.name, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dinoInfo =
+        DinoList.firstWhere((dino) => dino['name'] == name, orElse: () => {});
     return Scaffold(
       appBar: AppBar(
         // 뒤로가기 버튼
@@ -25,16 +43,27 @@ class DrawDinoPage extends StatelessWidget {
               builder: (BuildContext context) {
                 // 공룡 설명 버튼 모달 -> 위젯으로 만들어서 수정하기!
                 return AlertDialog(
-                  title: Text('이름'),
-                  content: Text("내용"),
-                  actions: [
-                    TextButton(
-                      child: Text("닫기"),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          name,
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.cancel_rounded,
+                            color: Colors.grey,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ]),
+                  content: Text(dinoInfo['description'] ?? ''),
                 );
               },
             ),

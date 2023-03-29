@@ -4,14 +4,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'dino_canvas.dart';
 import 'draw_dino_page.dart';
 
-class DinoDrawCard extends StatefulWidget {
-  const DinoDrawCard({super.key});
+class RankDinoCard extends StatefulWidget {
+  const RankDinoCard({super.key});
 
   @override
-  _DinoDrawCardState createState() => _DinoDrawCardState();
+  _RankDinoCardState createState() => _RankDinoCardState();
 }
 
-class _DinoDrawCardState extends State<DinoDrawCard> {
+class _RankDinoCardState extends State<RankDinoCard> {
   int _currentIndex = 0;
   //  별명, 이름, 공룡 이미지
   final List DinoList = [
@@ -44,6 +44,7 @@ class _DinoDrawCardState extends State<DinoDrawCard> {
       const SizedBox(
         height: 20,
       ),
+      Text('이 공룡들과 비슷해요!'),
       CarouselSlider(
         items: DinoList.map((item) {
           return Builder(
@@ -67,12 +68,7 @@ class _DinoDrawCardState extends State<DinoDrawCard> {
                 // 터치액션
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              DrawDinoPage(name: item["name"]),
-                        ));
+                    // 디테일 페이지로 이동하기!
                   },
                   child: Center(
                     child: Stack(
@@ -80,13 +76,9 @@ class _DinoDrawCardState extends State<DinoDrawCard> {
                         Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(item["subText"]),
-                              SizedBox(
-                                height: 10,
-                              ),
                               Image.asset(
                                 item["image_path"],
-                                height: 90,
+                                height: 150,
                               ),
                               SizedBox(
                                 height: 10,
@@ -110,8 +102,8 @@ class _DinoDrawCardState extends State<DinoDrawCard> {
         }).toList(),
         carouselController: carouselController,
         options: CarouselOptions(
-          autoPlay: true,
-          aspectRatio: 16 / 9,
+          autoPlay: false,
+          aspectRatio: 10 / 8,
           viewportFraction: 0.7,
           enlargeCenterPage: true,
           onPageChanged: (index, reason) {
@@ -121,9 +113,6 @@ class _DinoDrawCardState extends State<DinoDrawCard> {
           },
         ),
       ),
-      const SizedBox(
-        height: 50,
-      )
     ]);
   }
 }
