@@ -1,6 +1,9 @@
+import 'package:dimong/ui/screens/drawing/rank_dino.dart';
 import 'package:flutter/material.dart';
 
 import 'dino_canvas.dart';
+import 'draw_detail_page.dart';
+import 'rank_dino.dart';
 
 class DrawFreePage extends StatelessWidget {
   const DrawFreePage({Key? key}) : super(key: key);
@@ -17,7 +20,12 @@ class DrawFreePage extends StatelessWidget {
           // 제출 버튼
           TextButton(
             onPressed: () {
-              // canvas.save()
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DrawDetailPage(),
+                  ));
+              // canvas.s
             },
             child: const Text(
               '저장',
@@ -33,6 +41,7 @@ class DrawFreePage extends StatelessWidget {
       ),
       body: Stack(children: [
         DinoCanvas(),
+        RankDino(),
       ]),
     );
   }
