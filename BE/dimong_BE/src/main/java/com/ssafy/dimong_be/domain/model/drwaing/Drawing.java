@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -29,30 +31,34 @@ import lombok.experimental.SuperBuilder;
 public class Drawing extends BaseEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "drawing_id")
-	Long drawingId;
+	private Long drawingId;
 
 	@Column(name = "drawing_image_url", nullable = false)
-	String drawingImageUrl;
+	private String drawingImageUrl;
 
 	@Column(name = "drawing_type", nullable = false)
 	@Enumerated(EnumType.STRING)
-	DrawingType drawingType;
+	private DrawingType drawingType;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "similar_dinosaur_id_1", nullable = true)
-	Dinosaur similarDinosaur1;
+	private Dinosaur similarDinosaur1;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "similar_dinosaur_id_2", nullable = true)
-	Dinosaur similarDinosaur2;
+	private Dinosaur similarDinosaur2;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "similar_dinosaur_id_3", nullable = true)
-	Dinosaur similarDinosaur3;
+	private Dinosaur similarDinosaur3;
+
+	@Column(name = "user_id", nullable = false)
+	private Long userId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	User user;
+	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	private User user;
 
 }

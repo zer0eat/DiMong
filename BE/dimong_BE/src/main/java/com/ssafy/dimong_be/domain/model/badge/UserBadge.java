@@ -7,6 +7,8 @@ import com.ssafy.dimong_be.domain.model.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -26,15 +28,16 @@ import lombok.experimental.SuperBuilder;
 public class UserBadge implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_badge_id")
-	Long userBadgeId;
+	private Long userBadgeId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	User user;
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "badge_id")
-	Badge badge;
+	@JoinColumn(name = "badge_id", nullable = false)
+	private Badge badge;
 
 }

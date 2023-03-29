@@ -24,42 +24,42 @@ public class Dinosaur implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Identity로 하면 디비엔진에 따라 오토 인크리먼트가 안먹는다.
 	@Column(name = "dinosaur_id")
-	Long dinosaurId;
+	private Long dinosaurId;
 
-	@Column(name = "dinosaur_image_url")
-	String dinosaurImageUrl;
+	@Column(name = "dinosaur_image_url", length = 2000)
+	private String dinosaurImageUrl;
 
-	@Column(name = "dinosaur_audio_url")
-	String dinosaurAudioUrl;
+	@Column(name = "dinosaur_audio_url", length = 2000)
+	private String dinosaurAudioUrl;
 
 	@Column(name = "dinosaur_name", nullable = false)
-	String dinosaurName;
+	private String dinosaurName;
 
 	@Column(name = "dinosaur_habitat", nullable = false)
-	String dinosaurHabitat;
+	private String dinosaurHabitat;
 
 	@Column(name = "dinosaur_taste", nullable = false)
-	String dinosaurTaste;
+	private String dinosaurTaste;
 
 	@Column(name = "geologic_age", nullable = false)
-	String geologicAge;
+	private String geologicAge;
 
 	@Column(name = "dinosaur_weight", nullable = false)
-	String dinosaurWeight;
+	private String dinosaurWeight;
 
 	@Column(name = "dinosaur_length", nullable = false)
-	String dinosaurLength;
+	private String dinosaurLength;
 
 	@Column(name = "dinosaur_nickname", nullable = false)
-	String dinosaurNickname;
+	private String dinosaurNickname;
 
 	@Column(name = "dinosaur_intellect", nullable = true)
-	Integer dinosaurIntellect;
+	private Integer dinosaurIntellect;
 
 	@Column(name = "dinosaur_aggression", nullable = true)
-	Integer dinosaurAggression;
+	private Integer dinosaurAggression;
 
-	@Column(name = "dinosaur_characteristic", nullable = false)
-	String dinosaurCharacteristic;
+	@Column(name = "dinosaur_characteristic", nullable = false, length = 2000)
+	private String dinosaurCharacteristic;
 
 }

@@ -24,10 +24,11 @@ public class FirebaseInitializer {
 	@PostConstruct
 	public void initialize() {
 		try {
-			FirebaseOptions options = FirebaseOptions.builder().
-				setCredentials(
+			FirebaseOptions options = FirebaseOptions.builder()
+				.setCredentials(
 					GoogleCredentials.fromStream(
-						new ClassPathResource(firebaseConfigPath).getInputStream())).build();
+						new ClassPathResource(firebaseConfigPath).getInputStream()))
+				.build();
 
 			if (FirebaseApp.getApps().isEmpty()) {
 				FirebaseApp.initializeApp(options);
@@ -37,4 +38,5 @@ public class FirebaseInitializer {
 			log.error(e.getMessage());
 		}
 	}
+
 }
