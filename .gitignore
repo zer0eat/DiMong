@@ -741,3 +741,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,python,flutter,dart,firebase,java,flask,node
+
+# raw mp3,wav files
+*.wav
+*.mp3

@@ -39,13 +39,14 @@ def tts(text,name):
         print("Could not stream audio")
         sys.exit(-1)
     #공룡 정보 불러오기
-with open('dinodetail.csv', newline='', encoding='cp949') as csvfile:
-    details = csv.reader(csvfile)
-    i=0
-    #공룡 정보 반복문 - polly에 텍스트 입력하고 , 공룡이름 으로 된 음성파일 저장
-    for name,detail in details:
-        print("name:",name)
-        print("detail:",detail)
-        tts(text = detail,name = name)
-        i+=1
-        print("#",i,":finished")
+def load_dinosaurs() :
+    with open('dinodetail.csv', newline='', encoding='cp949') as csvfile:
+        details = csv.reader(csvfile)
+        i=0
+        #공룡 정보 반복문 - polly에 텍스트 입력하고 , 공룡이름 으로 된 음성파일 저장
+        for name,detail in details:
+            print("name:",name)
+            print("detail:",detail)
+            tts(text = detail,name = name)
+            i+=1
+            print("#",i,":finished")
