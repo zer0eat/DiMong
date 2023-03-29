@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'card.dart';
+import 'package:dimong/route.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -23,6 +24,8 @@ class HomePage extends StatelessWidget {
                   isInverted: false,
                   xDirection: true,
                   dino: 'assets/images/dic_dino.png',
+                  route: RoutePaths.navBar,
+                  argument: 1,
                 ),
                 CurrencyCard(
                     name: '생물백과',
@@ -30,7 +33,11 @@ class HomePage extends StatelessWidget {
                     icon: Icons.energy_savings_leaf_rounded,
                     isInverted: true,
                     xDirection: false,
-                    dino: 'assets/images/dic_etc.png'),
+                    dino: 'assets/images/dic_etc.png',
+                    route: RoutePaths.navBar,
+                    argument: 2,
+                ),
+
                 SizedBox(
                   width: 30,
                 ),
@@ -40,7 +47,10 @@ class HomePage extends StatelessWidget {
                     icon: Icons.palette_rounded,
                     isInverted: false,
                     xDirection: true,
-                    dino: 'assets/images/painting.png'),
+                    dino: 'assets/images/painting.png',
+                    route: RoutePaths.navBar,
+                    argument: 3,
+                ),
               ],
             ),
           ),

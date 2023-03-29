@@ -12,7 +12,7 @@ import 'package:dimong/core/api/api.dart';
 import './data/repository.dart';
 import './loading_image.dart';
 import 'package:provider/provider.dart';
-import 'package:dimong/ui/screens/dic_dino/dic_detail.dart';
+import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
 
 // Camera Widget을 생성
 class CameraPage extends StatefulWidget {
@@ -24,8 +24,6 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
-  //final periodClient = DictionaryApiClient();
-  final CameraRepository _cameraRepository = CameraRepository();
   final picker = ImagePicker();
   File? _image;
   void initState(){
@@ -44,6 +42,24 @@ class _CameraPageState extends State<CameraPage> {
     );
   }
 
+  void _showGifModal() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        color: Colors.transparent,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/loading.gif',
+              height: 200,
+              width: 200,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     // 화면 세로 고정
@@ -56,16 +72,18 @@ class _CameraPageState extends State<CameraPage> {
             child: Consumer<CameraViewModel>(
               builder: (_, viewModel, __)
               {
-                return Column(
+                return Stack(
                   children: [
                   // SizedBox(height: 25.0),
                     showImage(),
                     Expanded(
                       flex: 1,
                       child: Container(
-                      alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(vertical: 16),
+
+                      alignment: Alignment.bottomCenter,
                       child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         ElevatedButton(
@@ -74,6 +92,7 @@ class _CameraPageState extends State<CameraPage> {
                             if(image_camera!=null)
                             {
                               _image = File(image_camera.path);
+                              viewModel.analyzeImage(_image);
                             }
                           },
                           child: Text(
@@ -88,12 +107,6 @@ class _CameraPageState extends State<CameraPage> {
                           ),
                         ),
                         Container(
-                          height: 64,
-                          width: 64,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xffACC864),
-                          ),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xffACC864), // Set the background color of the button
@@ -108,7 +121,7 @@ class _CameraPageState extends State<CameraPage> {
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        //Image.asset('~/assets/images/analyzing.png'),
+                                        Image.asset('~/assets/images/analyzing.png'),
                                         SizedBox(height: 16),
                                         CircularProgressIndicator(),
                                       ],
@@ -124,7 +137,7 @@ class _CameraPageState extends State<CameraPage> {
                               });
                              }
                            },
-                            child: Text('Upload', style: TextStyle(fontSize: 16)),
+                            child: Text('분석하기', style: TextStyle(fontSize: 16)),
                           ),
                         ),
                       ],

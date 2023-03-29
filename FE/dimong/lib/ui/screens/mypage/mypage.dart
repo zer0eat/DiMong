@@ -8,7 +8,8 @@ import 'package:dimong/ui/screens/mypage/mypage_grid.dart';
 import 'Badge_card.dart';
 
 class MyPage extends StatelessWidget {
-  const MyPage({Key? key}) : super(key: key);
+  final String? userId;
+  const MyPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

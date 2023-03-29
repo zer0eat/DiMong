@@ -10,7 +10,7 @@ class DictionaryApiClient {
   Future<List<SendPeriodResponse>> sendPeriod(String? period) async {
     try {
       final response = await dio.get(Paths.dinoList);
-      print(response);
+      print("data.dart: response = $response");
       print(response.runtimeType);
       final dinosaursJson =  response.data as List<dynamic>;
       print(dinosaursJson);
