@@ -85,7 +85,7 @@ class DinoDetail extends StatelessWidget {
 
                         // 공룡 이름
                         Container(
-                          padding: EdgeInsets.only(top:80.0),
+                          padding: EdgeInsets.only(top:80.0,bottom: 10.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -123,11 +123,24 @@ class DinoDetail extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            IconButton(
-                              icon: Icon(Icons.volume_up),
-                              onPressed: () {},
+                            Container(
+                              width: 40.0,
+                              height: 40.0,
+                              margin: EdgeInsets.only(right:10.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xFFACC864),
+                              ),
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.volume_up_rounded,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {},
+                              ),
                             ),
-                            Text(id.toString()),
+                            Text('Dino Id : $id'),
+                            // Text(id.toString()),
                           ],
                         ),
 
