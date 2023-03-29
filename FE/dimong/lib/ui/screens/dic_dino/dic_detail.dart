@@ -178,7 +178,7 @@ class DinoDetail extends StatelessWidget {
                         // 공룡 특징
                         const Padding(
                           padding: const EdgeInsets.symmetric(
-                            vertical: 10.0,
+                            vertical: 8.0,
                             horizontal: 20.0,),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -191,18 +191,20 @@ class DinoDetail extends StatelessWidget {
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xFF476930),
+                                    height: 1.8,
                                   ),
                                 ),
-
                               ),
                             ],
                           ),
                         ),
+
                       ],
                     ),
                   ),
                 ),
               ),
+
               // Circular
               Positioned(
                 top: 100.0,
