@@ -1,0 +1,36 @@
+package com.ssafy.dimong_be.interfaces.mypage;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ssafy.dimong_be.application.DrawingService;
+import com.ssafy.dimong_be.application.UserService;
+import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
+import com.ssafy.dimong_be.interfaces.common.MypageDto;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api")
+public class MypageController {
+
+	private final UserService userService;
+	private final DrawingService drawingService;
+
+	@GetMapping("/v1/mypage/{userId}")
+	public ResponseEntity<MypageDto> getMypageInfo(@PathVariable Long userId) {
+		return ResponseEntity.ok(userService.getMypageInfo(userId));
+	}
+
+	@GetMapping("/v1/mypage/{userId}/drawings")
+	public ResponseEntity<List<Drawing>> getMypageDrawingList(@PathVariable Long userId) {
+		return ResponseEntity.ok(drawingService.getDrawingList(userId));
+	}
+
+}

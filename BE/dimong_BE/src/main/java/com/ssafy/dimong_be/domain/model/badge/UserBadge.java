@@ -1,5 +1,7 @@
 package com.ssafy.dimong_be.domain.model.badge;
 
+import java.io.Serializable;
+
 import com.ssafy.dimong_be.domain.model.user.User;
 
 import jakarta.persistence.Column;
@@ -21,7 +23,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name = "USER_BADGES", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "badge_id"}))
-public class UserBadge {
+public class UserBadge implements Serializable {
 
 	@Id
 	@Column(name = "user_badge_id")

@@ -1,5 +1,7 @@
 package com.ssafy.dimong_be.domain.model.dinosaur;
 
+import java.io.Serializable;
+
 import com.ssafy.dimong_be.domain.model.user.User;
 
 import jakarta.persistence.Column;
@@ -21,7 +23,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name = "USER_DINOSAURS", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "dinosaur_id"}))
-public class UserDinosaur {
+public class UserDinosaur implements Serializable {
 
 	@Id
 	@Column(name = "user_dinosaur_id")

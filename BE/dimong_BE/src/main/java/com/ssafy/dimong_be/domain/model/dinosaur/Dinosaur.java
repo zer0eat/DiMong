@@ -1,5 +1,7 @@
 package com.ssafy.dimong_be.domain.model.dinosaur;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name = "DINOSAURS")
-public class Dinosaur {
+public class Dinosaur implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Identity로 하면 디비엔진에 따라 오토 인크리먼트가 안먹는다.
@@ -50,6 +52,12 @@ public class Dinosaur {
 
 	@Column(name = "dinosaur_nickname", nullable = false)
 	String dinosaurNickname;
+
+	@Column(name = "dinosaur_intellect", nullable = true)
+	Integer dinosaurIntellect;
+
+	@Column(name = "dinosaur_aggression", nullable = true)
+	Integer dinosaurAggression;
 
 	@Column(name = "dinosaur_characteristic", nullable = false)
 	String dinosaurCharacteristic;

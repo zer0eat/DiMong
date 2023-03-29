@@ -1,5 +1,7 @@
 package com.ssafy.dimong_be.domain.model.user;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -25,7 +27,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "USER_REFRESH_TOKEN")
 @Builder(toBuilder = true)
-public class UserRefreshToken {
+public class UserRefreshToken implements Serializable {
 	@JsonIgnore
 	@Id
 	@Column(name = "refresh_token_id")

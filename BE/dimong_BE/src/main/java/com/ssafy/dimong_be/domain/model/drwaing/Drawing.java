@@ -1,5 +1,7 @@
 package com.ssafy.dimong_be.domain.model.drwaing;
 
+import java.io.Serializable;
+
 import com.ssafy.dimong_be.domain.model.common.BaseEntity;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 import com.ssafy.dimong_be.domain.model.user.User;
@@ -24,7 +26,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name = "DRAWINGS")
-public class Drawing extends BaseEntity {
+public class Drawing extends BaseEntity implements Serializable {
 
 	@Id
 	@Column(name = "drawing_id")

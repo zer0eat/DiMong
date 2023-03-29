@@ -1,5 +1,7 @@
 package com.ssafy.dimong_be.domain.model.badge;
 
+import java.io.Serializable;
+
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 
 import jakarta.persistence.Column;
@@ -19,7 +21,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name = "BADGES")
-public class Badge {
+public class Badge implements Serializable {
 
 	@Id
 	@Column(name = "badge_id")
