@@ -55,12 +55,6 @@ class PictureAI:
             outputs = model_or_not(image)
             # torch.max 함수를 이용해 출력값 중 가장 큰 값을 가지는 인덱스
             _, preds = torch.max(outputs, 1)
-<<<<<<< HEAD:AI/AI_API/app/ai/PictureAI.py
-        # 예측한 결과 preds에서 가장 확률이 높은 클래스를 dinosaur_names 리스트에서 찾아 반환
-        print(preds[0])
-        print(dinosaur_names[preds[0]])
-        return dinosaur_names[preds[0]]
-=======
 
         if dino_or_not[preds[0]] == -1:
             return -1
@@ -73,11 +67,17 @@ class PictureAI:
                 _, preds = torch.max(outputs, 1)
             # 예측한 결과 preds에서 가장 확률이 높은 클래스를 dinosaur_names 리스트에서 찾아 반환
             return dinosaur_names[preds[0]]
->>>>>>> S08P22A105-74-김영식:AI/AI_API/ai/PictureAI.py
 
     def exec(self, image: bytes) -> Picture:
         picture: Picture = Picture()
         
         # image_bytes를 get_prediction를 통해 분류
-        picture.dinosaurName = self.get_prediction(image)
+        result = self.get_prediction(image)
+        
+        if result == -1:
+            picture.is_found = False
+        else:
+            picture.is_found = True
+            picture.dinosaurName = result
+
         return picture

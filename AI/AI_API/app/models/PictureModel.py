@@ -34,12 +34,24 @@ dinosaur_kor = {
 
 class Picture:
     image_bytes: bytes
+    is_found: bool
     dinosaurName: str
     
     # def __init__(self) -> None:
     #     pass
 
     def normalize(self):
+        response_dinosaurName: str
+        
+        #닮은 공룡이 없으면
+        if self.is_found == False:
+            response_dinosaurName = "".__str__()
+        
+        #닮은 공룡이 있으면
+        else:
+            response_dinosaurName = dinosaur_kor[self.dinosaurName].__str__()
+        
         return {
-            "dinosaurName": dinosaur_kor[self.dinosaurName].__str__(),
+            "isFound": self.is_found,
+            "dinosaurName": response_dinosaurName
         }
