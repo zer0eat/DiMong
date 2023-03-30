@@ -11,6 +11,7 @@ import com.ssafy.dimong_be.application.exception.ErrorCode;
 import com.ssafy.dimong_be.application.exception.business.EntityNotFoundException;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurRepository;
+import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurListResponseDto;
 import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurResponseDto;
 
 import lombok.RequiredArgsConstructor;
@@ -25,24 +26,26 @@ public class DinosaurServiceImpl implements DinosaurService {
 	private final DinosaurRepository dinosaurRepository;
 
 	@Override
-	public List<DinosaurResponseDto> getDinosaurList(String geologicAge) {
+	public List<DinosaurListResponseDto> getDinosaurList(String geologicAge) {
 		List<Dinosaur> dinosaurList = dinosaurRepository.findAllByGeologicAge(geologicAge);
 
-		List<DinosaurResponseDto> dinosaurDtoList = new ArrayList<>();
-		dinosaurList.forEach(dinosaur -> dinosaurDtoList.add(DinosaurResponseDto.fromEntity(dinosaur)));
+		List<DinosaurListResponseDto> dinosaurDtoList = new ArrayList<>();
+		dinosaurList.forEach(dinosaur -> dinosaurDtoList.add(DinosaurListResponseDto.fromEntity(dinosaur)));
 
 		return dinosaurDtoList;
 	}
 
 	@Override
-	public Dinosaur getDinosaur(Long dinosaurId) {
-		return dinosaurRepository.findByDinosaurId(dinosaurId)
+	public DinosaurResponseDto getDinosaur(Long dinosaurId) {
+		Dinosaur dinosaur = dinosaurRepository.findByDinosaurId(dinosaurId)
 			.orElseThrow(
 				() -> new EntityNotFoundException(
 					"dinosaurId (" + dinosaurId + ") 에 해당하는 공룡이 없음.",
 					ErrorCode.DINOSAUR_ENTITY_NOT_FOUND
 				)
 			);
+
+		return DinosaurResponseDto.fromEntity(dinosaur);
 	}
 
 	@Override
