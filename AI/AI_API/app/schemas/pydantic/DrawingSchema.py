@@ -7,6 +7,7 @@ from pydantic import BaseModel
 
 
 class DrawingSchema(BaseModel):
+    isFound: bool
     dinosaurName1: str
     dinosaurName2: str
     dinosaurName3: str

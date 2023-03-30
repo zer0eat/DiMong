@@ -35,17 +35,37 @@ dinosaur_kor = {
 
 class Drawing:
     image_bytes: bytes
+    is_found: bool
     dinosaurName1: str
     dinosaurName2: str
     dinosaurName3: str
-
     
     # def __init__(self) -> None:
     #     pass
 
     def normalize(self):
+        response_dinosaurName1: str
+        response_dinosaurName2: str
+        response_dinosaurName3: str
+
+        
+        #닮은 공룡이 없으면
+        if self.is_found == False:
+            response_dinosaurName1 = "".__str__()
+            response_dinosaurName2 = "".__str__()
+            response_dinosaurName3 = "".__str__()
+
+        
+        #닮은 공룡이 있으면
+        else:
+            response_dinosaurName1 = dinosaur_kor[self.dinosaurName1].__str__()
+            response_dinosaurName2 = dinosaur_kor[self.dinosaurName2].__str__()
+            response_dinosaurName3 = dinosaur_kor[self.dinosaurName3].__str__()
+
+        
         return {
-            "dinosaurName1": dinosaur_kor[self.dinosaurName1].__str__(),
-            "dinosaurName2": dinosaur_kor[self.dinosaurName2].__str__(),
-            "dinosaurName3": dinosaur_kor[self.dinosaurName3].__str__(),
+            "isFound": self.is_found,
+            "dinosaurName1": response_dinosaurName1,
+            "dinosaurName2": response_dinosaurName2,
+            "dinosaurName3": response_dinosaurName3
         }

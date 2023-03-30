@@ -7,4 +7,5 @@ from pydantic import BaseModel
 
 
 class PictureSchema(BaseModel):
+    isFound: bool
     dinosaurName: str
