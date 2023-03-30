@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:dimong/ui/screens/mypage/mypage_grid.dart';
+import 'package:dimong/ui/screens/mypage/widgets/mypage_grid.dart';
 
-import 'Badge_card.dart';
-import 'mypage_slider.dart';
+import 'widgets/Badge_card.dart';
+import './widgets/mypage_slider.dart';
 
 class MyPage extends StatelessWidget {
   final String? userId;
@@ -102,18 +102,18 @@ class MyPage extends StatelessWidget {
                     Container(
                       child: const Column(
                         children: [
-                          // Padding(
-                          //   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          //   child:
-                          //   Text(
-                          //     '뱃지 목록',
-                          //     style: TextStyle(
-                          //       color: Color(0xFF444444),
-                          //       fontWeight: FontWeight.bold,
-                          //       // fontSize: 20,
-                          //     ),
-                          //   ),
-                          // ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child:
+                            Text(
+                              '뱃지 목록',
+                                style: TextStyle(
+                                  color: Color(0xFFACC864),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                )
+                            ),
+                          ),
                           BadgeCards()
                         ],
                       ),
@@ -127,39 +127,15 @@ class MyPage extends StatelessWidget {
                               padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                               child:
                               Text(
-                                '내 마음대로 그리기 그림 정보',
+                                '내 그림',
                                 style: TextStyle(
                                   color: Color(0xFFACC864),
                                   fontWeight: FontWeight.bold,
-                                  // fontSize: 20,
+                                  fontSize: 20,
                                 ),
                               ),
                             ),
-                            MypageCard()
-
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        child: const Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                              child:
-                              Text(
-                                '주제 맞춰 그리기 그림 정보',
-                                style: TextStyle(
-                                  color: Color(0xFFACC864),
-                                  fontWeight: FontWeight.bold,
-                                  // fontSize: 20,
-                                ),
-                              ),
-                            ),
-                            MypageCard()
-
+                            MypageGrid()
                           ],
                         ),
                       ),

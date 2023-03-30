@@ -17,7 +17,7 @@ class ConnectRoute{
     );
   }
   Future <void>toDinoDetail(BuildContext context, int index) async{
-    await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DinoDetail(id: index)));
+    await Navigator.push(context, MaterialPageRoute(builder: (context) => DinoDetail(id: index)));
   }
   Future<void> toPages(BuildContext context, String route, dynamic arguments) async{
     final index = arguments;
