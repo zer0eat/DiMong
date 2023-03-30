@@ -24,14 +24,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DrawingController {
 
-	private static final String FREE_DRAWING_FOLDER_NAME = "user_drawing/";
+	private static final String FREE_DRAWING_FOLDER_NAME = "user_drawing/free/"; //내맘대로 그리기
+	private static final String GUIDE_DRAWING_FOLDER_NAME = "user_drawing/guide/"; //주제맞춰 그리기
 
 	private final DrawingService drawingService;
 	private final FileUploadService fileUploadService;
 
 	@PostMapping("/v1/drawings/free")
 	@Transactional
-	public ResponseEntity getDinosaurList(@RequestParam("file") MultipartFile file, String fileName, Long userId) throws
+	public ResponseEntity saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, String fileName, Long userId) throws
 		IOException {
 		String imageUrl = fileUploadService.uploadFile(file, FREE_DRAWING_FOLDER_NAME + fileName);
 
@@ -47,5 +48,6 @@ public class DrawingController {
 
 		return ResponseEntity.ok().build();
 	}
+
 
 }
