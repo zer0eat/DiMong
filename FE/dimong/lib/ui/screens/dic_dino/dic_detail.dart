@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './logic/view.dart';
+import './logic/usecase.dart';
 
 class DinoDetail extends StatelessWidget {
   final int id;

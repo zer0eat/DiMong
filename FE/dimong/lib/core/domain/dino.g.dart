@@ -9,41 +9,51 @@ part of 'dino.dart';
 SendPeriodResponse _$SendPeriodResponseFromJson(Map<String, dynamic> json) =>
     SendPeriodResponse(
       dinosaurId: json['dinosaurId'] as int?,
-      dinosaurUrl: json['dinosaurUrl'] as String?,
+      dinosaurImageUrl: json['dinosaurImageUrl'] as String?,
       dinosaurName: json['dinosaurName'] as String?,
     );
 
 Map<String, dynamic> _$SendPeriodResponseToJson(SendPeriodResponse instance) =>
     <String, dynamic>{
       'dinosaurId': instance.dinosaurId,
-      'dinosaurUrl': instance.dinosaurUrl,
+      'dinosaurImageUrl': instance.dinosaurImageUrl,
       'dinosaurName': instance.dinosaurName,
     };
 
 SendInfoResponse _$SendInfoResponseFromJson(Map<String, dynamic> json) =>
     SendInfoResponse(
       dinosaurId: json['dinosaurId'] as int,
+      dinosaurImageUrl: json['dinosaurImageUrl'] as String,
+      dinosaurAudioUrl: json['dinosaurAudioUrl'] as String,
       dinosaurName: json['dinosaurName'] as String,
-      long: json['long'] as String,
-      weight: json['weight'] as String,
-      when: json['when'] as String,
-      where: json['where'] as String,
+      dinosaurHabitat: json['dinosaurHabitat'] as String,
+      dinosaurTaste: json['dinosaurTaste'] as String,
+      dinosaurCharacteristic: json['dinosaurCharacteristic'] as String,
+      geologicAge: json['geologicAge'] as String,
+      dinosaurHeight: json['dinosaurHeight'] as String,
+      dinosaurWeight: json['dinosaurWeight'] as String,
+      dinosaurLength: json['dinosaurLength'] as String,
+      intellect: json['intellect'] as String,
+      aggression: json['aggression'] as String,
       nickname: json['nickname'] as String,
-      eat: json['eat'] as String,
-      characteristic: json['characteristic'] as String,
     );
 
 Map<String, dynamic> _$SendInfoResponseToJson(SendInfoResponse instance) =>
     <String, dynamic>{
       'dinosaurId': instance.dinosaurId,
+      'dinosaurImageUrl': instance.dinosaurImageUrl,
+      'dinosaurAudioUrl': instance.dinosaurAudioUrl,
       'dinosaurName': instance.dinosaurName,
-      'long': instance.long,
-      'weight': instance.weight,
-      'when': instance.when,
-      'where': instance.where,
+      'dinosaurHabitat': instance.dinosaurHabitat,
+      'dinosaurTaste': instance.dinosaurTaste,
+      'dinosaurCharacteristic': instance.dinosaurCharacteristic,
+      'geologicAge': instance.geologicAge,
+      'dinosaurHeight': instance.dinosaurHeight,
+      'dinosaurWeight': instance.dinosaurWeight,
+      'dinosaurLength': instance.dinosaurLength,
+      'intellect': instance.intellect,
+      'aggression': instance.aggression,
       'nickname': instance.nickname,
-      'eat': instance.eat,
-      'characteristic': instance.characteristic,
     };
 
 SendImageResponse _$SendImageResponseFromJson(Map<String, dynamic> json) =>

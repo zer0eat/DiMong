@@ -8,12 +8,12 @@ part 'dino.g.dart';
 class SendPeriodResponse {
   @JsonKey(name: 'dinosaurId')
   final int? dinosaurId;
-  @JsonKey(name: 'dinosaurUrl')
-  final String? dinosaurUrl;
+  @JsonKey(name: 'dinosaurImageUrl')
+  final String? dinosaurImageUrl;
   @JsonKey(name: 'dinosaurName')
   final String? dinosaurName;
 
-  SendPeriodResponse({this.dinosaurId, this.dinosaurUrl, this.dinosaurName});
+  SendPeriodResponse({this.dinosaurId, this.dinosaurImageUrl, this.dinosaurName});
 
   factory SendPeriodResponse.fromJson(Map<String, dynamic> json) =>
       _$SendPeriodResponseFromJson(json);
@@ -23,27 +23,51 @@ class SendPeriodResponse {
 
 @JsonSerializable()
 class SendInfoResponse {
+  @JsonKey(name: 'dinosaurId')
   final int dinosaurId;
+  @JsonKey(name: 'dinosaurImageUrl')
+  final String dinosaurImageUrl;
+  @JsonKey(name: 'dinosaurAudioUrl')
+  final String dinosaurAudioUrl;
+  @JsonKey(name: 'dinosaurName')
   final String dinosaurName;
-  final String long;
-  final String weight;
-  final String when;
-  final String where;
+  @JsonKey(name: 'dinosaurHabitat')
+  final String dinosaurHabitat;
+  @JsonKey(name: 'dinosaurTaste')
+  final String dinosaurTaste;
+  @JsonKey(name: 'dinosaurCharacteristic')
+  final String dinosaurCharacteristic;
+  @JsonKey(name: 'geologicAge')
+  final String geologicAge;
+  @JsonKey(name: 'dinosaurHeight')
+  final String dinosaurHeight;
+  @JsonKey(name: 'dinosaurWeight')
+  final String dinosaurWeight;
+  @JsonKey(name: 'dinosaurLength')
+  final String dinosaurLength;
+  @JsonKey(name: 'intellect')
+  final String intellect;
+  @JsonKey(name: 'aggression')
+  final String aggression;
+  @JsonKey(name: 'nickname')
   final String nickname;
-  final String eat;
-  final String characteristic;
 
   SendInfoResponse(
       {
         required this.dinosaurId,
+        required this.dinosaurImageUrl,
+        required this.dinosaurAudioUrl,
         required this.dinosaurName,
-        required this.long,
-        required this.weight,
-        required this.when,
-        required this.where,
+        required this.dinosaurHabitat,
+        required this.dinosaurTaste,
+        required this.dinosaurCharacteristic,
+        required this.geologicAge,
+        required this.dinosaurHeight,
+        required this.dinosaurWeight,
+        required this.dinosaurLength,
+        required this.intellect,
+        required this.aggression,
         required this.nickname,
-        required this.eat,
-        required this.characteristic,
       });
 
   factory SendInfoResponse.fromJson(Map<String, dynamic> receiveData) => _$SendInfoResponseFromJson(receiveData);

@@ -2,9 +2,13 @@
 import 'package:flutter/material.dart';
 // 기능 import
 import 'package:dimong/ui/screens/home/home_page.dart';
+import 'package:dimong/ui/screens/home/connect_home.dart';
 import 'package:dimong/ui/screens/drawing/drawing.dart';
 import 'package:dimong/ui/screens/dic_dino/dic_dino.dart';
 import 'package:dimong/ui/screens/mypage/mypage.dart';
+import 'package:dimong/route.dart';
+import 'package:provider/provider.dart';
+import 'package:dimong/core/auth/auth_provider.dart';
 
 import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
@@ -12,25 +16,8 @@ import 'package:motion_tab_bar_v2/motion-tab-item.dart';
 
 // NavBar Widget을 생성
 class NavBar extends StatefulWidget {
-  @override
-  _NavBarState createState() => _NavBarState();
-}
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Motion Tab Bar Sample',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Motion Tab Bar Sample'),
-    );
-  }
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, this.title}) : super(key: key);
-
-  final String? title;
+  final int index;
+  const NavBar({Key? key, required this.index}) : super(key: key);
 
   @override
   _NavBarState createState() => _NavBarState();
@@ -44,7 +31,7 @@ class _NavBarState extends State<NavBar>
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: 0,
+      initialIndex: widget.index,
       length: 4,
       vsync: this,
     );
@@ -58,13 +45,16 @@ class _NavBarState extends State<NavBar>
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    const labels = ["Home", "Dino", "Draw", "MyPage"];
+    final initIndex = widget.index;
     return Scaffold(
       bottomNavigationBar: MotionTabBar(
-        initialSelectedTab: "홈",
+        initialSelectedTab: labels[initIndex],
         useSafeArea: true, // default: true, apply safe area wrapper
-        labels: const ["홈", "공룡백과", "그림", "내정보"],
+        labels: labels,
         icons: const [
-          Icons.home_rounded,
+          Icons.home,
           Icons.menu_book_rounded,
           Icons.color_lens,
           Icons.person,
@@ -73,9 +63,9 @@ class _NavBarState extends State<NavBar>
         tabSize: 50,
         tabBarHeight: 55,
         textStyle: const TextStyle(
-          fontSize: 13,
+          fontSize: 14,
           color: const Color(0xFFACC864),
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
         ),
         tabIconColor: const Color(0xFF6B6B6B),
         tabIconSize: 28.0,
@@ -93,10 +83,10 @@ class _NavBarState extends State<NavBar>
         physics: NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: <Widget>[
-          HomePage(),
+          ConnectHome(),
           DicDino(),
           DrawingDino(),
-          MyPage(),
+          MyPage(userId: authProvider.user.displayName),
         ],
       ),
     );

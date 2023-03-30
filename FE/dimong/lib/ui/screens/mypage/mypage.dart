@@ -9,7 +9,9 @@ import 'Badge_card.dart';
 import 'mypage_slider.dart';
 
 class MyPage extends StatelessWidget {
-  const MyPage({Key? key}) : super(key: key);
+  final String? userId;
+  const MyPage({Key? key, required this.userId}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

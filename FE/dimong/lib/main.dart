@@ -10,7 +10,8 @@ import 'package:dimong/ui/screens/drawing/dino_canvas.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/ui/screens/drawing/draw_provider.dart';
 import 'package:dimong/route.dart';
-import 'package:dimong/ui/screens/dic_dino/dic_detail.dart';
+import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
+import 'package:dimong/ui/screens/mypage/mypage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,18 +32,24 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'My App',
-        initialRoute: '/login',
+        initialRoute: RoutePaths.login,
         routes: {
           RoutePaths.login: (context) => LoginPage(),
-          RoutePaths.dinoDetail : (context) => DinoDetail(id: 0),
-          //'/home': (context) => HomePage(),
+          RoutePaths.home: (context) => HomePage(),
+          RoutePaths.dinoDictionary: (context) => const NavBar(index: 1),
+          RoutePaths.drawingMain: (context) => const NavBar(index: 2),
+          RoutePaths.myInfo: (context) => const NavBar(index: 3),
         },
         onGenerateRoute: (settings) {
-          if (settings.name == RoutePaths.dinoDetail) {
-            final id = settings.arguments as int;
-            return MaterialPageRoute(
-              builder: (context) => DinoDetail(id: id),
-            );
+          switch (settings.name){
+            case RoutePaths.dinoDetail:
+              final id = settings.arguments as int;
+              return MaterialPageRoute(
+                  builder: (context) => DinoDetail(id: id));
+            case RoutePaths.navBar:
+              final index = settings.arguments as int;
+              return MaterialPageRoute(
+                  builder: (context) => NavBar(index: index));
           }
           return null;
         },

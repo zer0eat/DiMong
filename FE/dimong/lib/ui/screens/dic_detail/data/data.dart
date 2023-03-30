@@ -4,21 +4,21 @@ import 'dart:convert';
 import 'package:dimong/core/api/api.dart';
 import 'package:dimong/core/utils/api_routes.dart';
 
-class DictionaryApiClient {
+class DetailApiClient {
   final dio = DataServerDio.instance();
 
-  Future<List<SendPeriodResponse>> sendPeriod(String? period) async {
+  Future<SendInfoResponse> sendId(int? id) async {
     try {
-      final response = await dio.get(Paths.dinoList);
-      print("data.dart: response = $response");
+      final response = await dio.get(Paths.dinoDetail);
+      print("when response in data: $response");
       print("status: ${response.statusCode}");
       print(response.runtimeType);
-      final dinosaursJson =  response.data as List<dynamic>;
+      final dinosaursJson =  response.data;
       print(dinosaursJson);
-      final sendPeriodResponse = dinosaursJson
-          .map((dinosaurJson) => SendPeriodResponse.fromJson(dinosaurJson))
+      final sendInfoResponse = dinosaursJson
+          .map((dinosaurJson) => SendInfoResponse.fromJson(dinosaurJson))
           .toList();
-      return sendPeriodResponse;
+      return sendInfoResponse;
     } catch (e) {
       // Handle the error as needed
       throw e;
