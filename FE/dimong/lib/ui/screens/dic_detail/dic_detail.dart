@@ -51,6 +51,7 @@ class _DinoDetailState extends State<DinoDetail> {
       builder: (context, snapshot) {
         if(snapshot.hasData && _useCase.isLoading == false){
           final data =snapshot.data;
+
           print("rendering: $data");
           print(data.runtimeType);
           String? name;
@@ -111,8 +112,8 @@ class _DinoDetailState extends State<DinoDetail> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text(
-                                      '트리케라톱스',
+                                     Text(
+                                      data!.dinosaurName,
                                       // '${data!.dinosaurName!}',
                                       style: TextStyle(
                                         fontSize: 24.0,
@@ -191,7 +192,7 @@ class _DinoDetailState extends State<DinoDetail> {
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     _detailFeature('식성', '${data!.dinosaurTaste}'),
-                                    _detailFeature('별명', '${data!.nickname}'),
+                                    _detailFeature('별명', '${data!.dinosaurNickname}'),
                                     _detailFeature('지질시대', '${data!.geologicAge}'),
                                   ],
                                 ),
@@ -218,8 +219,8 @@ class _DinoDetailState extends State<DinoDetail> {
                               ),
 
                               // 공룡 특징
-                              const Padding(
-                                padding: const EdgeInsets.symmetric(
+                               Padding(
+                                padding:  EdgeInsets.symmetric(
                                   vertical: 8.0,
                                   horizontal: 20.0,),
                                 child: Row(
@@ -227,7 +228,7 @@ class _DinoDetailState extends State<DinoDetail> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        '3개의 뿔, 앵무새 같은 부리, 그리고 목을 보호할 수 있는 프릴을 가지고 있습니다. 뿔은 포식자로부터 정면으로 방어하기 위한 수단으로 사용되었습니다, 실제로 티라노사우루스의 이빨 자국에 의한 상처 치유 흔적이 있는 뿔 화석이 1997년 수집된 적이 있습니다. 티라노사우루스와 만났지만, 뿔로 방어하고 살아남았으리라 추측해볼 수 있습니다. 뿔은 또한 트리케라톱스 수컷이 서로 경쟁을 하는데 있어서도 사용되었습니다.',
+                                        data.dinosaurCharacteristic!,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 15.0,
@@ -271,7 +272,7 @@ class _DinoDetailState extends State<DinoDetail> {
                         width: 200.0,
                         height: 200.0,
                         child: Image.asset(
-                          'assets/images/dino/트리케라톱스.png',
+                          'assets/images/dino/${data.dinosaurName}.png',
                           fit: BoxFit.contain,
                         ),
                       ),

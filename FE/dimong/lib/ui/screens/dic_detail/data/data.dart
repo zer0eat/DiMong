@@ -9,15 +9,20 @@ class DetailApiClient {
 
   Future<SendInfoResponse> sendId(int? id) async {
     try {
-      final response = await dio.get(Paths.dinoDetail, queryParameters: {"dinosaurId": id});
+      print("id: $id");
+      final response = await dio.get(Paths.dinoDetail+'$id',
+      data: {
+        "dinosaurId": id
+      }
+      );
       print("when response in data: $response");
       print("status: ${response.statusCode}");
       print(response.runtimeType);
       final dinosaursJson =  response.data;
       print(dinosaursJson);
-      final sendInfoResponse = dinosaursJson
-          .map((dinosaurJson) => SendInfoResponse.fromJson(dinosaurJson))
-          .toList();
+      final sendInfoResponse = SendInfoResponse.fromJson(dinosaursJson);
+      print("sendInfoResponse: $sendInfoResponse");
+      print(sendInfoResponse.runtimeType);
       return sendInfoResponse;
     } catch (e) {
       // Handle the error as needed

@@ -39,18 +39,16 @@ class SendInfoResponse {
   final String dinosaurCharacteristic;
   @JsonKey(name: 'geologicAge')
   final String geologicAge;
-  @JsonKey(name: 'dinosaurHeight')
-  final String dinosaurHeight;
   @JsonKey(name: 'dinosaurWeight')
   final String dinosaurWeight;
   @JsonKey(name: 'dinosaurLength')
   final String dinosaurLength;
-  @JsonKey(name: 'intellect')
-  final String intellect;
-  @JsonKey(name: 'aggression')
-  final String aggression;
-  @JsonKey(name: 'nickname')
-  final String nickname;
+  @JsonKey(name: 'dinosaurIntellect')
+  final int dinosaurIntellect;
+  @JsonKey(name: 'dinosaurAggression')
+  final int dinosaurAggression;
+  @JsonKey(name: 'dinosaurNickname')
+  final String dinosaurNickname;
 
   SendInfoResponse(
       {
@@ -60,14 +58,14 @@ class SendInfoResponse {
         required this.dinosaurName,
         required this.dinosaurHabitat,
         required this.dinosaurTaste,
-        required this.dinosaurCharacteristic,
         required this.geologicAge,
-        required this.dinosaurHeight,
         required this.dinosaurWeight,
         required this.dinosaurLength,
-        required this.intellect,
-        required this.aggression,
-        required this.nickname,
+        required this.dinosaurNickname,
+        required this.dinosaurIntellect,
+        required this.dinosaurAggression,
+        required this.dinosaurCharacteristic,
+
       });
 
   factory SendInfoResponse.fromJson(Map<String, dynamic> receiveData) => _$SendInfoResponseFromJson(receiveData);
