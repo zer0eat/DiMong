@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage>
                 isInverted: false,
                 dino: 'assets/images/dic_dino.png',
                   route: RoutePaths.navBar,
-                  argument: 1,
+                  argument: 0,
               ),
               SizedBox(height: 16),
               CurrencyCard(
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage>
                 isInverted: true,
                 dino: 'assets/images/painting.png',
                 route: RoutePaths.navBar,
-                argument: 2,
+                argument: 1,
               ),
               SizedBox(height: 16),
               CurrencyCard(
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage>
                   isInverted: false,
                   dino: 'assets/images/dic_etc.png',
                 route: RoutePaths.navBar,
-                argument: 3,),
+                argument: 2,),
                 ]),
                )],
               ),

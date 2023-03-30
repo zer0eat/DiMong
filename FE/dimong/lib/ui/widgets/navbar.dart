@@ -32,7 +32,7 @@ class _NavBarState extends State<NavBar>
     super.initState();
     _tabController = TabController(
       initialIndex: widget.index,
-      length: 4,
+      length: 3,
       vsync: this,
     );
   }
@@ -46,7 +46,7 @@ class _NavBarState extends State<NavBar>
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    const labels = ["Home", "Dino", "Draw", "MyPage"];
+    const labels = ["Dino", "Draw", "MyPage"];
     final initIndex = widget.index;
     return Scaffold(
       bottomNavigationBar: MotionTabBar(
@@ -54,7 +54,6 @@ class _NavBarState extends State<NavBar>
         useSafeArea: true, // default: true, apply safe area wrapper
         labels: labels,
         icons: const [
-          Icons.home,
           Icons.menu_book_rounded,
           Icons.color_lens,
           Icons.person,
@@ -83,7 +82,6 @@ class _NavBarState extends State<NavBar>
         physics: NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: <Widget>[
-          ConnectHome(),
           DicDino(),
           DrawingDino(),
           MyPage(userId: authProvider.user.displayName),

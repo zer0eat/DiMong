@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Paths {
   // to server
 
-  static const dinoList = '/api/v1/dinosaurs'; // 공룡 주소
+  static const dinoList = '/api/v2/dinosaurs'; // 공룡 주소
   static const etcList = '/api/v1/organisms?kind={kind}'; // 생물 주소
   static const dinoDetail = '/api/v1/dinosaurs/{dinosaurId}'; // 생물 주소
   static const etcDetail = '/api/v1/organisms{organismId}'; // 생물 상세
