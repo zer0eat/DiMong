@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.dimong_be.application.DinosaurService;
-import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,12 +21,12 @@ public class DinosaurController {
 	private final DinosaurService dinosaurservice;
 
 	@GetMapping("/v2/dinosaurs")
-	public ResponseEntity<List<DinosaurResponseDto>> getDinosaurList(@RequestParam String period) {
+	public ResponseEntity<List<DinosaurListResponseDto>> getDinosaurList(@RequestParam String period) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaurList(period));
 	}
 
-	@GetMapping("/v1/dinosaurs/{dinosaurId}")
-	public ResponseEntity<Dinosaur> getDinosaur(@PathVariable Long dinosaurId) {
+	@GetMapping("/v2/dinosaurs/{dinosaurId}")
+	public ResponseEntity<DinosaurResponseDto> getDinosaur(@PathVariable Long dinosaurId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaur(dinosaurId));
 	}
 
