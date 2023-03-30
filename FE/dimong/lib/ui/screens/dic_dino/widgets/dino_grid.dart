@@ -31,7 +31,7 @@ class _DinoGridState extends State<DinoGrid> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
-                      //Image.network(item.dinosaurImageUrl!),
+                      Image.network(item.dinosaurImageUrl!),
                       Text(
                         item.dinosaurName!,
                       )

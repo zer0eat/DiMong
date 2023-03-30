@@ -57,7 +57,7 @@ class DataServerDio {
     final dio = Dio();
 
     // Set the base URL for Server 1
-    //dio.options.baseUrl = 'http://10.0.2.2:5000/';
+    // dio.options.baseUrl = 'http://10.0.2.2:5000/';
     dio.options.baseUrl = 'http://j8a105.p.ssafy.io:8086/';
     dio.options.connectTimeout = Duration(milliseconds: 5000);
     dio.options.receiveTimeout = Duration(milliseconds: 3000);

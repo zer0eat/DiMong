@@ -7,12 +7,14 @@ import 'package:dimong/core/utils/api_routes.dart';
 class DictionaryApiClient {
   final dio = DataServerDio.instance();
 
-  Future<List<SendPeriodResponse>> sendPeriod(String? period) async {
+  Future<dynamic> sendPeriod(String? period) async {
     try {
-      final response = await dio.get(Paths.dinoList);
+      String dinosaurEra = period!;
+      print("period: $period");
+      final response = await dio.get(Paths.dinoList, queryParameters: {"period": dinosaurEra});
       print("data.dart: response = $response");
-      print("status: ${response.statusCode}");
       print(response.runtimeType);
+      print("data.dart: response.data = ${response.data}");
       final dinosaursJson =  response.data as List<dynamic>;
       print(dinosaursJson);
       final sendPeriodResponse = dinosaursJson
