@@ -25,6 +25,11 @@ public class DinosaurController {
 		return ResponseEntity.ok(dinosaurservice.getDinosaurList(period));
 	}
 
+	@GetMapping("/v3/dinosaurs")
+	public ResponseEntity<List<DinosaurListResponseDto>> getDinosaurList() {
+		return ResponseEntity.ok(dinosaurservice.getDinosaurList());
+	}
+
 	@GetMapping("/v2/dinosaurs/{dinosaurId}")
 	public ResponseEntity<DinosaurResponseDto> getDinosaur(@PathVariable Long dinosaurId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaur(dinosaurId));

@@ -9,7 +9,10 @@ public interface DinosaurService {
 
 	public List<DinosaurListResponseDto> getDinosaurList(String geologicAge);
 
+	public List<DinosaurListResponseDto> getDinosaurList();
+
 	DinosaurResponseDto getDinosaur(Long dinosaurId);
 
 	Object getDinosaurAudio(Long dinosaurId);
+
 }
