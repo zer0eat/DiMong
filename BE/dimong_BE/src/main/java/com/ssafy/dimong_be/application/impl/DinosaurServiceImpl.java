@@ -1,5 +1,6 @@
 package com.ssafy.dimong_be.application.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.ssafy.dimong_be.application.exception.ErrorCode;
 import com.ssafy.dimong_be.application.exception.business.EntityNotFoundException;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurRepository;
+import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurResponseDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +25,13 @@ public class DinosaurServiceImpl implements DinosaurService {
 	private final DinosaurRepository dinosaurRepository;
 
 	@Override
-	public List<Dinosaur> getDinosaurList(String geologicAge) {
-		return dinosaurRepository.findAllByGeologicAge(geologicAge);
+	public List<DinosaurResponseDto> getDinosaurList(String geologicAge) {
+		List<Dinosaur> dinosaurList = dinosaurRepository.findAllByGeologicAge(geologicAge);
+
+		List<DinosaurResponseDto> dinosaurDtoList = new ArrayList<>();
+		dinosaurList.forEach(dinosaur -> dinosaurDtoList.add(DinosaurResponseDto.fromEntity(dinosaur)));
+
+		return dinosaurDtoList;
 	}
 
 	@Override

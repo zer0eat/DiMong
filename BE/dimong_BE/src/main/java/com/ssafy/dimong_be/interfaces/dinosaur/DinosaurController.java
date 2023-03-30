@@ -21,8 +21,8 @@ public class DinosaurController {
 
 	private final DinosaurService dinosaurservice;
 
-	@GetMapping("/v1/dinosaurs")
-	public ResponseEntity<List<Dinosaur>> getDinosaurList(@RequestParam String period) {
+	@GetMapping("/v2/dinosaurs")
+	public ResponseEntity<List<DinosaurResponseDto>> getDinosaurList(@RequestParam String period) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaurList(period));
 	}
 
