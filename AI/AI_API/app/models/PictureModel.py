@@ -18,7 +18,7 @@ dinosaur_kor = {
     'Quetzalcoatlus': '케찰코아틀루스',
     'Kentrosaurus': '켄트로사우루스',
     'Spinosaurus': '스피노사우루스',
-    'Stegosaurus': '스테고사우르스',
+    'Stegosaurus': '스테고사우루스',
     'Brachiosaurus': '브라키오사우루스',
     'Allosaurus': '알로사우루스',
     'Dilophosaurus': '딜로포사우루스',
