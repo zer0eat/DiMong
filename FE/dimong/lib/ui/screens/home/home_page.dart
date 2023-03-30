@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
+import 'package:dimong/route.dart';
 import 'card.dart';
 
 class HomePage extends StatefulWidget {
@@ -86,19 +87,26 @@ class _HomePageState extends State<HomePage>
                 icon: Icons.menu_book_rounded,
                 isInverted: false,
                 dino: 'assets/images/dic_dino.png',
+                  route: RoutePaths.navBar,
+                  argument: 1,
               ),
               SizedBox(height: 16),
               CurrencyCard(
-                  name: '공룡그리기',
-                  icon: Icons.palette_rounded,
-                  isInverted: true,
-                  dino: 'assets/images/painting.png'),
+                name: '공룡그리기',
+                icon: Icons.palette_rounded,
+                isInverted: false,
+                dino: 'assets/images/painting.png',
+                route: RoutePaths.navBar,
+                argument: 2,
+              ),
               SizedBox(height: 16),
               CurrencyCard(
                   name: '내정보',
                   icon: Icons.person_rounded,
                   isInverted: false,
-                  dino: 'assets/images/dic_etc.png'),
+                  dino: 'assets/images/dic_etc.png',
+                route: RoutePaths.navBar,
+                argument: 3,),
                 ]),
                )],
               ),

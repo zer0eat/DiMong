@@ -32,7 +32,7 @@ class GoogleLoggedInPage extends StatelessWidget {
                 await authProvider.logout();
 
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => NavBar(),
+                  builder: (context) => NavBar(index: 1),
                 ));
               },
             ),

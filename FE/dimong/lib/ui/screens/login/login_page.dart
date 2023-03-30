@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
 //import 'package:dimong/modules/user_profile/user_provider.dart';
 import 'package:dimong/ui/screens/login/google_login_page.dart';
-import 'package:dimong/ui/widgets/navbar.dart';
+import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/ui/widgets/background.dart';
 
 class LoginPage extends StatelessWidget {
@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                 if (authProvider.isSignedIn) {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => NavBar()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 }
               },
