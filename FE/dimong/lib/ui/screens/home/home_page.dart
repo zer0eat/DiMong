@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage>
         padding: EdgeInsets.only(top:50.0),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFffffff),Color(0x33ACC864)],
+            colors: [Color(0xFFffffff),Color(0xFFACC864)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage>
               CurrencyCard(
                 name: '공룡그리기',
                 icon: Icons.palette_rounded,
-                isInverted: false,
+                isInverted: true,
                 dino: 'assets/images/painting.png',
                 route: RoutePaths.navBar,
                 argument: 2,

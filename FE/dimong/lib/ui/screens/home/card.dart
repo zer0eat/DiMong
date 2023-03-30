@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dimong/ui/screens/home/connect_home.dart';
+
 class CurrencyCard extends StatelessWidget {
   final String name, dino, route;
   final int argument;
@@ -25,14 +26,18 @@ class CurrencyCard extends StatelessWidget {
         height: 180,
         margin: const EdgeInsets.all(5),
         clipBehavior: Clip.hardEdge,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFffffff),Color(0x33ACC864)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+        decoration: BoxDecoration(
+          color: isInverted ? Colors.white : const Color(0xFFACC864),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 2,
+              // offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
-
         child: Padding(
           padding: const EdgeInsets.all(7),
           child: Column(
@@ -78,6 +83,7 @@ class CurrencyCard extends StatelessWidget {
       },
     );
   }
+
 
   Widget _dinoImg() {
     return Positioned(
