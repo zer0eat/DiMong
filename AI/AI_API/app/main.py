@@ -7,7 +7,6 @@ from routers.v1.PictureRouter import PictureRouter
 from routers.v1.DrawingRouter import DrawingRouter
 
 
-
 # Application Environment Configuration
 env = get_environment_variables()
 

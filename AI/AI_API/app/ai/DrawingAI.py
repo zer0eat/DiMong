@@ -25,7 +25,7 @@ model_or_not.eval()
 model.eval()
 
 dino_or_not = [-1, "dino"]
-dinosaur_names = ['Allosaurus', 'Ankylosaurus', 'Argentinosaurus', 'Brachiosaurus', 'Chasmosaurus', 'Compsognathus', 'Dacentrurus', 'Dilophosaurus', 'Dimorphodon', 'Elasmosaurus', 'Giganotosaurus', 'Iguanodon', 'Incisibosaurus', 'Kentrosaurus', 'Lambeosaurus', 'Mosasaurus', 'Nodosaurus', 'Ouranosaurus', 'Oviraptor', 'Pachycephalosaurus', 'Parasaurolophus', 'Pteranodon', 'Quetzalcoatlus', 'Sauropaganax', 'Spinosaurus', 'Stegosaurus', 'Triceratops', 'Tsintaosaurus', 'Tyrannosaurus', 'Velociraptor']
+dinosaur_names = ['Allosaurus', 'Ankylosaurus', 'Argentinosaurus', 'Brachiosaurus', 'Chasmosaurus', 'Compsognathus', 'Dacentrurus', 'Dilophosaurus', 'Dimorphodon', 'Elasmosaurus', 'Giganotosaurus', 'Iguanodon', 'Incisibosaurus', 'Kentrosaurus', 'Lambeosaurus', 'Mosasaurus', 'Nodosaurus', 'Ouranosaurus', 'Oviraptor', 'Pachycephalosaurus', 'Parasaurolophus', 'Pteranodon', 'Quetzalcoatlus', 'Saurophaganax', 'Spinosaurus', 'Stegosaurus', 'Triceratops', 'Tsintaosaurus', 'Tyrannosaurus', 'Velociraptor']
 
 # 이미지파일 전처리
 transformations = transforms.Compose([
@@ -78,12 +78,14 @@ class DrawingAI:
         drawing: Drawing = Drawing()
 
         # image_bytes를 get_prediction를 통해 분류
-        result = self.get_prediction(image)
+        result = self.get_prediction(image) # ["", "", ""]
         
         if result == -1:
             drawing.is_found = False
         else:
             drawing.is_found = True
-            drawing.dinosaurName = result
+            drawing.dinosaurName1 = result[0]
+            drawing.dinosaurName2 = result[1]
+            drawing.dinosaurName3 = result[2]
 
         return drawing
