@@ -64,13 +64,14 @@ class _DinoGridState extends State<DinoGrid> {
                           ),
                           Positioned.fill(
                             //
-                            child: Image.network(item.dinosaurImageUrl!,
+                            child: Image.asset(
+                              'assets/images/dino/${item.dinosaurName}.png',
                               fit: BoxFit.contain,
                             ),
                           ),
                           Positioned(
-                            left: 5,
-                            bottom: 5,
+                            left: 1,
+                            bottom: 1,
                             child: Text(
                               item.dinosaurName!,
                               style: const TextStyle(
