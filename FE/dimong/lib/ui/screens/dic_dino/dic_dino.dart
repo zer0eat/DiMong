@@ -22,7 +22,7 @@ class _DicDinoState extends State<DicDino> {
   @override
   void initState(){
     super.initState();
-    _useCase.loadData(era[1]);
+    _useCase.loadData();
   }
 
   @override

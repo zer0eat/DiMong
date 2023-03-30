@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 class Paths {
   // to server
 
-  static const dinoList = '/api/v2/dinosaurs'; // 공룡 주소
-  static const etcList = '/api/v1/organisms?kind={kind}'; // 생물 주소
-  static const dinoDetail = '/api/v1/dinosaurs/{dinosaurId}'; // 생물 주소
-  static const etcDetail = '/api/v1/organisms{organismId}'; // 생물 상세
+  static const dinoList = '/api/v3/dinosaurs'; // 공룡 주소
+  static const dinoDetail = '/api/v2/dinosaurs/'; // 공룡 상세
   static const dinoAudio = '/api/v1/dinosaurs/audio/{dinosaurId}'; // 공룡 설명하는 오디오
   static const myInfo = '/api/v1/mypage/{userId}'; // 내정보
   static const drawingList = '/api/v1/mypage/{userId}/drawings'; // 내 그림 목록

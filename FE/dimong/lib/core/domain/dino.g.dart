@@ -28,14 +28,13 @@ SendInfoResponse _$SendInfoResponseFromJson(Map<String, dynamic> json) =>
       dinosaurName: json['dinosaurName'] as String,
       dinosaurHabitat: json['dinosaurHabitat'] as String,
       dinosaurTaste: json['dinosaurTaste'] as String,
-      dinosaurCharacteristic: json['dinosaurCharacteristic'] as String,
       geologicAge: json['geologicAge'] as String,
-      dinosaurHeight: json['dinosaurHeight'] as String,
       dinosaurWeight: json['dinosaurWeight'] as String,
       dinosaurLength: json['dinosaurLength'] as String,
-      intellect: json['intellect'] as String,
-      aggression: json['aggression'] as String,
-      nickname: json['nickname'] as String,
+      dinosaurNickname: json['dinosaurNickname'] as String,
+      dinosaurIntellect: json['dinosaurIntellect'] as int,
+      dinosaurAggression: json['dinosaurAggression'] as int,
+      dinosaurCharacteristic: json['dinosaurCharacteristic'] as String,
     );
 
 Map<String, dynamic> _$SendInfoResponseToJson(SendInfoResponse instance) =>
@@ -48,12 +47,11 @@ Map<String, dynamic> _$SendInfoResponseToJson(SendInfoResponse instance) =>
       'dinosaurTaste': instance.dinosaurTaste,
       'dinosaurCharacteristic': instance.dinosaurCharacteristic,
       'geologicAge': instance.geologicAge,
-      'dinosaurHeight': instance.dinosaurHeight,
       'dinosaurWeight': instance.dinosaurWeight,
       'dinosaurLength': instance.dinosaurLength,
-      'intellect': instance.intellect,
-      'aggression': instance.aggression,
-      'nickname': instance.nickname,
+      'dinosaurIntellect': instance.dinosaurIntellect,
+      'dinosaurAggression': instance.dinosaurAggression,
+      'dinosaurNickname': instance.dinosaurNickname,
     };
 
 SendImageResponse _$SendImageResponseFromJson(Map<String, dynamic> json) =>

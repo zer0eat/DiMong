@@ -42,7 +42,8 @@ class _DinoGridState extends State<DinoGrid> {
                     // ),
                     child: GestureDetector(
                       onTap: () async{
-                        await _connectRoute.toDinoDetail(context, index);
+                        print("movePage with dinosaurId: ${item.dinosaurId}");
+                        await _connectRoute.toDinoDetail(context, item.dinosaurId!);
                       },
                       child: Stack(
                         children: [

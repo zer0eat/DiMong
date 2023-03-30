@@ -4,10 +4,10 @@ import 'dart:convert';
 import 'package:dimong/core/api/api.dart';
 import 'package:dimong/core/utils/api_routes.dart';
 
-class DictionaryApiClient {
+class MyPageApiClient {
   final dio = DataServerDio.instance();
 
-  Future<dynamic> sendPeriod() async {
+  Future<dynamic> sendUserId() async {
     try {
       //String dinosaurEra = period!;
       //print("period: $period");
