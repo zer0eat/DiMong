@@ -9,7 +9,7 @@ class DetailApiClient {
 
   Future<SendInfoResponse> sendId(int? id) async {
     try {
-      final response = await dio.get(Paths.dinoDetail);
+      final response = await dio.get(Paths.dinoDetail, queryParameters: {"dinosaurId": id});
       print("when response in data: $response");
       print("status: ${response.statusCode}");
       print(response.runtimeType);
