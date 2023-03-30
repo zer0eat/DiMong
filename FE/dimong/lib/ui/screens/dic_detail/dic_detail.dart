@@ -20,7 +20,66 @@ class _DinoDetailState extends State<DinoDetail> {
     _useCase.loadInfo(widget.id);
   }
 
-  Widget _detailFeature(String title, String value) {
+  BoxDecoration _getGradientColor(String taste) {
+    if (taste == '초식') {
+      return const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFFACC864), Color(0xFFD1EAD7)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      );
+    } else {
+      return const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFFCD8476), Color(0x33FFC9BE)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      );
+    }
+  }
+
+  BoxDecoration _circleGradientColor(String taste) {
+    if (taste == '초식') {
+      return const BoxDecoration(
+        shape: BoxShape.circle,
+
+        gradient: LinearGradient(
+          colors: [Color(0x1AFFFFFF), Color(0x99D2DCC4)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      );
+    } else {
+      return const BoxDecoration(
+        shape: BoxShape.circle,
+
+        gradient: LinearGradient(
+          colors: [Color(0x1AFFFFFF), Color(0x99E6C0B9)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      );
+    }
+  }
+
+  BoxDecoration _tasteColor(String taste) {
+    if (taste == '초식') {
+      return const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Color(0xFF86B049),
+      );
+    } else {
+      return const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Color(0xFFCD8476),
+      );
+    }
+  }
+
+  Widget _detailFeature(String title, String value, String taste) {
+    Color color = taste == '초식' ? Color(0xFF476930) : Color(0xFF843627);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -34,10 +93,47 @@ class _DinoDetailState extends State<DinoDetail> {
         const SizedBox(height: 5.0),
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 15.0,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF476930),
+            color: color,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _detailPoint(String value, String taste) {
+    Color color = taste == '초식' ? Color(0xFF476930) : Color(0xFF843627);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          value,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 15.0,
+            fontWeight: FontWeight.bold,
+            color: color,
+            height: 1.8,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _dinoName(String value, String taste) {
+    Color color = taste == '초식' ? Color(0xFF476930) : Color(0xFF843627);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          value,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: color,
           ),
         ),
       ],
@@ -67,7 +163,7 @@ class _DinoDetailState extends State<DinoDetail> {
                   color: const Color(0xFFFFFFFF),
                   iconSize: 30.0, // 아이콘 크기를 지정함
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context);
                   },
                 ),
                 backgroundColor: Colors.transparent,
@@ -81,13 +177,7 @@ class _DinoDetailState extends State<DinoDetail> {
                 child: Stack(
                   children: [
                     Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Color(0xFFACC864),Color(0xFFD1EAD7)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                      ),
+                      decoration: _getGradientColor(data!.dinosaurTaste),
                     ),
 
                     // 하얀색 정보 상자 부분
@@ -112,15 +202,7 @@ class _DinoDetailState extends State<DinoDetail> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                     Text(
-                                      data!.dinosaurName,
-                                      // '${data!.dinosaurName!}',
-                                      style: TextStyle(
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF476930),
-                                      ),
-                                    ),
+                                    _dinoName('${data!.dinosaurName}', data!.dinosaurTaste),
                                     Container(
                                         padding: EdgeInsets.all(6.0),
                                         margin: EdgeInsets.only(left:5.0),
@@ -135,7 +217,7 @@ class _DinoDetailState extends State<DinoDetail> {
                                           ],
                                         ),
                                         child:
-                                        Text('🌿',
+                                        Text(data!.dinosaurTaste == '초식' ? '🌿' : '🥩',
                                           style: TextStyle(
                                             fontSize: 17.0,
                                           ),)
@@ -152,10 +234,7 @@ class _DinoDetailState extends State<DinoDetail> {
                                     width: 40.0,
                                     height: 40.0,
                                     margin: EdgeInsets.only(right:10.0),
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(0xFFACC864),
-                                    ),
+                                    decoration: _tasteColor(data!.dinosaurTaste),
                                     child: IconButton(
                                       icon: const Icon(
                                         Icons.volume_up_rounded,
@@ -180,9 +259,9 @@ class _DinoDetailState extends State<DinoDetail> {
                                     //_detailFeature('길이', '7.9m'),
                                     //_detailFeature('무게', '6000kg'),
                                     //_detailFeature('서식지', '북아메리카'),
-                                    _detailFeature('길이', '${data!.dinosaurLength}'),
-                                    _detailFeature('무게', '${data!.dinosaurWeight}'),
-                                    _detailFeature('서식지', '${data!.dinosaurHabitat}'),
+                                    _detailFeature('길이', '${data!.dinosaurLength}', data!.dinosaurTaste),
+                                    _detailFeature('무게', '${data!.dinosaurWeight}', data!.dinosaurTaste),
+                                    _detailFeature('서식지', '${data!.dinosaurHabitat}', data!.dinosaurTaste),
                                   ],
                                 ),
                               ),
@@ -191,9 +270,9 @@ class _DinoDetailState extends State<DinoDetail> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
-                                    _detailFeature('식성', '${data!.dinosaurTaste}'),
-                                    _detailFeature('별명', '${data!.dinosaurNickname}'),
-                                    _detailFeature('지질시대', '${data!.geologicAge}'),
+                                    _detailFeature('식성', '${data!.dinosaurTaste}', data!.dinosaurTaste),
+                                    _detailFeature('별명', '${data!.dinosaurNickname}', data!.dinosaurTaste),
+                                    _detailFeature('지질시대', '${data!.geologicAge}', data!.dinosaurTaste),
                                   ],
                                 ),
                               ),
@@ -227,17 +306,7 @@ class _DinoDetailState extends State<DinoDetail> {
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     Expanded(
-                                      child: Text(
-                                        data.dinosaurCharacteristic!,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 15.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF476930),
-                                          height: 1.8,
-                                        ),
-                                      ),
-                                    ),
+                                      child: _detailPoint('${data.dinosaurCharacteristic!}', data!.dinosaurTaste)),
                                   ],
                                 ),
                               ),
@@ -255,19 +324,12 @@ class _DinoDetailState extends State<DinoDetail> {
                       right: 0.0,
                       child: Container(
                         height: 200.0,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: LinearGradient(
-                            colors: [Color(0x1AFFFFFF),Color(0x99D2DCC4)],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
-                        ),
+                        decoration: _circleGradientColor(data!.dinosaurTaste)
                       ),
                     ),
                     Positioned(
                       top: 100.0,
-                      left: 80.0,
+                      left: 100.0,
                       child: Container(
                         width: 200.0,
                         height: 200.0,
