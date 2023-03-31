@@ -7,9 +7,9 @@ import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurResponseDto;
 
 public interface DinosaurService {
 
-	public List<DinosaurListResponseDto> getDinosaurList(String geologicAge);
+	List<DinosaurListResponseDto> getDinosaurList(String geologicAge);
 
-	public List<DinosaurListResponseDto> getDinosaurList();
+	List<DinosaurListResponseDto> getDinosaurList();
 
 	DinosaurResponseDto getDinosaur(Long dinosaurId);
 

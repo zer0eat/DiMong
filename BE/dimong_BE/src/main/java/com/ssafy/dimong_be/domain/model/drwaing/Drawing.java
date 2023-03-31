@@ -2,6 +2,7 @@ package com.ssafy.dimong_be.domain.model.drwaing;
 
 import java.io.Serializable;
 
+import com.ssafy.dimong_be.domain.model.badge.Badge;
 import com.ssafy.dimong_be.domain.model.common.BaseEntity;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 import com.ssafy.dimong_be.domain.model.user.User;
@@ -60,5 +61,12 @@ public class Drawing extends BaseEntity implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", insertable = false, updatable = false)
 	private User user;
+
+	@Column(name = "badge_id", nullable = true)
+	private Long badgeId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "badge_id", insertable = false, updatable = false)
+	private Badge badge;
 
 }
