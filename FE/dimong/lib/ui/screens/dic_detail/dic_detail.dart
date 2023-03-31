@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dimong/core/domain/dino.dart';
 import 'package:provider/provider.dart';
 import './logic/usecase.dart';
+import './gauge.dart';
 
 class DinoDetail extends StatefulWidget {
   final int id;
@@ -145,9 +146,13 @@ class _DinoDetailState extends State<DinoDetail> {
     return StreamBuilder<SendInfoResponse>(
       stream: _useCase.dataStream,
       builder: (context, snapshot) {
+
         if(snapshot.hasData && _useCase.isLoading == false){
           final data =snapshot.data;
-
+          final showAbility =[
+            AbilityData('공격력', data!.dinosaurAggression!.toDouble(), Colors.red),
+            AbilityData('지능', data.dinosaurIntellect.toDouble(), Colors.green),
+          ];
           print("rendering: $data");
           print(data.runtimeType);
           String? name;
@@ -252,7 +257,7 @@ class _DinoDetailState extends State<DinoDetail> {
 
                               // 공룡 정보
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(3.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
@@ -278,29 +283,32 @@ class _DinoDetailState extends State<DinoDetail> {
                               ),
 
                               // 지능, 공격성 정보
-                              Padding(
-                                padding: EdgeInsets.all(15.0),
-                                child: Column(
-                                  children: [
-                                    LinearProgressIndicator(
-                                      value: 0.75,
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-                                      backgroundColor: Colors.grey[300],
+                              Container(
+                                width: double.infinity, // Set a fixed width or use Expanded
+                                height: 100,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(1),
+                                        child: AbilityGauge(showAbility[0])
+                                      ),
                                     ),
-                                    SizedBox(height: 8.0),
-                                    LinearProgressIndicator(
-                                      value: 0.25,
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-                                      backgroundColor: Colors.grey[300],
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(1),
+                                        child: AbilityGauge(showAbility[1]),
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-
                               // 공룡 특징
                                Padding(
                                 padding:  EdgeInsets.symmetric(
-                                  vertical: 8.0,
+                                  vertical: 0,
                                   horizontal: 20.0,),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
