@@ -1,7 +1,8 @@
-package com.ssafy.dimong_be.domain.model.badge;
+package com.ssafy.dimong_be.domain.model.user_badge;
 
 import java.io.Serializable;
 
+import com.ssafy.dimong_be.domain.model.badge.Badge;
 import com.ssafy.dimong_be.domain.model.user.User;
 
 import jakarta.persistence.Column;

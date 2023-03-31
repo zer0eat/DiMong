@@ -11,6 +11,8 @@ public interface DinosaurService {
 
 	List<DinosaurListResponseDto> getDinosaurList();
 
+	List<DinosaurListResponseDto> getDinosaurList(Long userId);
+
 	DinosaurResponseDto getDinosaur(Long dinosaurId);
 
 	Object getDinosaurAudio(Long dinosaurId);

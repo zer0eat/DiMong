@@ -10,7 +10,9 @@ import com.ssafy.dimong_be.application.DinosaurService;
 import com.ssafy.dimong_be.application.exception.ErrorCode;
 import com.ssafy.dimong_be.application.exception.business.EntityNotFoundException;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
+import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurQueryRepository;
 import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurRepository;
+import com.ssafy.dimong_be.domain.model.user_dinosaur.UserDinosaurRepository;
 import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurListResponseDto;
 import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurResponseDto;
 
@@ -24,6 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 public class DinosaurServiceImpl implements DinosaurService {
 
 	private final DinosaurRepository dinosaurRepository;
+	private final UserDinosaurRepository userDinosaurRepository;
+	private final DinosaurQueryRepository dinosaurQueryRepository;
 
 	@Override
 	public List<DinosaurListResponseDto> getDinosaurList(String geologicAge) {
@@ -38,6 +42,19 @@ public class DinosaurServiceImpl implements DinosaurService {
 	@Override
 	public List<DinosaurListResponseDto> getDinosaurList() {
 		List<Dinosaur> dinosaurList = dinosaurRepository.findAll();
+
+		List<DinosaurListResponseDto> dinosaurDtoList = new ArrayList<>();
+		dinosaurList.forEach(dinosaur -> dinosaurDtoList.add(DinosaurListResponseDto.fromEntity(dinosaur)));
+
+		return dinosaurDtoList;
+	}
+
+	@Override
+	public List<DinosaurListResponseDto> getDinosaurList(Long userId) {
+		List<Dinosaur> dinosaurList = dinosaurQueryRepository.findAllByUserDinosaur_UserId(userId);
+		// 	.stream()
+		// 	.map(DinosaurListResponseDto::new)
+		// 	.collect(Collectors.toList());
 
 		List<DinosaurListResponseDto> dinosaurDtoList = new ArrayList<>();
 		dinosaurList.forEach(dinosaur -> dinosaurDtoList.add(DinosaurListResponseDto.fromEntity(dinosaur)));

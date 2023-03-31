@@ -62,4 +62,22 @@ public class Dinosaur implements Serializable {
 	@Column(name = "dinosaur_characteristic", nullable = false, length = 2000)
 	private String dinosaurCharacteristic;
 
+
+
+	// @Transient
+	@Column(name = "is_collected")
+	private boolean isCollected;
+
+	// @Override
+	// public boolean isCollected() {
+	// 	return false;
+	// }
+
+	// public void setCollected(boolean isCollected) {
+	// 	this.isCollected = isCollected;
+	// }
+
+	// @Embedded
+	// UserDinosaurCollect userDinosaurCollect;
+
 }
