@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface DinosaurRepository extends JpaRepository<Dinosaur, Long> {
 
 	Optional<Dinosaur> findByDinosaurId(Long dinosaurId);
+
 	List<Dinosaur> findAllByGeologicAge(String geologicAge);
 
 }

@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ssafy.dimong_be.application.UserService;
 import com.ssafy.dimong_be.application.exception.ErrorCode;
 import com.ssafy.dimong_be.application.exception.business.EntityNotFoundException;
-import com.ssafy.dimong_be.domain.model.badge.UserBadge;
-import com.ssafy.dimong_be.domain.model.badge.UserBadgeReposiroty;
+import com.ssafy.dimong_be.domain.model.user_badge.UserBadge;
+import com.ssafy.dimong_be.domain.model.user_badge.UserBadgeRepository;
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.user.User;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl implements UserService {
 	private final DrawingRepository drawingRepository;
 
-	private final UserBadgeReposiroty userBadgeReposiroty;
+	private final UserBadgeRepository userBadgeRepository;
 	private final UserRepository userRepository;
 
 	@Override
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 				)
 			);
 
-		List<UserBadge> badgeList = userBadgeReposiroty.findAllByUser_UserId(userId);
+		List<UserBadge> badgeList = userBadgeRepository.findAllByUser_UserId(userId);
 		List<Drawing> drawingList = drawingRepository.findAllByUser_UserId(userId);
 
 		MypageResponseDto mypageResponseDto = MypageResponseDto.builder()
