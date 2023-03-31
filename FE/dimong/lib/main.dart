@@ -12,7 +12,7 @@ import 'package:dimong/ui/screens/drawing/draw_provider.dart';
 import 'package:dimong/route.dart';
 import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
 import 'package:dimong/ui/screens/mypage/mypage.dart';
-
+import 'package:dimong/ui/screens/dic_detail/gauge.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
