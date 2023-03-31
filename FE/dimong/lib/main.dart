@@ -6,13 +6,12 @@ import 'package:dimong/ui/screens/login/login_page.dart';
 import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/ui/screens/drawing/drawing.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
-import 'package:dimong/ui/screens/drawing/dino_canvas.dart';
 import 'package:provider/provider.dart';
-import 'package:dimong/ui/screens/drawing/draw_provider.dart';
 import 'package:dimong/route.dart';
 import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
 import 'package:dimong/ui/screens/mypage/mypage.dart';
 import 'package:dimong/ui/screens/dic_detail/gauge.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -24,8 +23,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (context) => DrawProvider(), child: DinoCanvas()),
         ChangeNotifierProvider<AuthProvider>(
           create: (_) => AuthProvider(),
         ),
@@ -41,7 +38,7 @@ class MyApp extends StatelessWidget {
           RoutePaths.myInfo: (context) => const NavBar(index: 3),
         },
         onGenerateRoute: (settings) {
-          switch (settings.name){
+          switch (settings.name) {
             case RoutePaths.dinoDetail:
               final id = settings.arguments as int;
               return MaterialPageRoute(

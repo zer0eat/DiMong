@@ -1,8 +1,6 @@
 import 'package:dimong/ui/screens/drawing/rank_dino_slider.dart';
 import 'package:flutter/material.dart';
 
-import 'dino_canvas.dart';
-
 class DrawDetailPage extends StatelessWidget {
   const DrawDetailPage({Key? key}) : super(key: key);
 

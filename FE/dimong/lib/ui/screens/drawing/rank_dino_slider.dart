@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'dino_canvas.dart';
-import 'draw_dino_page.dart';
-
 class RankDinoCard extends StatefulWidget {
   const RankDinoCard({super.key});
 
