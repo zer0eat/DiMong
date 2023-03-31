@@ -14,12 +14,14 @@ public class DinosaurListResponseDto implements Serializable {
 	private Long dinosaurId;
 	private String dinosaurImageUrl;
 	private String dinosaurName;
+	private String dinosaurTaste;
 
 	public static DinosaurListResponseDto fromEntity(Dinosaur dinosaur) {
 		return DinosaurListResponseDto.builder()
 			.dinosaurId(dinosaur.getDinosaurId())
 			.dinosaurImageUrl(dinosaur.getDinosaurImageUrl())
 			.dinosaurName(dinosaur.getDinosaurName())
+			.dinosaurTaste(dinosaur.getDinosaurTaste())
 			.build();
 	}
 
