@@ -93,6 +93,7 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
                             },
                             child: const Center(
                               child: Icon(
+                                size: 30.0,
                                 Icons.camera_alt_rounded,
                                 color: Color(0xFFACC864),
                               ),
@@ -132,6 +133,7 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
                             },
                             child: const Center(
                               child: Icon(
+                                size: 30.0,
                                 Icons.image,
                                 color: Color(0xFFACC864),
                               ),
@@ -145,27 +147,29 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
         bottom: 16.0,
         right: 16.0,
         child: Material(
-            color: const Color(0xFFACC864),
-            type: MaterialType.circle,
-            elevation: 6.0,
-            child: GestureDetector(
-              child: SizedBox(
-                  width: 56.0,
-                  height: 56.00,
-                  child: InkWell(
-                    onTap: _rotate,
-                    child: Center(
-                        child: RotationTransition(
-                          turns: AlwaysStoppedAnimation(_angle / 360),
-                          child: const Icon(
-                            Icons.add,
-                            color: Color(0xFFFFFFFF),
-                          ),
-                        )),
-                  )),
-            )),
-      ),
-    ]);
+          color: const Color(0xFF476930),
+          type: MaterialType.circle,
+          elevation: 6.0,
+          child: GestureDetector(
+            child: SizedBox(
+              width: 56.0,
+              height: 56.0,
+              child: InkWell(
+                onTap: _rotate,
+                child: Center(
+                  child: Icon(
+                    size: 30.0,
+                    Icons.add_a_photo_rounded,
+                    color: Color(0xFFFFFFFF),
+                    )
+                  ),
+                )
+              ),
+            )
+          ),
+       ),
+     ]
+    );
   }
 }
 

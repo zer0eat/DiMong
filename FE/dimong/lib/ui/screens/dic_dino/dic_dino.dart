@@ -16,7 +16,6 @@ class DicDino extends StatefulWidget {
 
 class _DicDinoState extends State<DicDino> {
   final DinosaursListUseCase _useCase = DinosaursListUseCase();
-  final era = ["쥐라기", "백악기"];
   late List<SendPeriodResponse> _sendPeriodResponse;
 
   @override
