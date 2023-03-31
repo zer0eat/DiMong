@@ -1,6 +1,7 @@
 package com.ssafy.dimong_be.interfaces.drawing;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +33,10 @@ public class DrawingController {
 
 	@PostMapping("/v1/drawings/free")
 	@Transactional
-	public ResponseEntity saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, String fileName, Long userId) throws
+	public ResponseEntity saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, Long userId) throws
 		IOException {
-		String imageUrl = fileUploadService.uploadFile(file, FREE_DRAWING_FOLDER_NAME + fileName);
+		UUID uuid = UUID.randomUUID();
+		String imageUrl = fileUploadService.uploadFile(file, FREE_DRAWING_FOLDER_NAME + uuid);
 
 		log.info("imageUrl: " + imageUrl);
 

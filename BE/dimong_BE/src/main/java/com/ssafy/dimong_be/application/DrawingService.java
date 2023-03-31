@@ -7,8 +7,8 @@ import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
 
 public interface DrawingService {
 
-	public List<Drawing> getDrawingList(Long userId);
+	List<Drawing> getDrawingList(Long userId);
 
-	public void saveDrawing(MyDrawingDto drawing);
+	void saveDrawing(MyDrawingDto drawing);
 
 }

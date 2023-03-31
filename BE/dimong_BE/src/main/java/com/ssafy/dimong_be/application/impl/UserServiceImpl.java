@@ -15,7 +15,7 @@ import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.user.User;
 import com.ssafy.dimong_be.domain.model.user.UserRepository;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
-import com.ssafy.dimong_be.interfaces.common.MypageDto;
+import com.ssafy.dimong_be.interfaces.common.MypageResponseDto;
 import com.ssafy.dimong_be.interfaces.common.UserBadgeDto;
 
 import lombok.RequiredArgsConstructor;
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public MypageDto getMypageInfo(Long userId) {
+	public MypageResponseDto getMypageInfo(Long userId) {
 		User userEntity = userRepository.findById(userId)
 			.orElseThrow(
 				() -> new EntityNotFoundException(
@@ -55,16 +55,16 @@ public class UserServiceImpl implements UserService {
 		List<UserBadge> badgeList = userBadgeReposiroty.findAllByUser_UserId(userId);
 		List<Drawing> drawingList = drawingRepository.findAllByUser_UserId(userId);
 
-		MypageDto mypageDto = MypageDto.builder()
+		MypageResponseDto mypageResponseDto = MypageResponseDto.builder()
 			.userId(userEntity.getUserId())
 			.userProfileImage(userEntity.getUserProfileImage())
 			.userNickname(userEntity.getUserNickname())
 			.build();
 
-		badgeList.forEach(userBadge -> mypageDto.addUserBadgeDto(UserBadgeDto.fromEntity(userBadge.getBadge())));
-		drawingList.forEach(drawing -> mypageDto.addMyDrawingDto(MyDrawingDto.fromEntity(drawing)));
+		badgeList.forEach(userBadge -> mypageResponseDto.addUserBadgeDto(UserBadgeDto.fromEntity(userBadge.getBadge())));
+		drawingList.forEach(drawing -> mypageResponseDto.addMyDrawingDto(MyDrawingDto.fromEntity(drawing)));
 
-		return mypageDto;
+		return mypageResponseDto;
 	}
 
 }
