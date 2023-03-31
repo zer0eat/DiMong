@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'draw_dino_slider.dart';
 import 'draw_free_page.dart';
 
 class DrawingDino extends StatelessWidget {
@@ -73,25 +72,25 @@ class DrawingDino extends StatelessWidget {
               ),
 
               // 주제 맞춰 그리기
-              Container(
-                margin: const EdgeInsets.only(
-                  left: 30,
-                  top: 50,
-                ),
-                child: const Text(
-                  '주제 맞춰 그리기',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    color: Color(0xff6B6B6B),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-
-              Container(
-                child: DinoDrawCard(),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(
+              //     left: 30,
+              //     top: 50,
+              //   ),
+              //   child: const Text(
+              //     '주제 맞춰 그리기',
+              //     textAlign: TextAlign.start,
+              //     style: TextStyle(
+              //       color: Color(0xff6B6B6B),
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 18,
+              //     ),
+              //   ),
+              // ),
+              //
+              // Container(
+              //   child: DinoDrawCard(),
+              // ),
             ],
           ),
         ),

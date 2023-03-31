@@ -67,3 +67,18 @@ Map<String, dynamic> _$SendImageResponseToJson(SendImageResponse instance) =>
       'dinosaurId': instance.dinosaurId,
       'dinosaurName': instance.dinosaurName,
     };
+
+SendDrawingResponse _$SendDrawingResponseFromJson(Map<String, dynamic> json) =>
+    SendDrawingResponse(
+      recommendation1: json['recommendation1'],
+      recommendation2: json['recommendation2'],
+      recommendation3: json['recommendation3'],
+    );
+
+Map<String, dynamic> _$SendDrawingResponseToJson(
+        SendDrawingResponse instance) =>
+    <String, dynamic>{
+      'recommendation1': instance.recommendation1,
+      'recommendation2': instance.recommendation2,
+      'recommendation3': instance.recommendation3,
+    };

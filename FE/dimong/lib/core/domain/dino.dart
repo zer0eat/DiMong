@@ -15,7 +15,11 @@ class SendPeriodResponse {
   @JsonKey(name: 'dinosaurTaste')
   final String? dinosaurTaste;
 
-  SendPeriodResponse({this.dinosaurId, this.dinosaurImageUrl, this.dinosaurName, this.dinosaurTaste});
+  SendPeriodResponse(
+      {this.dinosaurId,
+      this.dinosaurImageUrl,
+      this.dinosaurName,
+      this.dinosaurTaste});
 
   factory SendPeriodResponse.fromJson(Map<String, dynamic> json) =>
       _$SendPeriodResponseFromJson(json);
@@ -52,25 +56,24 @@ class SendInfoResponse {
   @JsonKey(name: 'dinosaurNickname')
   final String dinosaurNickname;
 
-  SendInfoResponse(
-      {
-        required this.dinosaurId,
-        required this.dinosaurImageUrl,
-        required this.dinosaurAudioUrl,
-        required this.dinosaurName,
-        required this.dinosaurHabitat,
-        required this.dinosaurTaste,
-        required this.geologicAge,
-        required this.dinosaurWeight,
-        required this.dinosaurLength,
-        required this.dinosaurNickname,
-        required this.dinosaurIntellect,
-        required this.dinosaurAggression,
-        required this.dinosaurCharacteristic,
+  SendInfoResponse({
+    required this.dinosaurId,
+    required this.dinosaurImageUrl,
+    required this.dinosaurAudioUrl,
+    required this.dinosaurName,
+    required this.dinosaurHabitat,
+    required this.dinosaurTaste,
+    required this.geologicAge,
+    required this.dinosaurWeight,
+    required this.dinosaurLength,
+    required this.dinosaurNickname,
+    required this.dinosaurIntellect,
+    required this.dinosaurAggression,
+    required this.dinosaurCharacteristic,
+  });
 
-      });
-
-  factory SendInfoResponse.fromJson(Map<String, dynamic> receiveData) => _$SendInfoResponseFromJson(receiveData);
+  factory SendInfoResponse.fromJson(Map<String, dynamic> receiveData) =>
+      _$SendInfoResponseFromJson(receiveData);
 
   Map<String, dynamic> toJson() => _$SendInfoResponseToJson(this);
 }
@@ -88,4 +91,21 @@ class SendImageResponse {
       _$SendImageResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$SendImageResponseToJson(this);
+}
+
+@JsonSerializable()
+class SendDrawingResponse {
+  @JsonKey(name: 'recommendation1')
+  final dynamic recommendation1;
+  @JsonKey(name: 'recommendation2')
+  final dynamic recommendation2;
+  @JsonKey(name: 'recommendation3')
+  final dynamic recommendation3;
+  SendDrawingResponse(
+      {this.recommendation1, this.recommendation2, this.recommendation3});
+
+  factory SendDrawingResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendDrawingResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendDrawingResponseToJson(this);
 }

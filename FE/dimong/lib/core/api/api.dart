@@ -23,7 +23,7 @@ class ImageServerDio {
     final idToken = getIdToken(authProvider);
     // Set up the headers for the Dio instance
     dio.options.headers = {
-      HttpHeaders.contentTypeHeader:'multipart/form-data',
+      HttpHeaders.contentTypeHeader: 'multipart/form-data',
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $idToken',
     };
@@ -34,10 +34,10 @@ class ImageServerDio {
     //     dio: dio, authProvider: authProvider, secureStorage: SecureStorage());
     //dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler){
+      onRequest: (options, handler) {
         return handler.next(options);
       },
-      onResponse: (options, handler){
+      onResponse: (options, handler) {
         return handler.next(options);
       },
       onError: (DioError error, handler) {
@@ -49,7 +49,6 @@ class ImageServerDio {
     ));
     return dio;
   }
-
 }
 
 class DataServerDio {
@@ -57,7 +56,7 @@ class DataServerDio {
     final dio = Dio();
 
     // Set the base URL for Server 1
-    //dio.options.baseUrl = 'http://10.0.2.2:5000/';
+    // dio.options.baseUrl = 'http://10.0.2.2:5000/';
     dio.options.baseUrl = 'http://j8a105.p.ssafy.io:8086/';
     dio.options.connectTimeout = Duration(milliseconds: 5000);
     dio.options.receiveTimeout = Duration(milliseconds: 3000);
@@ -74,10 +73,10 @@ class DataServerDio {
     //     dio: dio, authProvider: authProvider, secureStorage: SecureStorage());
     //dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler){
+      onRequest: (options, handler) {
         return handler.next(options);
       },
-      onResponse: (options, handler){
+      onResponse: (options, handler) {
         return handler.next(options);
       },
       onError: (DioError error, handler) {
@@ -89,5 +88,4 @@ class DataServerDio {
     ));
     return dio;
   }
-
 }

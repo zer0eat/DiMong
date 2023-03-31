@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'dino_canvas.dart';
-import 'draw_dino_page.dart';
-
 class DinoDrawCard extends StatefulWidget {
   const DinoDrawCard({super.key});
 
@@ -67,12 +64,12 @@ class _DinoDrawCardState extends State<DinoDrawCard> {
                 // 터치액션
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              DrawDinoPage(name: item["name"]),
-                        ));
+                    // Navigator.push(
+                    // context,
+                    // MaterialPageRoute(
+                    //   builder: (context) =>
+                    //       // DrawDinoPage(name: item["name"]),
+                    // ));
                   },
                   child: Center(
                     child: Stack(
