@@ -9,7 +9,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class MypageDto implements Serializable {
+public class MypageResponseDto implements Serializable {
 
 	private Long userId;
 	private String userNickname;

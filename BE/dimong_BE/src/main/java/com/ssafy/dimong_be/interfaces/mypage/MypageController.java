@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.UserService;
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
-import com.ssafy.dimong_be.interfaces.common.MypageDto;
+import com.ssafy.dimong_be.interfaces.common.MypageResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +24,7 @@ public class MypageController {
 	private final DrawingService drawingService;
 
 	@GetMapping("/v1/mypage/{userId}")
-	public ResponseEntity<MypageDto> getMypageInfo(@PathVariable Long userId) {
+	public ResponseEntity<MypageResponseDto> getMypageInfo(@PathVariable Long userId) {
 		return ResponseEntity.ok(userService.getMypageInfo(userId));
 	}
 
