@@ -11,6 +11,7 @@ SendPeriodResponse _$SendPeriodResponseFromJson(Map<String, dynamic> json) =>
       dinosaurId: json['dinosaurId'] as int?,
       dinosaurImageUrl: json['dinosaurImageUrl'] as String?,
       dinosaurName: json['dinosaurName'] as String?,
+      dinosaurTaste: json['dinosaurTaste'] as String?,
     );
 
 Map<String, dynamic> _$SendPeriodResponseToJson(SendPeriodResponse instance) =>
@@ -18,6 +19,7 @@ Map<String, dynamic> _$SendPeriodResponseToJson(SendPeriodResponse instance) =>
       'dinosaurId': instance.dinosaurId,
       'dinosaurImageUrl': instance.dinosaurImageUrl,
       'dinosaurName': instance.dinosaurName,
+      'dinosaurTaste': instance.dinosaurTaste,
     };
 
 SendInfoResponse _$SendInfoResponseFromJson(Map<String, dynamic> json) =>

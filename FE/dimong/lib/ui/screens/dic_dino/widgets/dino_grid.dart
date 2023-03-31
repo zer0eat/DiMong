@@ -6,7 +6,6 @@ import 'package:shaky_animated_listview/animators/shake_transition.dart';
 import 'package:shaky_animated_listview/scroll_animator.dart';
 import 'package:shaky_animated_listview/widgets/animated_gridview.dart';
 import 'package:shaky_animated_listview/widgets/animated_listview.dart';
-import '../dic_detail.dart';
 
 class DinoGrid extends StatefulWidget {
   final List<SendPeriodResponse>? items;
@@ -18,6 +17,18 @@ class DinoGrid extends StatefulWidget {
 
 class _DinoGridState extends State<DinoGrid> {
   final ConnectRoute _connectRoute = ConnectRoute();
+
+  BoxDecoration _tasteColor(String taste) {
+    if (taste == '초식') {
+      return const BoxDecoration(
+        color: Color(0xFFACC864),
+      );
+    } else {
+      return const BoxDecoration(
+        color: Color(0xFFB08B60),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +45,7 @@ class _DinoGridState extends State<DinoGrid> {
                 child: Container(
                     // margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(7),
-                    color: const Color(0xFFACC864),
-
-                    // decoration: BoxDecoration(
-                    //   borderRadius: BorderRadius.circular(10),
-                    //   color: const Color(0xFFACC864),
-                    // ),
+                    decoration: _tasteColor(item.dinosaurTaste!),
                     child: GestureDetector(
                       onTap: () async{
                         print("movePage with dinosaurId: ${item.dinosaurId}");
@@ -62,6 +68,14 @@ class _DinoGridState extends State<DinoGrid> {
                                 height: 200,
                               ),
                             ),
+                          ),
+                          Positioned(
+                              right: 1,
+                              top: 1,
+                              child: Text(item.dinosaurTaste! == '초식' ? '🌿' : '🍖',
+                                style: TextStyle(
+                                  fontSize: 25.0,
+                                ),)
                           ),
                           Positioned.fill(
                             //

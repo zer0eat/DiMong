@@ -16,13 +16,7 @@ class _HomePageState extends State<HomePage>
     return MaterialApp(
       home: Container(
         padding: EdgeInsets.only(top:50.0),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFffffff),Color(0xFFACC864)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        color: Colors.white,
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: SafeArea(
@@ -35,8 +29,8 @@ class _HomePageState extends State<HomePage>
               // turns: _animation,
                 child: Image.asset(
                   'assets/images/loading.gif',
-                  width: 200,
-                  height: 200,
+                  width: 150,
+                  height: 150,
                 ),
               ),
             // ),
@@ -56,13 +50,13 @@ class _HomePageState extends State<HomePage>
                 children: [
                   Image.asset(
                     'assets/images/analyzing.png',
-                    width: 150,
-                    height: 150,
+                    width: 100,
+                    height: 100,
                   ),
                   Image.asset(
                     'assets/images/dimong.png',
-                    width: 150,
-                    height: 150,
+                    width: 100,
+                    height: 100,
                   ),
                 ],
               ),

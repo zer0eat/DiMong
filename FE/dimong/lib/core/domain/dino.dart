@@ -12,8 +12,10 @@ class SendPeriodResponse {
   final String? dinosaurImageUrl;
   @JsonKey(name: 'dinosaurName')
   final String? dinosaurName;
+  @JsonKey(name: 'dinosaurTaste')
+  final String? dinosaurTaste;
 
-  SendPeriodResponse({this.dinosaurId, this.dinosaurImageUrl, this.dinosaurName});
+  SendPeriodResponse({this.dinosaurId, this.dinosaurImageUrl, this.dinosaurName, this.dinosaurTaste});
 
   factory SendPeriodResponse.fromJson(Map<String, dynamic> json) =>
       _$SendPeriodResponseFromJson(json);
