@@ -82,3 +82,17 @@ Map<String, dynamic> _$SendDrawingResponseToJson(
       'recommendation2': instance.recommendation2,
       'recommendation3': instance.recommendation3,
     };
+
+SendLoginResponse _$SendLoginResponseFromJson(Map<String, dynamic> json) =>
+    SendLoginResponse(
+      email: json['email'] as String,
+      fullName: json['fullName'] as String,
+      profileImageUrl: json['profileImageUrl'] as String,
+    );
+
+Map<String, dynamic> _$SendLoginResponseToJson(SendLoginResponse instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'fullName': instance.fullName,
+      'profileImageUrl': instance.profileImageUrl,
+    };

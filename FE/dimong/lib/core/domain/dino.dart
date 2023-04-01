@@ -109,3 +109,20 @@ class SendDrawingResponse {
 
   Map<String, dynamic> toJson() => _$SendDrawingResponseToJson(this);
 }
+
+@JsonSerializable()
+class SendLoginResponse {
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'fullName')
+  final String fullName;
+  @JsonKey(name: 'profileImageUrl')
+  final String profileImageUrl;
+
+  SendLoginResponse({required this.email, required this.fullName, required this.profileImageUrl});
+
+  factory SendLoginResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendLoginResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendLoginResponseToJson(this);
+}
