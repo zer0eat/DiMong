@@ -52,6 +52,6 @@ class Picture:
             response_dinosaurName = dinosaur_kor[self.dinosaurName].__str__()
         
         return {
-            "isFound": self.is_found,
+            "found": self.is_found,
             "dinosaurName": response_dinosaurName
         }
