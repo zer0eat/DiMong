@@ -58,7 +58,7 @@ public class DinosaurController {
 	}
 
 	@PostMapping("/v1/pictures/dinosaurs")
-	public ResponseEntity getRecommendation(@RequestParam(name = "file") MultipartFile file, Long userId) {
+	public ResponseEntity getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaur(
 			FileDto.builder()
 				.file(file)
