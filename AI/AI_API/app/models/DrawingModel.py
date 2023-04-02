@@ -64,7 +64,7 @@ class Drawing:
 
         
         return {
-            "isFound": self.is_found,
+            "found": self.is_found,
             "dinosaurName1": response_dinosaurName1,
             "dinosaurName2": response_dinosaurName2,
             "dinosaurName3": response_dinosaurName3
