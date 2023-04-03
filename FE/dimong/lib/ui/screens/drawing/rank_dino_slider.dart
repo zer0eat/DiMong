@@ -1,49 +1,59 @@
+import 'package:dimong/ui/screens/home/connect_home.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class RankDinoCard extends StatefulWidget {
-  const RankDinoCard({super.key});
+  const RankDinoCard({super.key, required this.dinos});
+  final Map<String, dynamic> dinos;
 
+  // final List<Map<String, dynamic>> dinoList = dinos.entries.map((entry) {
+  //   final key = entry.key;
+  //   final value = entry.value;
+  //   return {
+  //     'recommendation': key,
+  //     'dinosaurId': value != null ? value['dinosaurId'] : null,
+  //     'dinosaurName': value != null ? value['dinosaurName'] : null,
+  //   };
+  // }).toList();
   @override
   _RankDinoCardState createState() => _RankDinoCardState();
 }
 
 class _RankDinoCardState extends State<RankDinoCard> {
   int _currentIndex = 0;
-  //  별명, 이름, 공룡 이미지
-  final List DinoList = [
-    {
-      "id": 1,
-      "subText": "공룡의 왕",
-      "name": "티라노사우루스",
-      "image_path": "assets/images/dino/티라노사우루스.png"
-    },
-    {
-      "id": 2,
-      "subText": "3개의 뿔을 가진",
-      "name": "트리케라톱스",
-      "image_path": "assets/images/dino/트리케라톱스.png"
-    },
-    {
-      "id": 3,
-      "subText": "세상에서 제일 큰",
-      "name": "아르헨티노사우루스",
-      "image_path": "assets/images/dino/아르헨티노사우루스.png"
-    },
-  ];
-
+  late List<Map<String, dynamic>> dinoList;
   final CarouselController carouselController = CarouselController();
-  // int currentIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.dinos == null) {
+      // 통신 통해서 값 가져오기
+    } else {
+      dinoList = widget.dinos.entries.map((entry) {
+        final key = entry.key;
+        final value = entry.value;
+        return {
+          'recommendation': key,
+          'dinosaurId': value != null ? value['dinosaurId'] : null,
+          'dinosaurName': value != null ? value['dinosaurName'] : null,
+        };
+      }).toList();
+    }
+  }
+
+  // print(dinoList);
   Widget build(BuildContext context) {
+    var nav = ConnectRoute();
+    print("리스트화! $dinoList");
     return Column(children: [
       const SizedBox(
         height: 20,
       ),
-      Text('이 공룡들과 비슷해요!'),
+      // CarouselSlider(items: items, options: options)
       CarouselSlider(
-        items: DinoList.map((item) {
+        items: dinoList.map((item) {
+          print(item);
           return Builder(
             builder: (BuildContext context) {
               return Container(
@@ -65,7 +75,9 @@ class _RankDinoCardState extends State<RankDinoCard> {
                 // 터치액션
                 child: GestureDetector(
                   onTap: () {
-                    // 디테일 페이지로 이동하기!
+                    if (item["dinosaurId"] != null) {
+                      nav.toDinoDetail(context, item["dinosaurId"]);
+                    }
                   },
                   child: Center(
                     child: Stack(
@@ -74,14 +86,20 @@ class _RankDinoCardState extends State<RankDinoCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                item["image_path"],
+                                'assets/images/dino/${item["dinosaurName"]}.png',
+                                errorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return Image.asset(
+                                    'assets/images/analyzing.png',
+                                  );
+                                },
                                 height: 150,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               Text(
-                                item["name"],
+                                item["dinosaurName"] ?? '비슷한 공룡을 찾지 못했어요',
                                 style: TextStyle(
                                   color: Color(0xFFACC864),
                                   fontWeight: FontWeight.bold,
@@ -99,8 +117,8 @@ class _RankDinoCardState extends State<RankDinoCard> {
         }).toList(),
         carouselController: carouselController,
         options: CarouselOptions(
-          autoPlay: false,
-          aspectRatio: 10 / 8,
+          autoPlay: true,
+          aspectRatio: 10 / 7,
           viewportFraction: 0.7,
           enlargeCenterPage: true,
           onPageChanged: (index, reason) {
