@@ -10,7 +10,6 @@ import 'package:dimong/ui/screens/mypage/widgets/mypage_slider.dart';
 
 class UserProfilePage extends StatefulWidget {
   final UserService _userService;
-
   UserProfilePage({required UserService userService})
       : _userService = userService;
 
@@ -27,7 +26,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
   @override
   void initState() {
     super.initState();
-
     // Load the user's profile information when the widget is initialized
     _loadUserProfile();
   }

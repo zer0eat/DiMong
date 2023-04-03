@@ -93,7 +93,7 @@ SendLoginResponse _$SendLoginResponseFromJson(Map<String, dynamic> json) =>
     SendLoginResponse(
       email: json['email'] as String,
       fullName: json['fullName'] as String,
-      profileImageUrl: json['profileImageUrl'] as String,
+      profileImageUrl: json['profileImageUrl'] as String?,
     );
 
 Map<String, dynamic> _$SendLoginResponseToJson(SendLoginResponse instance) =>
@@ -105,11 +105,11 @@ Map<String, dynamic> _$SendLoginResponseToJson(SendLoginResponse instance) =>
 
 SendBadgeResponse _$SendBadgeResponseFromJson(Map<String, dynamic> json) =>
     SendBadgeResponse(
-      badgeId: json['badgeId'] as int,
-      badgeName: json['badgeName'] as String,
-      badgeImageUrl: json['badgeImageUrl'] as String,
+      badgeId: json['badgeId'] as int?,
+      badgeName: json['badgeName'] as String?,
+      badgeImageUrl: json['badgeImageUrl'] as String?,
       collected: json['collected'] as bool,
-      createdAt: json['createdAt'] as String,
+      createdAt: json['createdAt'] as String?,
     );
 
 Map<String, dynamic> _$SendBadgeResponseToJson(SendBadgeResponse instance) =>
@@ -119,4 +119,21 @@ Map<String, dynamic> _$SendBadgeResponseToJson(SendBadgeResponse instance) =>
       'badgeImageUrl': instance.badgeImageUrl,
       'collected': instance.collected,
       'createdAt': instance.createdAt,
+    };
+
+SendProfileResponse _$SendProfileResponseFromJson(Map<String, dynamic> json) =>
+    SendProfileResponse(
+      userId: json['userId'] as int?,
+      userNickname: json['userNickname'] as String?,
+      userProfileImage: json['userProfileImage'] as String?,
+      myDrawingList: json['myDrawingList'],
+    );
+
+Map<String, dynamic> _$SendProfileResponseToJson(
+        SendProfileResponse instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'userNickname': instance.userNickname,
+      'userProfileImage': instance.userProfileImage,
+      'myDrawingList': instance.myDrawingList,
     };

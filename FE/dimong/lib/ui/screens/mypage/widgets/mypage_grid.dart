@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MypageGrid extends StatefulWidget {
-  const MypageGrid({Key? key}) : super(key: key);
+  final List<dynamic>? imageList;
+  const MypageGrid({Key? key, required this.imageList}) : super(key: key);
 
   @override
   _MypageGridState createState() => _MypageGridState();
@@ -13,7 +14,7 @@ class _MypageGridState extends State<MypageGrid> {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 10,
+      itemCount: widget.imageList!.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 10,
@@ -29,16 +30,16 @@ class _MypageGridState extends State<MypageGrid> {
                     spreadRadius: 3.0,
                     blurRadius: 5.0)
               ],
-              color: Colors.white),
-          child: Center(
-            child: Text(
+              color: Colors.white
+          ),
+            child: Image.network(widget.imageList![index]["myDrawingUrl"], fit: BoxFit.contain),
+            /*Text(
               '그림 $index',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-          ),
+            ),*/
         );
       },
     );

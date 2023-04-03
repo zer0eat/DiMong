@@ -10,6 +10,7 @@ Future<String?> getIdToken(AuthProvider authProvider) async {
   return idToken;
 }
 
+//AI server
 class ImageServerDio {
   static Dio instance() {
     final dio = Dio();
