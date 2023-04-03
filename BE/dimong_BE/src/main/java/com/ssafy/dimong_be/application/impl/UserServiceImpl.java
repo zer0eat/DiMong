@@ -8,15 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ssafy.dimong_be.application.UserService;
 import com.ssafy.dimong_be.application.exception.ErrorCode;
 import com.ssafy.dimong_be.application.exception.business.EntityNotFoundException;
-import com.ssafy.dimong_be.domain.model.user_badge.UserBadge;
-import com.ssafy.dimong_be.domain.model.user_badge.UserBadgeRepository;
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.user.User;
 import com.ssafy.dimong_be.domain.model.user.UserRepository;
+import com.ssafy.dimong_be.domain.model.user_badge.UserBadge;
+import com.ssafy.dimong_be.domain.model.user_badge.UserBadgeRepository;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
 import com.ssafy.dimong_be.interfaces.common.MypageResponseDto;
-import com.ssafy.dimong_be.interfaces.common.UserBadgeDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserServiceImpl implements UserService {
 	private final DrawingRepository drawingRepository;
-
 	private final UserBadgeRepository userBadgeRepository;
 	private final UserRepository userRepository;
 
@@ -61,7 +59,7 @@ public class UserServiceImpl implements UserService {
 			.userNickname(userEntity.getUserNickname())
 			.build();
 
-		badgeList.forEach(userBadge -> mypageResponseDto.addUserBadgeDto(UserBadgeDto.fromEntity(userBadge.getBadge())));
+		// badgeList.forEach(userBadge -> mypageResponseDto.addUserBadgeDto(UserBadgeDto.fromEntity(userBadge.getBadge())));
 		drawingList.forEach(drawing -> mypageResponseDto.addMyDrawingDto(MyDrawingDto.fromEntity(drawing)));
 
 		return mypageResponseDto;

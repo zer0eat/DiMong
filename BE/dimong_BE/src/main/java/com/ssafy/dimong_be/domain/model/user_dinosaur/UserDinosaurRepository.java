@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDinosaurRepository extends JpaRepository<UserDinosaur, Long> {
 
+	boolean existsByUserIdAndDinosaurId(Long userId, Long dinosaurId);
+
 	// @Query("SELECT d, ud.userId "
 	// 	+ "FROM Dinosaur d "
 	// 	+ "LEFT JOIN UserDinosaur ud "

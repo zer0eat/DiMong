@@ -5,14 +5,27 @@ import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-@Builder
+@Builder(toBuilder = true)
 public class MyDrawingDto {
 
 	private Long drawingId;
 	private String myDrawingUrl;
 	private Long userId;
+
+	@Setter
+	private Long similarDinosaurId1;
+
+	@Setter
+	private Long similarDinosaurId2;
+
+	@Setter
+	private Long similarDinosaurId3;
+
+	@Setter
+	private Long badgeId;
 
 	// @JsonIgnore
 	private DrawingType drawingType;
@@ -29,6 +42,10 @@ public class MyDrawingDto {
 			.userId(drawingDto.getUserId())
 			.drawingImageUrl(drawingDto.getMyDrawingUrl())
 			.drawingType(drawingDto.getDrawingType())
+			.similarDinosaurId1(drawingDto.getSimilarDinosaurId1())
+			.similarDinosaurId2(drawingDto.getSimilarDinosaurId2())
+			.similarDinosaurId3(drawingDto.getSimilarDinosaurId3())
+			.badgeId(drawingDto.getBadgeId())
 			.build();
 	}
 

@@ -43,16 +43,25 @@ public class Drawing extends BaseEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private DrawingType drawingType;
 
+	@Column(name = "similar_dinosaur_id_1", nullable = true)
+	private Long similarDinosaurId1;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "similar_dinosaur_id_1", nullable = true)
+	@JoinColumn(name = "similar_dinosaur_id_1", nullable = true, insertable = false, updatable = false)
 	private Dinosaur similarDinosaur1;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "similar_dinosaur_id_2", nullable = true)
-	private Dinosaur similarDinosaur2;
+	@Column(name = "similar_dinosaur_id_2", nullable = true)
+	private Long similarDinosaurId2;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "similar_dinosaur_id_3", nullable = true)
+	@JoinColumn(name = "similar_dinosaur_id_2", nullable = true, insertable = false, updatable = false)
+	private Dinosaur similarDinosaur2;
+
+	@Column(name = "similar_dinosaur_id_3", nullable = true)
+	private Long similarDinosaurId3;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "similar_dinosaur_id_3", nullable = true, insertable = false, updatable = false)
 	private Dinosaur similarDinosaur3;
 
 	@Column(name = "user_id", nullable = false)
@@ -68,5 +77,9 @@ public class Drawing extends BaseEntity implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "badge_id", insertable = false, updatable = false)
 	private Badge badge;
+
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "badge_id")
+	// private Badge badge;
 
 }

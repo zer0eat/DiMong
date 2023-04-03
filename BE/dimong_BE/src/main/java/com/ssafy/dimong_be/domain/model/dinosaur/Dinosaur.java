@@ -2,6 +2,8 @@ package com.ssafy.dimong_be.domain.model.dinosaur;
 
 import java.io.Serializable;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -66,6 +68,7 @@ public class Dinosaur implements Serializable {
 
 	// @Transient
 	@Column(name = "is_collected")
+	@ColumnDefault(value = "0")
 	private boolean isCollected;
 
 	// @Override

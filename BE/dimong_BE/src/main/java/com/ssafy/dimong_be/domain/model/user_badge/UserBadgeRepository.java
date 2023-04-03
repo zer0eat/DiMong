@@ -8,4 +8,8 @@ public interface UserBadgeRepository extends JpaRepository<UserBadge, Long> {
 
 	List<UserBadge> findAllByUser_UserId(Long userId);
 
+	// boolean existsByUserIdAndBadge_DinosaurId(Long userId, Long dinosaurId);
+
+	boolean existsByUserIdAndBadge_BadgeId(Long userId, Long badgeId);
+
 }

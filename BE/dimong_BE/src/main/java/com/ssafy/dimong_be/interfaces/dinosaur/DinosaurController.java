@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.dimong_be.application.DinosaurService;
+import com.ssafy.dimong_be.interfaces.common.FileDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -52,6 +55,17 @@ public class DinosaurController {
 	@GetMapping("/v1/dinosaurs/audio/{dinosaurId}")
 	public ResponseEntity getDinosaurAudio(@PathVariable Long dinosaurId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaurAudio(dinosaurId));
+	}
+
+	@PostMapping("/v1/pictures/dinosaurs")
+	public ResponseEntity getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
+		return ResponseEntity.ok(dinosaurservice.getDinosaur(
+			FileDto.builder()
+				.file(file)
+				.userId(userId)
+				.build()
+			)
+		);
 	}
 
 }
