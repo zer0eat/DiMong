@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 // 기능 import
 import 'package:dimong/ui/screens/home/home_page.dart';
-import 'package:dimong/ui/screens/home/connect_home.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 import 'package:dimong/ui/screens/drawing/drawing.dart';
 import 'package:dimong/ui/screens/dic_dino/dic_dino.dart';
 import 'package:dimong/ui/screens/mypage/mypage.dart';

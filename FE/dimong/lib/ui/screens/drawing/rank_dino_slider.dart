@@ -1,4 +1,4 @@
-import 'package:dimong/ui/screens/home/connect_home.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'rank_dino.dart';

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../myimage.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 
 class MypageGrid extends StatefulWidget {
   final List<dynamic>? imageList;
@@ -9,6 +11,7 @@ class MypageGrid extends StatefulWidget {
 }
 
 class _MypageGridState extends State<MypageGrid> {
+  ConnectRoute _connectRoute = ConnectRoute();
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -21,17 +24,23 @@ class _MypageGridState extends State<MypageGrid> {
         mainAxisSpacing: 10,
       ),
       itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 3.0,
-                    blurRadius: 5.0)
-              ],
-              color: Colors.white
-          ),
+        return GestureDetector(
+          onTap:(){
+              print(widget.imageList![index].runtimeType);
+              print("그림 정보: ${widget.imageList![index]}");
+              _connectRoute.toMyImage(context, widget.imageList![index], widget.imageList![index]["myDrawingUrl"]);
+          },
+          child:Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 3.0,
+                      blurRadius: 5.0)
+                ],
+                color: Colors.white
+            ),
             child: Image.network(widget.imageList![index]["myDrawingUrl"], fit: BoxFit.contain),
             /*Text(
               '그림 $index',
@@ -40,6 +49,7 @@ class _MypageGridState extends State<MypageGrid> {
                 fontWeight: FontWeight.bold,
               ),
             ),*/
+        ),
         );
       },
     );

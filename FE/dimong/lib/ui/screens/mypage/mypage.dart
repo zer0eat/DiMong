@@ -95,7 +95,7 @@ class _MyPageState extends State<MyPage> {
                                   ),
                                 ),
                                 ElevatedButton(
-                                  child: Text('Logout'),
+                                  child: Text('로그아웃'),
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50),
@@ -123,7 +123,7 @@ class _MyPageState extends State<MyPage> {
                           Container(
                             child: Column(
                               children: [
-                                Padding(
+                                /*Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                                   child:
                                   Text(
@@ -134,12 +134,23 @@ class _MyPageState extends State<MyPage> {
                                         fontSize: 20,
                                       )
                                   ),
-                                ),
+                                ),*/
                                 //BadgeCards()
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                   child: ElevatedButton(
-                                    child: Text("뱃지목록"),
+                                    child: Text('뱃지 목록'),
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      primary: Color(0xFFACC864), // Background color
+                                      onPrimary: Colors.white,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 6,
+                                        horizontal: 15,
+                                      ),// Text Color (Foreground color)
+                                    ),
                                     onPressed: () async{
                                       await showModalBottomSheet(
                                         context: context,
