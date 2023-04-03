@@ -38,7 +38,7 @@ public class DrawingController {
 
 	@PostMapping("/v1/drawings/dinosaurs/live")
 	@Transactional
-	public ResponseEntity getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
+	public ResponseEntity<DrawingResponseDto> getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
 		//공룡 3종류 추천
 		List<DinosaurRecommendationResponseDto> responseDtoList = dinosaurService.getDinosaurList(
 			FileDto.builder()
@@ -47,12 +47,20 @@ public class DrawingController {
 				.build()
 		);
 
-		return ResponseEntity.ok(responseDtoList);
+		DrawingResponseDto drawingResponseDto = DrawingResponseDto.builder().similarDinosaurList(responseDtoList).build();
+
+		if (responseDtoList.isEmpty()) {
+			drawingResponseDto.setFound(false);
+		} else {
+			drawingResponseDto.setFound(true);
+		}
+
+		return ResponseEntity.ok(drawingResponseDto);
 	}
 
 	@PostMapping("/v1/drawings/dinosaurs")
 	@Transactional
-	public ResponseEntity saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, Long userId) throws
+	public ResponseEntity<DrawingResponseDto> saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, Long userId) throws
 		IOException {
 		//1. 공룡 3종류 추천
 		List<DinosaurRecommendationResponseDto> responseDtoList = dinosaurService.getDinosaurList(
@@ -88,7 +96,16 @@ public class DrawingController {
 
 		drawingService.saveDrawing(myDrawingDto);
 
-		return ResponseEntity.ok(responseDtoList);
+		//4. Response 준비
+		DrawingResponseDto drawingResponseDto = DrawingResponseDto.builder().similarDinosaurList(responseDtoList).build();
+
+		if (responseDtoList.isEmpty()) {
+			drawingResponseDto.setFound(false);
+		} else {
+			drawingResponseDto.setFound(true);
+		}
+
+		return ResponseEntity.ok(drawingResponseDto);
 	}
 
 }
