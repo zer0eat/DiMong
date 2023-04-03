@@ -13,7 +13,7 @@ class DetailApiClient {
       final response = await dio.get(Paths.dinoDetail+'$id',
       data: {
         "dinosaurId": id
-      }
+      },queryParameters: {"userId": 1}
       );
       print("when response in data: $response");
       print("status: ${response.statusCode}");
