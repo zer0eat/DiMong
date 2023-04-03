@@ -237,7 +237,7 @@ class _DrawingBoardState extends State<DrawingBoard> {
         children: <Widget>[
           SizedBox(
             height: 24,
-            width: 160,
+            width: 120,
             child: ExValueBuilder<DrawConfig>(
               valueListenable: _controller.drawConfig,
               shouldRebuild: (DrawConfig p, DrawConfig n) =>
@@ -252,13 +252,14 @@ class _DrawingBoardState extends State<DrawingBoard> {
               },
             ),
           ),
+          _buildDefaultTools,
           ColorPicBtn(controller: _controller),
           IconButton(
               icon: const Icon(CupertinoIcons.arrow_turn_up_left),
               onPressed: () => _controller.undo()),
-          IconButton(
-              icon: const Icon(CupertinoIcons.arrow_turn_up_right),
-              onPressed: () => _controller.redo()),
+          // IconButton(
+          // icon: const Icon(CupertinoIcons.arrow_turn_up_right),
+          // onPressed: () => _controller.redo()),
           IconButton(
               icon: const Icon(CupertinoIcons.trash),
               onPressed: () => _controller.clear()),
