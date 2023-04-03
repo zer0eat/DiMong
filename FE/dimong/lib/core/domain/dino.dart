@@ -84,8 +84,12 @@ class SendImageResponse {
   final int? dinosaurId;
   @JsonKey(name: 'dinosaurName')
   final String? dinosaurName;
+  @JsonKey(name: 'dinosaurImageUrl')
+  final String? dinosaurImageUrl;
+  @JsonKey(name: 'found')
+  final bool? found;
 
-  SendImageResponse({this.dinosaurId, this.dinosaurName});
+  SendImageResponse({this.dinosaurId, this.dinosaurName, this.dinosaurImageUrl, this.found});
 
   factory SendImageResponse.fromJson(Map<String, dynamic> json) =>
       _$SendImageResponseFromJson(json);
@@ -125,4 +129,25 @@ class SendLoginResponse {
       _$SendLoginResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$SendLoginResponseToJson(this);
+}
+
+@JsonSerializable()
+class SendBadgeResponse {
+  @JsonKey(name: 'badgeId')
+  final int badgeId;
+  @JsonKey(name: 'badgeName')
+  final String badgeName;
+  @JsonKey(name: 'badgeImageUrl')
+  final String badgeImageUrl;
+  @JsonKey(name: 'collected')
+  final bool collected;
+  @JsonKey(name: 'createdAt')
+  final String createdAt;
+
+  SendBadgeResponse({required this.badgeId, required this.badgeName, required this.badgeImageUrl, required this.collected, required this.createdAt,});
+
+  factory SendBadgeResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendBadgeResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendBadgeResponseToJson(this);
 }

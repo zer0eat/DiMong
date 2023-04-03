@@ -5,13 +5,14 @@ import 'package:dimong/core/api/api.dart';
 import 'package:dimong/core/utils/api_routes.dart';
 
 class CameraApiClient {
-  final dio = ImageServerDio.instance();
+  final dio = DataServerDio.instance();
 
   Future<SendImageResponse> sendImage(dynamic imageFile) async {
     print(imageFile.runtimeType);
     try {
       final formData = FormData.fromMap({
-        'image': await MultipartFile.fromFile(imageFile.path, filename: 'image_camera.jpg'),
+        'file': await MultipartFile.fromFile(imageFile.path),
+        'userId': 1,
       });
       final response = await dio.post(Paths.cameraDino, data: formData);
       print(response);
@@ -20,11 +21,12 @@ class CameraApiClient {
       print(dinosaursJson);
       print(dinosaursJson['dinosaurId']);
       final sendImageResponse = SendImageResponse.fromJson(dinosaursJson);
-      print(sendImageResponse.runtimeType);
-      print(sendImageResponse.dinosaurName);
+      print("res: ${sendImageResponse.runtimeType}");
+      print(sendImageResponse.dinosaurId);
       return sendImageResponse;
     } catch (e) {
-      // Handle the error as needed
+      print("data send failed: data.dart");
+      print(e);
       throw e;
     }
   }

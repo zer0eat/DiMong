@@ -15,6 +15,6 @@ class Paths {
   static const themeList = '/api/v1/dinosaurs'; // 주제맞춰그리기 리스트
   static const drawingDetail =
       '/api/v1/dinosaurs/{dinosaurId}/characteristic'; // 주제맞춰그리기 특징
-  static const badgeCheck = '/api/v1/drawings/guide'; // 뱃지확인
-  static const cameraDino = '/api/ai/v1/pictures/dinosaurs'; // 카메라
+  static const badgeList = '/api/v1/badges/'; // 뱃지확인
+  static const cameraDino = '/api/v1/pictures/dinosaurs'; // 카메라
 }

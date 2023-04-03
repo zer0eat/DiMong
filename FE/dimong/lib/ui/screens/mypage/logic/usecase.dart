@@ -11,8 +11,8 @@ class MyPageUseCase extends ChangeNotifier {
 
   Future<void> loadData() async{
     isLoading = true;
-    final data = await _repository.sendUserId();
-    _dataController.sink.add(data);
+    //final data = await _repository.sendId();
+    //_dataController.sink.add(data);
     isLoading = false;
   }
   void dispose(){

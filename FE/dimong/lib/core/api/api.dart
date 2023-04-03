@@ -41,6 +41,8 @@ class ImageServerDio {
         return handler.next(options);
       },
       onError: (DioError error, handler) {
+        print("inteceptor: ${error.response!.statusCode}");
+        print(error.response!.data);
         if (error.response?.statusCode == 401) {
           authProvider.logout();
         }
@@ -59,7 +61,7 @@ class DataServerDio {
     // dio.options.baseUrl = 'http://10.0.2.2:5000/';
     dio.options.baseUrl = 'http://j8a105.p.ssafy.io:8086/';
     dio.options.connectTimeout = Duration(milliseconds: 5000);
-    dio.options.receiveTimeout = Duration(milliseconds: 3000);
+    dio.options.receiveTimeout = Duration(milliseconds: 5000);
     final idToken = getIdToken(authProvider);
     // Set up the headers for the Dio instance
     dio.options.headers = {
@@ -80,6 +82,8 @@ class DataServerDio {
         return handler.next(options);
       },
       onError: (DioError error, handler) {
+        print("inteceptor: ${error.response!.statusCode}");
+        print(error.response!.data);
         if (error.response?.statusCode == 401) {
           authProvider.logout();
         }

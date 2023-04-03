@@ -13,6 +13,9 @@ import './data/repository.dart';
 import './loading_image.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
+import './camera_modal.dart';
+import 'package:dimong/ui/screens/home/connect_home.dart';
+
 
 // Camera Widget을 생성
 class CameraPage extends StatefulWidget {
@@ -42,29 +45,30 @@ class _CameraPageState extends State<CameraPage> {
     );
   }
 
-  void _showGifModal() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Container(
-        color: Colors.transparent,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/loading.gif',
-              height: 200,
-              width: 200,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // void _showGifModal() {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) => Container(
+  //       color: Colors.transparent,
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           Image.asset(
+  //             'assets/images/loading.gif',
+  //             height: 200,
+  //             width: 200,
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
   @override
   Widget build(BuildContext context) {
     // 화면 세로 고정
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    ConnectRoute _connectRoute = ConnectRoute();
     return Scaffold(
       backgroundColor: Colors.black,
       body:  ChangeNotifierProvider(
@@ -76,72 +80,75 @@ class _CameraPageState extends State<CameraPage> {
                   children: [
                     // SizedBox(height: 25.0),
                     showImage(),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 16),
 
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            ElevatedButton(
-                              onPressed: () async{
-                                File? image_camera = await getImageFile(ImageSource.camera);
-                                if(image_camera!=null)
-                                {
-                                  _image = File(image_camera.path);
-                                  viewModel.analyzeImage(_image);
-                                }
-                              },
-                              child: Text(
-                                '다시 찍기',
-                                style: TextStyle(color: Colors.white),
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          ElevatedButton(
+                            onPressed: () async{
+                              File? imageCamera = await getImageFile(ImageSource.camera);
+                              if(imageCamera!=null)
+                              {
+                                _image = File(imageCamera.path);
+                                viewModel.analyzeImage(_image);
+                              }
+                            },
+                            child: Text(
+                              '다시 찍기',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xff6B6B6B), // Set button color
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10) // Set button shape
                               ),
+                            ),
+                          ),
+                          Container(
+                            child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Color(0xff6B6B6B), // Set button color
+                                primary: Color(0xffACC864), // Set the background color of the button
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10) // Set button shape
-                                ),
+                                ), // Set the shape of the button to a circle
                               ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Color(0xffACC864), // Set the background color of the button
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10) // Set button shape
-                                  ), // Set the shape of the button to a circle
-                                ),
-                                onPressed: () async{
-                                  if(_image!=null) {
-                                    if (viewModel.isLoading) {
-                                      Center(
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset('~/assets/images/analyzing.png'),
-                                            SizedBox(height: 16),
-                                            CircularProgressIndicator(),
-                                          ],
-                                        ),
-                                      );
-                                    } else {
-                                      if (viewModel.dinosaurs?.dinosaurId != null) {
-                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DinoDetail(id: viewModel.dinosaurs!.dinosaurId!)),);
+                              onPressed: () async{
+                                if(_image!=null) {
+                                  if (viewModel.isLoading) {
+                                    Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset('~/assets/images/analyzing.png'),
+                                          SizedBox(height: 16),
+                                          CircularProgressIndicator(),
+                                        ],
+                                      ),
+                                    );
+                                  } else {
+                                    print(viewModel.dinosaurs!.dinosaurId);
+                                    bool foundCheck = viewModel.dinosaurs!.found!;
+                                    if (viewModel.dinosaurs!.dinosaurId != null) {
+                                      if(foundCheck = true) Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DinoDetail(id: viewModel.dinosaurs!.dinosaurId!)),);
+                                      else{
+                                        print("dinosaur 없어요");
+                                        CameraModal();
                                       }
                                     }
-                                    setState(() {
-                                      _image = widget.file;
-                                    });
                                   }
-                                },
-                                child: Text('분석하기', style: TextStyle(fontSize: 16)),
-                              ),
+                                  setState(() {
+                                    _image = widget.file;
+                                  });
+                                }
+                              },
+                              child: Text('분석하기', style: TextStyle(fontSize: 16)),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
