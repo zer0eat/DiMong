@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyCardWidget extends StatelessWidget {
-  final bool hasImage;
   final String? imageUrl;
 
   MyCardWidget({
-    required this.hasImage,
     this.imageUrl,
   });
 
@@ -20,14 +18,14 @@ class MyCardWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (hasImage && imageUrl != null)
+            if (imageUrl != null)
               Image.network(
                 imageUrl!,
                 height: 80,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
-            if (!hasImage || imageUrl == null)
+            if (imageUrl == null)
               Container(
                 height: 80,
                 width: double.infinity,

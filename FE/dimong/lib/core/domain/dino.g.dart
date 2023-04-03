@@ -60,12 +60,16 @@ SendImageResponse _$SendImageResponseFromJson(Map<String, dynamic> json) =>
     SendImageResponse(
       dinosaurId: json['dinosaurId'] as int?,
       dinosaurName: json['dinosaurName'] as String?,
+      dinosaurImageUrl: json['dinosaurImageUrl'] as String?,
+      found: json['found'] as bool?,
     );
 
 Map<String, dynamic> _$SendImageResponseToJson(SendImageResponse instance) =>
     <String, dynamic>{
       'dinosaurId': instance.dinosaurId,
       'dinosaurName': instance.dinosaurName,
+      'dinosaurImageUrl': instance.dinosaurImageUrl,
+      'found': instance.found,
     };
 
 SendDrawingResponse _$SendDrawingResponseFromJson(Map<String, dynamic> json) =>
@@ -95,4 +99,22 @@ Map<String, dynamic> _$SendLoginResponseToJson(SendLoginResponse instance) =>
       'email': instance.email,
       'fullName': instance.fullName,
       'profileImageUrl': instance.profileImageUrl,
+    };
+
+SendBadgeResponse _$SendBadgeResponseFromJson(Map<String, dynamic> json) =>
+    SendBadgeResponse(
+      badgeId: json['badgeId'] as int,
+      badgeName: json['badgeName'] as String,
+      badgeImageUrl: json['badgeImageUrl'] as String,
+      collected: json['collected'] as bool,
+      createdAt: json['createdAt'] as String,
+    );
+
+Map<String, dynamic> _$SendBadgeResponseToJson(SendBadgeResponse instance) =>
+    <String, dynamic>{
+      'badgeId': instance.badgeId,
+      'badgeName': instance.badgeName,
+      'badgeImageUrl': instance.badgeImageUrl,
+      'collected': instance.collected,
+      'createdAt': instance.createdAt,
     };

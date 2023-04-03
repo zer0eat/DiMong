@@ -42,7 +42,7 @@ class MyPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Card(
-                              color: Color(0xFFACC864),
+                              color: Colors.transparent,
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(60),
@@ -116,9 +116,10 @@ class MyPage extends StatelessWidget {
                           ),
                           //BadgeCards()
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: IconButton(
-                              icon: Icon(Icons.add),
+                              iconSize: 50,
+                              icon: Image.asset('assets/images/badge.png'),
                               onPressed: () {
                                 showModalBottomSheet(
                                   context: context,
