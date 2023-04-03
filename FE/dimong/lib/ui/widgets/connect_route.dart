@@ -1,10 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/route.dart';
 import 'package:dimong/ui/widgets/navbar.dart';
 import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
-import 'dart:io';
-import '../capture/camera_page.dart';
+import 'package:dimong/ui/screens/capture/camera_page.dart';
+import 'package:dimong/ui/screens/capture/gallery_page.dart';
+import 'package:dimong/ui/screens/mypage/myimage.dart';
 
 class ConnectRoute{
   Future<void> toPage(BuildContext context, String route) async{
@@ -23,6 +25,16 @@ class ConnectRoute{
   }
   Future<void> toCameraPage(BuildContext context, File? imageFile) async{
     await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CameraPage(file: imageFile!)));
+  }
+  Future<void> toCameraStack(BuildContext context, File? imageFile) async{
+    await Navigator.push(context, MaterialPageRoute(builder: (context) => CameraPage(file: imageFile!)));
+  }
+  Future<void> toGalleryStack(BuildContext context, File? imageFile) async{
+    await Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryPage(file: imageFile!)));
+  }
+  Future<void> toMyImage(BuildContext context, Map<String,dynamic> arguments, dynamic imageData) async{
+    final index = arguments;
+    await Navigator.push(context, MaterialPageRoute(builder: (context) => MyImagePage(drawInfo: arguments, imageData: imageData)));
   }
   Future<void> toPages(BuildContext context, String route, dynamic arguments) async{
     final index = arguments;

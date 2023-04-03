@@ -10,10 +10,10 @@ class BadgeModal extends StatefulWidget {
   const BadgeModal({Key? key, required this.id}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _BadgeModalState();
+  _BadgeModalState createState() => _BadgeModalState();
 }
 
-class _BadgeModal extends State<BadgeModal>{
+class _BadgeModalState extends State<BadgeModal>{
   final BadgeUseCase _useCase = BadgeUseCase();
   @override
   void initState(){
@@ -40,6 +40,10 @@ class _BadgeModal extends State<BadgeModal>{
         {
           if(snapshot.hasData && _useCase.isLoading == false)
             {
+              final data = snapshot.data!;
+              print(data);
+              print("length: ${data.length}");
+              print(data.runtimeType);
               return Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -62,14 +66,8 @@ class _BadgeModal extends State<BadgeModal>{
                           margin: EdgeInsets.only(right:10.0),
                           decoration: _colorButton(),
                           child: Center(
-                            child: IconButton(
-                              iconSize: 30,
-                              icon: const Icon(
-                                Icons.cancel_outlined,
-                                color: Color(0xff398427),
-                              ),
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),),
+                            child: IconButton(iconSize: 30, icon: const Icon(Icons.cancel_outlined, color: Color(0xff398427),),
+                              onPressed: () => Navigator.of(context).pop(),),),
                         ),
                       ],
                     ),
@@ -79,10 +77,12 @@ class _BadgeModal extends State<BadgeModal>{
                         mainAxisSpacing: 8.0,
                         crossAxisCount: 5,
                         childAspectRatio: 0.4, // <-- Set the aspect ratio
-                        children: List.generate(30,
-                              (index) => MyCardWidget(
-                            imageUrl: index % 2 == 0 ? 'assets/images/painting.png' : null,
-                          ),
+                        children: List.generate(data.length,
+                              (index) => GridTile(
+                                child: MyCardWidget(
+                                  imageUrl: data[index].badgeImageUrl,
+                                ),
+                              ),
                         ),
                       ),
                     ),

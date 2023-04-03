@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dimong/core/domain/dino.dart';
-import 'package:dimong/ui/screens/home/connect_home.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 import 'package:shaky_animated_listview/animators/grid_animator.dart';
 import 'package:shaky_animated_listview/animators/shake_transition.dart';
 import 'package:shaky_animated_listview/scroll_animator.dart';

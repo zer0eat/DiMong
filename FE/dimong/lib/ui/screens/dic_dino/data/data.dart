@@ -28,7 +28,7 @@ class DictionaryApiClient {
       print(dinosaursJson);
 
       final sendPeriodResponse = dinosaursJson
-          .map((dinosaurJson) => SendPeriodResponse.fromJson(dinosaurJson))
+          .map((dinosaursJson) => SendPeriodResponse.fromJson(dinosaursJson))
           .toList();
       return sendPeriodResponse;
     } catch (e) {

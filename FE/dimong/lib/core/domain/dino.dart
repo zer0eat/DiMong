@@ -124,7 +124,7 @@ class SendLoginResponse {
   @JsonKey(name: 'fullName')
   final String fullName;
   @JsonKey(name: 'profileImageUrl')
-  final String profileImageUrl;
+  final String? profileImageUrl;
 
   SendLoginResponse({required this.email, required this.fullName, required this.profileImageUrl});
 
@@ -137,15 +137,15 @@ class SendLoginResponse {
 @JsonSerializable()
 class SendBadgeResponse {
   @JsonKey(name: 'badgeId')
-  final int badgeId;
+  final int? badgeId;
   @JsonKey(name: 'badgeName')
-  final String badgeName;
+  final String? badgeName;
   @JsonKey(name: 'badgeImageUrl')
-  final String badgeImageUrl;
+  final String? badgeImageUrl;
   @JsonKey(name: 'collected')
   final bool collected;
   @JsonKey(name: 'createdAt')
-  final String createdAt;
+  final String? createdAt;
 
   SendBadgeResponse({required this.badgeId, required this.badgeName, required this.badgeImageUrl, required this.collected, required this.createdAt,});
 
@@ -153,4 +153,24 @@ class SendBadgeResponse {
       _$SendBadgeResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$SendBadgeResponseToJson(this);
+}
+
+
+@JsonSerializable()
+class SendProfileResponse {
+  @JsonKey(name: 'userId')
+  final int? userId;
+  @JsonKey(name: 'userNickname')
+  final String? userNickname;
+  @JsonKey(name: 'userProfileImage')
+  final String? userProfileImage;
+  @JsonKey(name: 'myDrawingList')
+  final dynamic myDrawingList;
+
+  SendProfileResponse({required this.userId, required this.userNickname, required this.userProfileImage, required this.myDrawingList});
+
+  factory SendProfileResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendProfileResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendProfileResponseToJson(this);
 }

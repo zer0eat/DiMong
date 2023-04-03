@@ -1,19 +1,45 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dimong/ui/screens/mypage/mypage.dart';
 import 'package:flutter/material.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 
 class MypageCard extends StatefulWidget {
-  const MypageCard({Key? key});
+  final Map<String, dynamic> dinos;
+  const MypageCard({Key? key, required this.dinos});
 
   @override
   _MypageCardState createState() => _MypageCardState();
 }
 
 class _MypageCardState extends State<MypageCard> {
-  final List<int> _items = List.generate(10, (index) => index);
   late CarouselController _controller;
   int _current = 0;
-
+  Text rankEmoji(int? index) {
+    if (index == 0) {
+      return const Text(
+        '🥇',
+        style: TextStyle(
+          fontSize: 25.0,
+        ),
+      );
+    } else if (index == 1) {
+      return const Text(
+        '🥈',
+        style: TextStyle(
+          fontSize: 25.0,
+        ),
+      );
+    } else if (index == 2) {
+      return const Text(
+        '🥉',
+        style: TextStyle(
+          fontSize: 25.0,
+        ),
+      );
+    } else {
+      return const Text('순위없음');
+    }
+  }
   @override
   void initState() {
     super.initState();
@@ -22,39 +48,77 @@ class _MypageCardState extends State<MypageCard> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> drawingInfo = widget.dinos;
+    List similarSlider = [drawingInfo['similarDinosaurId1'], drawingInfo['similarDinosaurId2'], drawingInfo['similarDinosaurId3'],];
+    ConnectRoute _connectRoute = ConnectRoute();
     return Column(
       children: [
         CarouselSlider.builder(
-          itemCount: _items.length,
+          itemCount: similarSlider.length,
           itemBuilder: (context, index, realIndex) {
-            final int itemId = _items[index];
+            final int itemId = similarSlider[index];
             return InkWell(
               onTap: () {
-                // Navigator.push(
-                  // context,
-                  // MaterialPageRoute(
-                  //   builder: (_) => MyPagedraw(id: itemId),
-                  // ),
-                // );
+                if(similarSlider[index]!=null){
+                  _connectRoute.toDinoDetail(context, similarSlider[index]);
+                }
               },
               child: Container(
-                margin: const EdgeInsets.all(5.0),
+                margin: EdgeInsets.only(
+                  bottom: 10,
+                ),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2.0,
-                          blurRadius: 2.0)
-                    ],
-                    color: Colors.white),
-                child: Center(
-                  child: Text(
-                    '그림 $itemId',
-                    style: const TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,),
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(16.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      blurRadius: 5.0,
+                      spreadRadius: 0.0,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    if (similarSlider[index]!=null) {
+                      _connectRoute.toDinoDetail(context, similarSlider[index]);
+                    }
+                  },
+                  child: Center(
+                    child: Container(
+                      child: Stack(
+                        children: [
+                          Positioned(
+                              top: 10,
+                              child: rankEmoji(index)),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: Image.asset(
+                                    similarSlider[index] == null
+                                        ? 'assets/images/analyzing.png'
+                                        //: 'assets/images/dino/${similarSlider[index]}.png',
+                                        : 'assets/images/dino/티라노사우루스.png',
+                                    height: 130,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  similarSlider[index] ?? '비슷한 공룡을 찾지 못했어요',
+                                  style: TextStyle(
+                                    color: Color(0xFFACC864),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ]),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -79,6 +143,6 @@ class _MypageCardState extends State<MypageCard> {
           carouselController: _controller,
         ),
       ],
-    );
+            );
   }
 }
