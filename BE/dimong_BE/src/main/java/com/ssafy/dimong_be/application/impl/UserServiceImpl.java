@@ -12,7 +12,6 @@ import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.user.User;
 import com.ssafy.dimong_be.domain.model.user.UserRepository;
-import com.ssafy.dimong_be.domain.model.user_badge.UserBadge;
 import com.ssafy.dimong_be.domain.model.user_badge.UserBadgeRepository;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
 import com.ssafy.dimong_be.interfaces.common.MypageResponseDto;
@@ -50,7 +49,7 @@ public class UserServiceImpl implements UserService {
 				)
 			);
 
-		List<UserBadge> badgeList = userBadgeRepository.findAllByUser_UserId(userId);
+		// List<UserBadge> badgeList = userBadgeRepository.findAllByUser_UserId(userId);
 		List<Drawing> drawingList = drawingRepository.findAllByUser_UserId(userId);
 
 		MypageResponseDto mypageResponseDto = MypageResponseDto.builder()

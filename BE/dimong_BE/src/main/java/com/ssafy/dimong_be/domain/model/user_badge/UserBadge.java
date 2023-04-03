@@ -41,11 +41,11 @@ public class UserBadge extends BaseEntity implements Serializable {
 	@JoinColumn(name = "user_id", insertable = false, updatable = false)
 	private User user;
 
-	// @Column(name = "badge_id", nullable = false)
-	// private Long badgeId;
+	@Column(name = "badge_id", nullable = false)
+	private Long badgeId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "badge_id", nullable = false)
+	@JoinColumn(name = "badge_id", nullable = false, insertable = false, updatable = false)
 	private Badge badge;
 
 }

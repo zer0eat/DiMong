@@ -48,8 +48,8 @@ public class DinosaurController {
 	}
 
 	@GetMapping("/v2/dinosaurs/{dinosaurId}")
-	public ResponseEntity<DinosaurResponseDto> getDinosaur(@PathVariable Long dinosaurId) {
-		return ResponseEntity.ok(dinosaurservice.getDinosaur(dinosaurId));
+	public ResponseEntity<DinosaurResponseDto> getDinosaur(@PathVariable Long dinosaurId, @RequestParam Long userId) {
+		return ResponseEntity.ok(dinosaurservice.getDinosaur(dinosaurId, userId));
 	}
 
 	@GetMapping("/v1/dinosaurs/audio/{dinosaurId}")

@@ -1,10 +1,13 @@
 package com.ssafy.dimong_be.application;
 
-import com.ssafy.dimong_be.interfaces.common.UserBadgeDto;
+import java.util.List;
+
+import com.ssafy.dimong_be.interfaces.mypage.BadgeResponseDto;
 
 public interface BadgeService {
 
-	UserBadgeDto getBadgeList(Long userId);
+	List<BadgeResponseDto> getBadgeList(Long userId);
+
 	Long getBadgeIdByDinosaurId(Long dinosaurId);
 
 }

@@ -78,7 +78,7 @@ public class DinosaurServiceImpl implements DinosaurService {
 	}
 
 	@Override
-	public DinosaurResponseDto getDinosaur(Long dinosaurId) {
+	public DinosaurResponseDto getDinosaur(Long dinosaurId, Long userId) {
 		Dinosaur dinosaur = dinosaurRepository.findByDinosaurId(dinosaurId)
 			.orElseThrow(
 				() -> new EntityNotFoundException(
@@ -86,6 +86,12 @@ public class DinosaurServiceImpl implements DinosaurService {
 					ErrorCode.DINOSAUR_ENTITY_NOT_FOUND
 				)
 			);
+
+		if (userDinosaurRepository.existsByUserIdAndDinosaurId(userId, dinosaurId)) {
+			dinosaur.setCollected(true);
+		} else {
+			dinosaur.setCollected(false);
+		}
 
 		return DinosaurResponseDto.fromEntity(dinosaur);
 	}
@@ -170,7 +176,7 @@ public class DinosaurServiceImpl implements DinosaurService {
 			if (!userBadgeRepository.existsByUserIdAndBadge_BadgeId(userId, badge.getBadgeId())) {
 				userBadgeRepository.save(UserBadge.builder()
 					.userId(userId)
-					.badge(badge)
+					.badgeId(badge.getBadgeId())
 					.build()
 				);
 			}
