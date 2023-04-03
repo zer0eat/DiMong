@@ -103,7 +103,7 @@ class _DinoDetailState extends State<DinoDetail> {
         Text(
           title,
           style: const TextStyle(
-            fontSize: 13.0,
+            fontSize: 20.0,
             color: Color(0xFF7C7C7C),
           ),
         ),
@@ -111,7 +111,7 @@ class _DinoDetailState extends State<DinoDetail> {
         Text(
           value,
           style: TextStyle(
-            fontSize: 15.0,
+            fontSize: 23.0,
             fontWeight: FontWeight.bold,
             color: color,
           ),
@@ -129,7 +129,7 @@ class _DinoDetailState extends State<DinoDetail> {
           value,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 15.0,
+            fontSize: 23.0,
             fontWeight: FontWeight.bold,
             color: color,
             height: 1.8,
@@ -148,7 +148,7 @@ class _DinoDetailState extends State<DinoDetail> {
           value,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 24.0,
+            fontSize: 35.0,
             fontWeight: FontWeight.bold,
             color: color,
           ),
