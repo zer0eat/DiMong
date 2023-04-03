@@ -63,6 +63,7 @@ dependencies:
   flutter_drawing_board: ^0.4.4+2
   syncfusion_flutter_gauges: ^21.1.37
   shared_preferences: ^2.1.0
+  audioplayers: ^3.0.1
 
 dev_dependencies:
   build_runner: ^2.4.1

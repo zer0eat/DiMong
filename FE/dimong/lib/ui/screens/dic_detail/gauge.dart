@@ -23,14 +23,14 @@ class AbilityGauge extends StatelessWidget {
           maximum: 5,
           startAngle: 180,
           endAngle: 360,
-          //radiusFactor: 0.6,
+          radiusFactor: 1,
           showLabels: false,
           showTicks: false,
           axisLineStyle: AxisLineStyle(
             thickness: 0.3,
-            cornerStyle: CornerStyle.bothCurve,
             color: Color.fromARGB(20, 0, 0, 0),
             thicknessUnit: GaugeSizeUnit.factor,
+            cornerStyle: CornerStyle.bothCurve,
           ),
           annotations: [
             GaugeAnnotation(
@@ -40,30 +40,32 @@ class AbilityGauge extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: data.color,
+                    color: Color(0xFF7C7C7C),
                   ),
                 ),
               ),
               angle: 90,
-              positionFactor: 0.2,
+              positionFactor: 0.4,
             ),
           ],
-          ranges: <GaugeRange>[
-                      GaugeRange(
-                        startValue: 0,
-                        endValue: 5,
-                        color: data.color,
-                        startWidth: 0.3,
-                        endWidth: 0.3,
-                      ),
-                    ],
+          // ranges: <GaugeRange>[
+          //   GaugeRange(
+          //     startValue: 0,
+          //     endValue: 5,
+          //     color: data.color,
+          //     startWidth: 0.3,
+          //     endWidth: 0.3,
+          //   ),
+          // ],
           pointers: <GaugePointer>[
             RangePointer(
               width: 0.3,
+              enableAnimation: true,
+              animationDuration: 500,
+              animationType: AnimationType.easeOutBack,
               value: data.value,
               sizeUnit: GaugeSizeUnit.factor,
               color: data.color,
-              animationDuration: 1,
               cornerStyle: CornerStyle.bothCurve,
               gradient: SweepGradient(
                 colors: [
