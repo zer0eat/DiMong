@@ -78,8 +78,4 @@ public class Drawing extends BaseEntity implements Serializable {
 	@JoinColumn(name = "badge_id", insertable = false, updatable = false)
 	private Badge badge;
 
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "badge_id")
-	// private Badge badge;
-
 }

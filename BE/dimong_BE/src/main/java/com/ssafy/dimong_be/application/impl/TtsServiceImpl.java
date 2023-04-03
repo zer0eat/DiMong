@@ -17,9 +17,11 @@ import lombok.RequiredArgsConstructor;
 public class TtsServiceImpl implements TtsService {
 
 	private final DinosaurRepository dinosaurRepository;
+
 	@Override
 	public TtsResponseDto getAudioSrc(Long dinosaurId) {
 		Optional<Dinosaur> dinosaurOptional = dinosaurRepository.findByDinosaurId(dinosaurId);
+
 		if(dinosaurOptional.isPresent()){
 			Dinosaur dinosaur =dinosaurOptional.get();
 
@@ -27,12 +29,12 @@ public class TtsServiceImpl implements TtsService {
 			int randomInt = random.nextInt(3);
 
 			String dir = "https://j8a105.p.ssafy.io//static/story/";
-			String audioUrl = dir+dinosaur.getDinosaurName()+randomInt+".mp3";
+			String audioUrl = dir + dinosaur.getDinosaurName() + randomInt + ".mp3";
 			return TtsResponseDto.builder().id(dinosaurId).audioUrl(audioUrl).build();
 
-		}else{
+		} else {
 			return TtsResponseDto.builder().id(dinosaurId).audioUrl("wrong id").build();
 		}
-
 	}
+
 }

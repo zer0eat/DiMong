@@ -25,16 +25,25 @@ public class MypageController {
 	private final DrawingService drawingService;
 	private final BadgeService badgeService;
 
+	/*
+	내 정보(마이페이지) 첫 화면 조회
+	 */
 	@GetMapping("/v1/mypage/{userId}")
 	public ResponseEntity<MypageResponseDto> getMypageInfo(@PathVariable Long userId) {
 		return ResponseEntity.ok(userService.getMypageInfo(userId));
 	}
 
+	/*
+	내 그림 목록 조회
+	 */
 	@GetMapping("/v1/mypage/{userId}/drawings")
 	public ResponseEntity<List<Drawing>> getMypageDrawingList(@PathVariable Long userId) {
 		return ResponseEntity.ok(drawingService.getDrawingList(userId));
 	}
 
+	/*
+	뱃지 목록 조회 - filter: 내가 획득한 뱃지
+	 */
 	@GetMapping("/v1/badges/{userId}")
 	public ResponseEntity getBadgeList(@PathVariable Long userId) {
 		return ResponseEntity.ok(badgeService.getBadgeList(userId));

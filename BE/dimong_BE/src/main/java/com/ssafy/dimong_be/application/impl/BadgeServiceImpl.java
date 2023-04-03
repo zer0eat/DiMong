@@ -26,7 +26,7 @@ public class BadgeServiceImpl implements BadgeService {
 	private final BadgeRepository badgeRepository;
 	private final BadgeQueryRepository badgeQueryRepository;
 
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Override
 	public List<BadgeResponseDto> getBadgeList(Long userId) {

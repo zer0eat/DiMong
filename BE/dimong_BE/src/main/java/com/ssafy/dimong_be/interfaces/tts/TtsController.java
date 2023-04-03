@@ -12,9 +12,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class TtsController {
+
 	private final TtsServiceImpl ttsService;
+
 	@GetMapping("/api/v1/dinosaurs/story/{dinosaurId}")
 	public ResponseEntity<TtsResponseDto> getMypageInfo(@PathVariable Long dinosaurId) {
 		return ResponseEntity.ok(ttsService.getAudioSrc(dinosaurId));
 	}
+
 }

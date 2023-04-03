@@ -17,7 +17,6 @@ public class DinosaurQueryRepository {
 		return em.createNativeQuery(
 				new StringBuilder()
 					.append("SELECT d.dinosaur_id, d.dinosaur_name, d.dinosaur_audio_url, d.dinosaur_habitat, d.geologic_age, d.dinosaur_weight, d.dinosaur_length, d.dinosaur_nickname, d.dinosaur_intellect, d.dinosaur_aggression, d.dinosaur_characteristic, d.dinosaur_image_url, d.dinosaur_taste, IFNULL(ud2.user_id, 0) AS is_collected ")
-					// .append("SELECT d.dinosaur_id, d.dinosaur_name, d.dinosaur_image_url, d.dinosaur_taste, IFNULL(ud2.user_id, 0) AS is_collected ")
 					.append("FROM DINOSAURS d ")
 					.append("LEFT JOIN (")
 						.append("SELECT ud1.user_id, ud1.dinosaur_id ")

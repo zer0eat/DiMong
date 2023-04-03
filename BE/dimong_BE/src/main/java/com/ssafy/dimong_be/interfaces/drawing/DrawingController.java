@@ -18,7 +18,6 @@ import com.ssafy.dimong_be.application.BadgeService;
 import com.ssafy.dimong_be.application.DinosaurService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.FileUploadService;
-import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
 import com.ssafy.dimong_be.interfaces.common.FileDto;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
@@ -32,9 +31,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api")
 @Slf4j
 public class DrawingController {
-	private final DrawingRepository drawingRepository;
 
 	private static final String DRAWING_FOLDER_NAME = "user_drawing/";
+
 	private final DinosaurService dinosaurService;
 	private final DrawingService drawingService;
 	private final BadgeService badgeService;

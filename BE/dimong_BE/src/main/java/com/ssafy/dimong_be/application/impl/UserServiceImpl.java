@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class UserServiceImpl implements UserService {
+
 	private final DrawingRepository drawingRepository;
 	private final UserBadgeRepository userBadgeRepository;
 	private final UserRepository userRepository;

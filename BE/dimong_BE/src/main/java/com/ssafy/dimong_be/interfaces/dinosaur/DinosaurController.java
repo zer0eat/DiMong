@@ -40,23 +40,30 @@ public class DinosaurController {
 	}
 
 	/*
-	전체 공룡 목록 조회 - filter: 사용자가 찾은 공룡
+	전체 공룡 목록 조회 - filter: 사용자가 획득한 공룡
 	 */
 	@GetMapping("/v4/dinosaurs")
 	public ResponseEntity<List<DinosaurListResponseDto>> getDinosaurList(@RequestParam Long userId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaurList(userId));
 	}
 
+	/*
+	공룡 상세 조회
+	 */
 	@GetMapping("/v2/dinosaurs/{dinosaurId}")
 	public ResponseEntity<DinosaurResponseDto> getDinosaur(@PathVariable Long dinosaurId, @RequestParam Long userId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaur(dinosaurId, userId));
 	}
 
+	@Deprecated
 	@GetMapping("/v1/dinosaurs/audio/{dinosaurId}")
 	public ResponseEntity getDinosaurAudio(@PathVariable Long dinosaurId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaurAudio(dinosaurId));
 	}
 
+	/*
+	사진 찍어 공룡 추천
+	 */
 	@PostMapping("/v1/pictures/dinosaurs")
 	public ResponseEntity getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
 		return ResponseEntity.ok(dinosaurservice.getDinosaur(
