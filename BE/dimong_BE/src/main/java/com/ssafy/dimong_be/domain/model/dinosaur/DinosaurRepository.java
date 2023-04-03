@@ -19,9 +19,8 @@ public interface DinosaurRepository extends JpaRepository<Dinosaur, Long> {
 
 	@Query("SELECT d "
 		+ "FROM Dinosaur d "
-		+ "WHERE d.dinosaurName like :dinosaurName1 "
-		+ "OR d.dinosaurName like :dinosaurName2 "
-		+ "OR d.dinosaurName like :dinosaurName3")
+		+ "WHERE d.dinosaurName in (:dinosaurName1, :dinosaurName2, :dinosaurName3) "
+		+ "ORDER BY FIELD(d.dinosaurName, :dinosaurName1, :dinosaurName2, :dinosaurName3) ")
 	List<Dinosaur> findByDinosaurNames(
 		@Param("dinosaurName1") String dinosaurName1,
 		@Param("dinosaurName2") String dinosaurName2,
