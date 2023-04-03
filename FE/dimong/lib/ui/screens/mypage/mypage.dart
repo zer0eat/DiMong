@@ -1,4 +1,5 @@
 import 'package:dimong/ui/screens/login/login_page.dart';
+import 'package:dimong/ui/screens/mypage/widgets/modal_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
@@ -22,7 +23,6 @@ class MyPage extends StatelessWidget {
     print(authProvider.user.displayName);
     print(authProvider.user.photoURL);
     print('1111111');
-
     return SafeArea(
       child: Scaffold(
         body: ListView(
@@ -100,7 +100,7 @@ class MyPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      child: const Column(
+                      child: Column(
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
@@ -114,7 +114,22 @@ class MyPage extends StatelessWidget {
                                 )
                             ),
                           ),
-                          BadgeCards()
+                          //BadgeCards()
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: IconButton(
+                              icon: Icon(Icons.add),
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (BuildContext context) {
+                                    return BadgeModal();
+                                  },
+                                );
+                              },
+                            ),
+                          ),
                         ],
                       ),
                     ),

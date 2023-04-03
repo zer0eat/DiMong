@@ -5,8 +5,7 @@ class Paths {
 
   static const dinoList = '/api/v3/dinosaurs'; // 공룡 주소
   static const dinoDetail = '/api/v2/dinosaurs/'; // 공룡 상세
-  static const dinoAudio =
-      '/api/v1/dinosaurs/audio/{dinosaurId}'; // 공룡 설명하는 오디오
+  static const gptAudio = '/api/v1/dinosaurs/story/';
   static const myInfo = '/api/v1/mypage/{userId}'; // 내정보
   static const drawingList = '/api/v1/mypage/{userId}/drawings'; // 내 그림 목록
   static const myDrawingDetail = '/api/v1/drawings/{drawingId}'; // 내 그림 상세

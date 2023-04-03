@@ -10,11 +10,13 @@ class DinoDetailUseCase extends ChangeNotifier {
   final _dataController = StreamController<SendInfoResponse>.broadcast();
   Stream<SendInfoResponse> get dataStream => _dataController.stream;
 
-  Future<void> loadInfo(int? dinosaurId) async {
+  Future<String> loadInfo(int? dinosaurId) async {
     isLoading = true;
     final data = await _repository.sendId(dinosaurId);
+    final gptData = await _repository.receiveAudio(dinosaurId);
     _dataController.sink.add(data);
     isLoading = false;
+    return gptData['audioSrc'];
   }
 
   void dispose(){

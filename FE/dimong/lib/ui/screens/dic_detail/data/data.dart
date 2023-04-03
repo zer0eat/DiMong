@@ -29,4 +29,27 @@ class DetailApiClient {
       throw e;
     }
   }
+
+  Future<Map<String, dynamic>> receiveAudio(int? id) async {
+    try {
+      print("id: $id");
+      final response = await dio.get(Paths.gptAudio+'$id',
+          data: {
+            "dinosaurId": id
+          }
+      );
+      print("when response in data: $response");
+      print("status: ${response.statusCode}");
+      print(response.runtimeType);
+      final audioJson =  response.data;
+      print(audioJson);
+      // final sendInfoResponse = SendInfoResponse.fromJson(audioJson);
+      // print("sendInfoResponse: $sendInfoResponse");
+      // print(sendInfoResponse.runtimeType);
+      return audioJson;
+    } catch (e) {
+      // Handle the error as needed
+      throw e;
+    }
+  }
 }
