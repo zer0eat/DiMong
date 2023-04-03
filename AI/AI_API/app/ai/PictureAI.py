@@ -72,7 +72,7 @@ class PictureAI:
         # image_bytes를 get_prediction를 통해 분류
         result = self.get_prediction(image)
         
-        print("picture prediction result : " + result)
+        print("picture prediction result : " + str(result))
         
         if result == -1:
             picture.is_found = False
