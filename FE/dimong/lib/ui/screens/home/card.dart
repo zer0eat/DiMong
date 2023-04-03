@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dimong/ui/screens/home/connect_home.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 
 class CurrencyCard extends StatelessWidget {
   final String name, dino, route;

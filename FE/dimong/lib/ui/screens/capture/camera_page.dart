@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dimong/ui/screens/capture/data/repository.dart';
 import 'package:dimong/ui/screens/capture/logic/view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,12 +15,12 @@ import './loading_image.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
 import './camera_modal.dart';
-import 'package:dimong/ui/screens/home/connect_home.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 
 
 // Camera Widget을 생성
 class CameraPage extends StatefulWidget {
-  final File file;
+  final File? file;
   CameraPage({Key? key, required this.file}) : super(key: key);
 
   @override
@@ -31,7 +32,7 @@ class _CameraPageState extends State<CameraPage> {
   File? _image;
   void initState(){
     super.initState();
-    _image = widget.file!=null ? File(widget.file.path) : null;
+    _image = widget.file!=null ? File(widget.file!.path) : null;
   }
   // 이미지를 보여주는 위젯
   Widget showImage() {
@@ -45,24 +46,13 @@ class _CameraPageState extends State<CameraPage> {
     );
   }
 
-  // void _showGifModal() {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (context) => Container(
-  //       color: Colors.transparent,
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           Image.asset(
-  //             'assets/images/loading.gif',
-  //             height: 200,
-  //             width: 200,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+   void _showModal() async{
+     /*await showModalBottomSheet(
+       context: context,
+       builder: (context) => CameraModal()
+     );*/
+     await showCupertinoModalPopup(context: context, builder: (context) => CameraModal());
+   }
   @override
   Widget build(BuildContext context) {
     // 화면 세로 고정
@@ -132,11 +122,17 @@ class _CameraPageState extends State<CameraPage> {
                                   } else {
                                     print(viewModel.dinosaurs!.dinosaurId);
                                     bool foundCheck = viewModel.dinosaurs!.found!;
+                                    int id = viewModel.dinosaurs!.dinosaurId!;
+                                    print("found?: $foundCheck");
                                     if (viewModel.dinosaurs!.dinosaurId != null) {
-                                      if(foundCheck = true) Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DinoDetail(id: viewModel.dinosaurs!.dinosaurId!)),);
+                                      if(foundCheck = true && id >= 0){
+                                        print("dinosaur 있어요");
+                                        print("found!: $foundCheck");
+                                        _connectRoute.toDinoDetail(context, viewModel.dinosaurs!.dinosaurId!);
+                                      }
                                       else{
                                         print("dinosaur 없어요");
-                                        CameraModal();
+                                        _showModal();
                                       }
                                     }
                                   }

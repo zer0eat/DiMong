@@ -13,7 +13,7 @@ class DrawingDino extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/draw_bg.jpg"),
+              image: AssetImage("assets/images/draw_bg2.png"),
               opacity: 0.5,
               fit: BoxFit.cover,
             ),

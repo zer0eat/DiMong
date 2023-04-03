@@ -167,7 +167,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                 ),
                               ),
                             ),
-                            MypageGrid()
+                            //MypageGrid()
                           ],
                         ),
                       ),

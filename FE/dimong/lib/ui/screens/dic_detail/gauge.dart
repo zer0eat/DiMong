@@ -38,7 +38,7 @@ class AbilityGauge extends StatelessWidget {
                 child: Text(
                   '${data.ability}',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF7C7C7C),
                   ),

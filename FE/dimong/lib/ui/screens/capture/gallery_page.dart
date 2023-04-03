@@ -16,7 +16,7 @@ import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
 import './gallery_modal.dart';
 // Camera Widget을 생성
 class GalleryPage extends StatefulWidget {
-  final File file;
+  final File? file;
   GalleryPage({required this.file});
 
   @override

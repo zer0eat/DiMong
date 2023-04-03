@@ -7,42 +7,71 @@ import './camera_page.dart';
 class CameraModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Image.asset(
-              './assets/images/captureAgain.png',
-            ),
+    return Center(
+      child:SizedBox(
+        width: 290, // Set the desired width
+        height: 280, // Set the desired height
+        child: Container(
+          padding: EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(25),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 5,
+                spreadRadius: 1.0,
+                offset: Offset(0, 1),
+              ),
+            ],
           ),
-          SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "다시 그려보아요",
-                  style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                './assets/images/captureAgain.png',
+                width: 200,
+                height: 170,
+              ),
+              Text(
+                "공룡이 없어요!",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal,
                 ),
-                SizedBox(height: 16),
-                ElevatedButton(onPressed: () async{
-                  File? image_camera = await getImageFile(ImageSource.camera);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>  CameraPage(file: File(image_camera!.path)),
-                      //const CameraPage()),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                width: 140,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    File? image_camera = await getImageFile(ImageSource.camera);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CameraPage(file: File(image_camera!.path)),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    '다시 찍기',
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xffACC864),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  );
-                }, child: Text('다시 찍기', style: TextStyle(color: Colors.white)),
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
