@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import com.ssafy.dimong_be.application.BadgeService;
 import com.ssafy.dimong_be.application.DinosaurService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.FileUploadService;
+import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
 import com.ssafy.dimong_be.interfaces.common.FileDto;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
@@ -29,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api")
 @Slf4j
 public class DrawingController {
+	private final DrawingRepository drawingRepository;
 
 	private static final String DRAWING_FOLDER_NAME = "user_drawing/";
 	private final DinosaurService dinosaurService;
@@ -36,9 +40,14 @@ public class DrawingController {
 	private final BadgeService badgeService;
 	private final FileUploadService fileUploadService;
 
+	@GetMapping("/v1/drawings/{drawingId}")
+	public ResponseEntity getMyDrawing(@PathVariable Long drawingId) {
+		return ResponseEntity.ok(drawingService.getDrawing(drawingId));
+	}
+
 	@PostMapping("/v1/drawings/dinosaurs/live")
 	@Transactional
-	public ResponseEntity<DrawingResponseDto> getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
+	public ResponseEntity<DrawingRecommendationResponseDto> getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
 		//공룡 3종류 추천
 		List<DinosaurRecommendationResponseDto> responseDtoList = dinosaurService.getDinosaurList(
 			FileDto.builder()
@@ -47,20 +56,20 @@ public class DrawingController {
 				.build()
 		);
 
-		DrawingResponseDto drawingResponseDto = DrawingResponseDto.builder().similarDinosaurList(responseDtoList).build();
+		DrawingRecommendationResponseDto drawingRecommendationResponseDto = DrawingRecommendationResponseDto.builder().similarDinosaurList(responseDtoList).build();
 
 		if (responseDtoList.isEmpty()) {
-			drawingResponseDto.setFound(false);
+			drawingRecommendationResponseDto.setFound(false);
 		} else {
-			drawingResponseDto.setFound(true);
+			drawingRecommendationResponseDto.setFound(true);
 		}
 
-		return ResponseEntity.ok(drawingResponseDto);
+		return ResponseEntity.ok(drawingRecommendationResponseDto);
 	}
 
 	@PostMapping("/v1/drawings/dinosaurs")
 	@Transactional
-	public ResponseEntity<DrawingResponseDto> saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, Long userId) throws
+	public ResponseEntity<DrawingRecommendationResponseDto> saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, Long userId) throws
 		IOException {
 		//1. 공룡 3종류 추천
 		List<DinosaurRecommendationResponseDto> responseDtoList = dinosaurService.getDinosaurList(
@@ -97,15 +106,15 @@ public class DrawingController {
 		drawingService.saveDrawing(myDrawingDto);
 
 		//4. Response 준비
-		DrawingResponseDto drawingResponseDto = DrawingResponseDto.builder().similarDinosaurList(responseDtoList).build();
+		DrawingRecommendationResponseDto drawingRecommendationResponseDto = DrawingRecommendationResponseDto.builder().similarDinosaurList(responseDtoList).build();
 
 		if (responseDtoList.isEmpty()) {
-			drawingResponseDto.setFound(false);
+			drawingRecommendationResponseDto.setFound(false);
 		} else {
-			drawingResponseDto.setFound(true);
+			drawingRecommendationResponseDto.setFound(true);
 		}
 
-		return ResponseEntity.ok(drawingResponseDto);
+		return ResponseEntity.ok(drawingRecommendationResponseDto);
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
-import com.ssafy.dimong_be.interfaces.drawing.DrawingResponseDto;
+import com.ssafy.dimong_be.interfaces.drawing.MyDrawingResponseDto;
 
 public interface DrawingService {
 
@@ -12,6 +12,6 @@ public interface DrawingService {
 
 	void saveDrawing(MyDrawingDto drawing);
 
-	DrawingResponseDto getDrawing(Long drawingId);
+	MyDrawingResponseDto getDrawing(Long drawingId);
 
 }
