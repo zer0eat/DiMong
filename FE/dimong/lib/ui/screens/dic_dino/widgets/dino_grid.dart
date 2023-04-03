@@ -81,10 +81,14 @@ class _DinoGridState extends State<DinoGrid> {
                                   fontSize: 25.0,
                                 ),)
                           ),
-                          Positioned.fill(
-                            //
+                          item.collected! ? Positioned.fill(
                             child: Image.asset(
                               'assets/images/dino/${item.dinosaurName}.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ) : Positioned.fill(
+                            child: Image.asset(
+                              'assets/images/dino/물음표.png',
                               fit: BoxFit.contain,
                             ),
                           ),
