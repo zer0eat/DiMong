@@ -7,20 +7,21 @@ import 'package:dimong/core/utils/api_routes.dart';
 class MyPageApiClient {
   final dio = DataServerDio.instance();
 
-  Future<dynamic> sendUserId(int? id) async {
+  Future<dynamic> sendMyList(int? id) async {
     try {
       //String dinosaurEra = period!;
       //print("period: $period");
-      final response = await dio.get(Paths.dinoList);
+      final response = await dio.get(Paths.myInfo + '$id',
+      data:{
+        "userId": 1
+      });
       print("data.dart: response = $response");
       print(response.runtimeType);
       print("data.dart: response.data = ${response.data}");
-      final dinosaursJson =  response.data as List<dynamic>;
+      final dinosaursJson =  response.data;
       print(dinosaursJson);
-      final sendPeriodResponse = dinosaursJson
-          .map((dinosaurJson) => SendPeriodResponse.fromJson(dinosaurJson))
-          .toList();
-      return sendPeriodResponse;
+      final sendProfileResponse = SendProfileResponse.fromJson(dinosaursJson);
+      return sendProfileResponse;
     } catch (e) {
       // Handle the error as needed
       throw e;
@@ -37,9 +38,9 @@ class MyPageApiClient {
       print("when response in data: $response");
       print("status: ${response.statusCode}");
       print(response.runtimeType);
-      final dinosaursJson =  response.data;
+      final dinosaursJson =  response.data as List<dynamic>;
       print(dinosaursJson);
-      final sendBadgeResponse= dinosaursJson.map((dinosaurJson) => SendBadgeResponse.fromJson(dinosaursJson)).toList();
+      final sendBadgeResponse= dinosaursJson.map((dinosaursJson) => SendBadgeResponse.fromJson(dinosaursJson)).toList();
       print("sendInfoResponse: $sendBadgeResponse");
       print(sendBadgeResponse.runtimeType);
       return sendBadgeResponse;
