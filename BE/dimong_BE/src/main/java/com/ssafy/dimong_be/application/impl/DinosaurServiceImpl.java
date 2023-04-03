@@ -138,7 +138,7 @@ public class DinosaurServiceImpl implements DinosaurService {
 	}
 
 	@Override
-	public List<DinosaurRecommendationResponseDto> getDinosaurList(FileDto fileDto) {
+	public List<DinosaurRecommendationResponseDto> getDinosaurList(FileDto fileDto, boolean isLive) {
 		DinosaurNameListDto dinosaurNameListDto = httpAIService.getRecommendedDinosaurNameList(fileDto.getFile());
 
 		log.info("isFound: " + dinosaurNameListDto.isFound());
@@ -160,27 +160,30 @@ public class DinosaurServiceImpl implements DinosaurService {
 					ErrorCode.DINOSAUR_ENTITY_NOT_FOUND);
 			}
 
-			//User가 해당 공룡에 대한 뱃지를 획득
-			Long userId = fileDto.getUserId();
+			// isLive == false 일 때 User가 해당 공룡에 대한 뱃지를 획득
+			if (isLive) {
+				Long userId = fileDto.getUserId();
 
-			Dinosaur mostSimilarDinosaur = dinosaurRepository.findByDinosaurName(dinosaurName1)
-				.orElseThrow(() -> new EntityNotFoundException(dinosaurName1 + "이라는 이름을 가진 공룡이 없습니다.",
-					ErrorCode.DINOSAUR_ENTITY_NOT_FOUND));
-			Long dinosaurId = mostSimilarDinosaur.getDinosaurId();
+				Dinosaur mostSimilarDinosaur = dinosaurRepository.findByDinosaurName(dinosaurName1)
+					.orElseThrow(() -> new EntityNotFoundException(dinosaurName1 + "이라는 이름을 가진 공룡이 없습니다.",
+						ErrorCode.DINOSAUR_ENTITY_NOT_FOUND));
+				Long dinosaurId = mostSimilarDinosaur.getDinosaurId();
 
 
-			Badge badge = badgeRepository.findByDinosaurId(dinosaurId)
-				.orElseThrow(() -> new EntityNotFoundException(
-					"dinosaurId(" + dinosaurId + ")에 해당하는 뱃지가 없습니다.", ErrorCode.ENTITY_NOT_FOUND));
+				Badge badge = badgeRepository.findByDinosaurId(dinosaurId)
+					.orElseThrow(() -> new EntityNotFoundException(
+						"dinosaurId(" + dinosaurId + ")에 해당하는 뱃지가 없습니다.", ErrorCode.ENTITY_NOT_FOUND));
 
-			if (!userBadgeRepository.existsByUserIdAndBadge_BadgeId(userId, badge.getBadgeId())) {
-				userBadgeRepository.save(UserBadge.builder()
-					.userId(userId)
-					.badgeId(badge.getBadgeId())
-					.build()
-				);
+				if (!userBadgeRepository.existsByUserIdAndBadge_BadgeId(userId, badge.getBadgeId())) {
+					userBadgeRepository.save(UserBadge.builder()
+						.userId(userId)
+						.badgeId(badge.getBadgeId())
+						.build()
+					);
+				}
 			}
-
+			
+			//Response 준비
 			List<DinosaurRecommendationResponseDto> dinosaurRecommendationResponseDtoList = new ArrayList<>();
 			dinosaurList.forEach(dinosaur -> dinosaurRecommendationResponseDtoList.add(
 				DinosaurRecommendationResponseDto.fromEntity(dinosaur)

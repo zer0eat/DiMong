@@ -19,7 +19,9 @@ public interface DinosaurService {
 
 	DinosaurRecommendationResponseDto getDinosaur(FileDto fileDto);
 
-	List<DinosaurRecommendationResponseDto> getDinosaurList(FileDto fileDto);
+	// List<DinosaurRecommendationResponseDto> getDinosaurList(FileDto fileDto);
+
+	List<DinosaurRecommendationResponseDto> getDinosaurList(FileDto fileDto, boolean isLive);
 
 	Object getDinosaurAudio(Long dinosaurId);
 

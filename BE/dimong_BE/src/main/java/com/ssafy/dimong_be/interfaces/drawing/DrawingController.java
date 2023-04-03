@@ -53,7 +53,8 @@ public class DrawingController {
 			FileDto.builder()
 				.file(file)
 				.userId(userId)
-				.build()
+				.build(),
+			true
 		);
 
 		DrawingRecommendationResponseDto drawingRecommendationResponseDto = DrawingRecommendationResponseDto.builder().similarDinosaurList(responseDtoList).build();
@@ -76,7 +77,8 @@ public class DrawingController {
 			FileDto.builder()
 				.file(file)
 				.userId(userId)
-				.build()
+				.build(),
+			false
 		);
 
 		//2. 그림 파일 업로드
