@@ -1,6 +1,6 @@
 package com.ssafy.dimong_be.interfaces.drawing;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurRecommendationResponseDto;
@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Builder
-public class DrawingResponseDto {
+public class DrawingRecommendationResponseDto implements Serializable {
 
 	@Setter
 	private boolean isFound;
