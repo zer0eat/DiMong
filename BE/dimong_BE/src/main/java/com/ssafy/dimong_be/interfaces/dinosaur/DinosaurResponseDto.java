@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
+@Builder(toBuilder = true)
 public class DinosaurResponseDto implements Serializable {
 
 	private Long dinosaurId;
@@ -24,6 +24,7 @@ public class DinosaurResponseDto implements Serializable {
 	private Integer dinosaurIntellect;
 	private Integer dinosaurAggression;
 	private String dinosaurCharacteristic;
+	boolean isCollected;
 
 	public static DinosaurResponseDto fromEntity(Dinosaur dinosaur) {
 		return DinosaurResponseDto.builder()
@@ -40,6 +41,7 @@ public class DinosaurResponseDto implements Serializable {
 			.dinosaurIntellect(dinosaur.getDinosaurIntellect())
 			.dinosaurAggression(dinosaur.getDinosaurAggression())
 			.dinosaurCharacteristic(dinosaur.getDinosaurCharacteristic())
+			.isCollected(dinosaur.isCollected())
 			.build();
 	}
 

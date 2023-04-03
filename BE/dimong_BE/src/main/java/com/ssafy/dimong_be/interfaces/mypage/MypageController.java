@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.dimong_be.application.BadgeService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.UserService;
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
@@ -22,6 +23,7 @@ public class MypageController {
 
 	private final UserService userService;
 	private final DrawingService drawingService;
+	private final BadgeService badgeService;
 
 	@GetMapping("/v1/mypage/{userId}")
 	public ResponseEntity<MypageResponseDto> getMypageInfo(@PathVariable Long userId) {
@@ -31,6 +33,11 @@ public class MypageController {
 	@GetMapping("/v1/mypage/{userId}/drawings")
 	public ResponseEntity<List<Drawing>> getMypageDrawingList(@PathVariable Long userId) {
 		return ResponseEntity.ok(drawingService.getDrawingList(userId));
+	}
+
+	@GetMapping("/v1/badges/{userId}")
+	public ResponseEntity getBadgeList(@PathVariable Long userId) {
+		return ResponseEntity.ok(badgeService.getBadgeList(userId));
 	}
 
 }

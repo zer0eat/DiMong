@@ -14,12 +14,7 @@ public class MypageResponseDto implements Serializable {
 	private Long userId;
 	private String userNickname;
 	private String userProfileImage;
-	private final List<UserBadgeDto> userBadgeList = new ArrayList<>();
 	private final List<MyDrawingDto> myDrawingList = new ArrayList<>();
-
-	public void addUserBadgeDto(UserBadgeDto userBadgeDto) {
-		userBadgeList.add(userBadgeDto);
-	}
 
 	public void addMyDrawingDto(MyDrawingDto myDrawingDto) {
 		myDrawingList.add(myDrawingDto);

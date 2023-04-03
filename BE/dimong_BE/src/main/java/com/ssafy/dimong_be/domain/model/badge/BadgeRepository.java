@@ -10,4 +10,12 @@ public interface BadgeRepository extends JpaRepository<Badge, Long> {
 
 	Optional<Badge> findByDinosaurId(Long dinosaurId);
 
+	// @Query("SELECT b, nullif(ub.userId, 0) AS isCollected, ub.createdAt "
+	// 	+ "FROM Badge b "
+	// 	+ "LEFT JOIN FETCH UserBadge ub "
+	// 	+ "ON b.badgeId = ub.badgeId "
+	// 	+ "WHERE ub.userId IS NULL "
+	// 	+ "OR ub.userId = :userId")
+	// List<Object[]> findWithUser(@Param("userId") Long userId);
+
 }

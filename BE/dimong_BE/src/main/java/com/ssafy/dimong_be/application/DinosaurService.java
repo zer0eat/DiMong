@@ -15,7 +15,7 @@ public interface DinosaurService {
 
 	List<DinosaurListResponseDto> getDinosaurList(Long userId);
 
-	DinosaurResponseDto getDinosaur(Long dinosaurId);
+	DinosaurResponseDto getDinosaur(Long dinosaurId, Long userId);
 
 	DinosaurRecommendationResponseDto getDinosaur(FileDto fileDto);
 
