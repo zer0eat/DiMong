@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/auth/auth_provider.dart';
 import './data/imagedata.dart';
+import 'draw_detail_page.dart';
 
 class DrawFreePage extends StatefulWidget {
   const DrawFreePage({Key? key}) : super(key: key);
@@ -48,6 +49,14 @@ class DrawFreePageState extends State<DrawFreePage> {
     final sendData = await saveImageToTempDirectory(data);
     final SendDrawingResponse saveDrawingResponse =
         await dinosaurApiClient.saveImage(sendData);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            DrawDetailPage(RankData: saveDrawingResponse, imageData: data),
+      ),
+    );
   }
 
   // 저장
@@ -67,7 +76,7 @@ class DrawFreePageState extends State<DrawFreePage> {
 
   @override
   Widget build(BuildContext context) {
-    final p = Provider.of<AuthProvider>(context);
+    // final p = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
         // 뒤로가기 버튼
