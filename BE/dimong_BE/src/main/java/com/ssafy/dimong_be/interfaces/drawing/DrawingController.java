@@ -40,7 +40,7 @@ public class DrawingController {
 	private final FileUploadService fileUploadService;
 
 	@GetMapping("/v1/drawings/{drawingId}")
-	public ResponseEntity getMyDrawing(@PathVariable Long drawingId) {
+	public ResponseEntity<MyDrawingResponseDto> getMyDrawing(@PathVariable Long drawingId) {
 		return ResponseEntity.ok(drawingService.getDrawing(drawingId));
 	}
 

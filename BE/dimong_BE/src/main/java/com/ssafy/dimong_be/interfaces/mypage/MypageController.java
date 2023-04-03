@@ -45,7 +45,7 @@ public class MypageController {
 	뱃지 목록 조회 - filter: 내가 획득한 뱃지
 	 */
 	@GetMapping("/v1/badges/{userId}")
-	public ResponseEntity getBadgeList(@PathVariable Long userId) {
+	public ResponseEntity<List<BadgeResponseDto>> getBadgeList(@PathVariable Long userId) {
 		return ResponseEntity.ok(badgeService.getBadgeList(userId));
 	}
 
