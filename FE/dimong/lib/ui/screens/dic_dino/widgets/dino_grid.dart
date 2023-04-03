@@ -18,8 +18,12 @@ class DinoGrid extends StatefulWidget {
 class _DinoGridState extends State<DinoGrid> {
   final ConnectRoute _connectRoute = ConnectRoute();
 
-  BoxDecoration _tasteColor(String taste) {
-    if (taste == '초식') {
+  BoxDecoration _tasteColor(bool collected, String taste) {
+    if (!collected) {
+      return const BoxDecoration(
+        color: Colors.grey,
+      );
+    } else if (taste == '초식') {
       return const BoxDecoration(
         color: Color(0xFFACC864),
       );
@@ -45,7 +49,7 @@ class _DinoGridState extends State<DinoGrid> {
                 child: Container(
                     // margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(7),
-                    decoration: _tasteColor(item.dinosaurTaste!),
+                    decoration: _tasteColor(item.collected!, item.dinosaurTaste!),
                     child: GestureDetector(
                       onTap: () async{
                         print("movePage with dinosaurId: ${item.dinosaurId}");
@@ -92,7 +96,7 @@ class _DinoGridState extends State<DinoGrid> {
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 25,
                               ),
                             ),
                           ),

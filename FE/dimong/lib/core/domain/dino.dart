@@ -14,12 +14,15 @@ class SendPeriodResponse {
   final String? dinosaurName;
   @JsonKey(name: 'dinosaurTaste')
   final String? dinosaurTaste;
+  @JsonKey(name: 'collected')
+  final bool? collected;
 
   SendPeriodResponse(
       {this.dinosaurId,
       this.dinosaurImageUrl,
       this.dinosaurName,
-      this.dinosaurTaste});
+      this.dinosaurTaste,
+      this.collected});
 
   factory SendPeriodResponse.fromJson(Map<String, dynamic> json) =>
       _$SendPeriodResponseFromJson(json);

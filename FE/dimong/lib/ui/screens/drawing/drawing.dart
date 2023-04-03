@@ -14,6 +14,7 @@ class DrawingDino extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/draw_bg.jpg"),
+              opacity: 0.5,
               fit: BoxFit.cover,
             ),
           ),
@@ -36,7 +37,7 @@ class DrawingDino extends StatelessWidget {
                   child: const Text(
                     '공룡 뱃지 모으기',
                     style: TextStyle(
-                      color: Color(0xff6B6B6B),
+                      color: Color(0xff444444),
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     ),
@@ -51,7 +52,7 @@ class DrawingDino extends StatelessWidget {
                   child: const Text(
                     '도감 공룡들을 그려 \n뱃지를 모아보세요!',
                     style: TextStyle(
-                      color: Color(0xff6B6B6B),
+                      color: Color(0xff444444),
                       // fontWeight: FontWeight.bold,
                       fontSize: 25,
                     ),
