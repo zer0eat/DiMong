@@ -161,7 +161,7 @@ public class DinosaurServiceImpl implements DinosaurService {
 			}
 
 			// isLive == false 일 때 User가 해당 공룡에 대한 뱃지를 획득
-			if (isLive) {
+			if (!isLive) {
 				Long userId = fileDto.getUserId();
 
 				Dinosaur mostSimilarDinosaur = dinosaurRepository.findByDinosaurName(dinosaurName1)
