@@ -23,6 +23,7 @@ class DrawFreePage extends StatefulWidget {
 
 class DrawFreePageState extends State<DrawFreePage> {
   SendDrawingResponse? liveDrawingResponse;
+  // SendImageResponse? liveDrawingResponse;
   final DrawingController _drawingController = DrawingController();
   final DinosaurApiClient dinosaurApiClient = DinosaurApiClient();
 
@@ -47,7 +48,7 @@ class DrawFreePageState extends State<DrawFreePage> {
       return;
     }
     final sendData = await saveImageToTempDirectory(data);
-    final SendDrawingResponse saveDrawingResponse =
+    final SendImageResponse saveDrawingResponse =
         await dinosaurApiClient.saveImage(sendData);
 
     Navigator.push(
@@ -106,16 +107,28 @@ class DrawFreePageState extends State<DrawFreePage> {
           LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               return DrawingBoard(
-                showDefaultTools: true,
+                // showDefaultTools: true,
                 controller: _drawingController,
                 onPointerUp: (pointList) async {
-                  liveDrawingResponse = await dinosaurApiClient.sendImage(
-                      await saveImageToTempDirectory(
-                          (await _drawingController.getImageData())
-                                  ?.buffer
-                                  .asUint8List() ??
-                              Uint8List(0)));
-                  setState(() {}); // 상태 업데이트
+                  final response = await dinosaurApiClient.sendImage(
+                    await saveImageToTempDirectory(
+                      (await _drawingController.getImageData())
+                              ?.buffer
+                              .asUint8List() ??
+                          Uint8List(0),
+                    ),
+                  );
+                  if (response != null) {
+                    liveDrawingResponse = response;
+                    setState(() {}); // 상태 업데이트
+                  }
+                  // liveDrawingResponse = (await dinosaurApiClient.sendImage(
+                  //     await saveImageToTempDirectory(
+                  //         (await _drawingController.getImageData())
+                  //                 ?.buffer
+                  //                 .asUint8List() ??
+                  //             Uint8List(0))))!;
+                  // setState(() {}); // 상태 업데이트
                 },
                 background: Container(
                   width: constraints.maxWidth,

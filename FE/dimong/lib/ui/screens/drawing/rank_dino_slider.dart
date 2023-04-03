@@ -1,6 +1,7 @@
 import 'package:dimong/ui/screens/home/connect_home.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'rank_dino.dart';
 
 class RankDinoCard extends StatefulWidget {
   const RankDinoCard({super.key, required this.dinos});
@@ -23,6 +24,32 @@ class _RankDinoCardState extends State<RankDinoCard> {
   int _currentIndex = 0;
   late List<Map<String, dynamic>> dinoList;
   final CarouselController carouselController = CarouselController();
+  Text _rankEmoji(String recoIndex) {
+    if (recoIndex == 'recommendation1') {
+      return const Text(
+        '🥇',
+        style: TextStyle(
+          fontSize: 25.0,
+        ),
+      );
+    } else if (recoIndex == 'recommendation2') {
+      return const Text(
+        '🥈',
+        style: TextStyle(
+          fontSize: 25.0,
+        ),
+      );
+    } else if (recoIndex == 'recommendation3') {
+      return const Text(
+        '🥉',
+        style: TextStyle(
+          fontSize: 25.0,
+        ),
+      );
+    } else {
+      return const Text('순위없음');
+    }
+  }
 
   @override
   void initState() {
@@ -44,6 +71,8 @@ class _RankDinoCardState extends State<RankDinoCard> {
 
   // print(dinoList);
   Widget build(BuildContext context) {
+    // Widget myImage;
+
     var nav = ConnectRoute();
     print("리스트화! $dinoList");
     return Column(children: [
@@ -54,6 +83,14 @@ class _RankDinoCardState extends State<RankDinoCard> {
       CarouselSlider(
         items: dinoList.map((item) {
           print(item);
+          // if (item["dinosaurName"] != null) {
+          //   myImage = Image.asset(
+          //     'assets/images/my_image.png',
+          //     fit: BoxFit.cover,
+          //   );
+          // } else {
+          //   myImage = Container(); // or any other widget that you want to display instead of the image
+          // }
           return Builder(
             builder: (BuildContext context) {
               return Container(
@@ -80,34 +117,37 @@ class _RankDinoCardState extends State<RankDinoCard> {
                     }
                   },
                   child: Center(
-                    child: Stack(
-                      children: [
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/dino/${item["dinosaurName"]}.png',
-                                errorBuilder: (BuildContext context,
-                                    Object exception, StackTrace? stackTrace) {
-                                  return Image.asset(
-                                    'assets/images/analyzing.png',
-                                  );
-                                },
-                                height: 150,
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                item["dinosaurName"] ?? '비슷한 공룡을 찾지 못했어요',
-                                style: TextStyle(
-                                  color: Color(0xFFACC864),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                    child: Container(
+                      child: Stack(
+                        children: [
+                          Positioned(
+                              top: 10,
+                              child: _rankEmoji(item["recommendation"])),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: Image.asset(
+                                    item["dinosaurName"] == null
+                                        ? 'assets/images/analyzing.png'
+                                        : 'assets/images/dino/${item["dinosaurName"]}.png',
+                                    height: 130,
+                                  ),
                                 ),
-                              ),
-                            ]),
-                      ],
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  item["dinosaurName"] ?? '비슷한 공룡을 찾지 못했어요',
+                                  style: TextStyle(
+                                    color: Color(0xFFACC864),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ]),
+                        ],
+                      ),
                     ),
                   ),
                 ),

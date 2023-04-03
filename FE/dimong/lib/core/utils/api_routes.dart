@@ -10,8 +10,9 @@ class Paths {
   static const drawingList = '/api/v1/mypage/{userId}/drawings'; // 내 그림 목록
   static const myDrawingDetail = '/api/v1/drawings/{drawingId}'; // 내 그림 상세
   static const drawingGuide = '/api/v1/dinosaurs/random'; // 그려보기 가이드
-  static const recommendThree = '/api/v1/drawings/free'; // 그려보기 3개
-  static const recommendThreeLive = '/api/v1/drawings/free/live'; // 실시간 3개 추천
+  static const recommendThree = '/api/v1/drawings/dinosaurs'; // 그려보기 3개
+  static const recommendThreeLive =
+      '/api/v1/drawings/dinosaurs/live'; // 실시간 3개 추천
   static const themeList = '/api/v1/dinosaurs'; // 주제맞춰그리기 리스트
   static const drawingDetail =
       '/api/v1/dinosaurs/{dinosaurId}/characteristic'; // 주제맞춰그리기 특징
