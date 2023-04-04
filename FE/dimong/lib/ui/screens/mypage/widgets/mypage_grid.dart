@@ -27,11 +27,12 @@ class _MypageGridState extends State<MypageGrid> {
         mainAxisSpacing: 10,
       ),
       itemBuilder: (context, index) {
+        final imageIndex = widget.imageList!.length - 1 - index;
         return GestureDetector(
           onTap:() async{
               print(widget.imageList![index].runtimeType);
               print("그림 정보: ${widget.imageList![index]}");
-              final res = await _myDrawingApiClient.sendDrawing(widget.imageList![index]['drawingId'], 1);
+              final res = await _myDrawingApiClient.sendDrawing(widget.imageList![imageIndex]['drawingId'], 1);
               print("그림 상세: ${res.runtimeType}");
               print("그림 상세 url: ${res.drawingImageUrl}");
               print("그림 상세 리스트: ${res.similarList.runtimeType}");
@@ -48,7 +49,7 @@ class _MypageGridState extends State<MypageGrid> {
                 ],
                 color: Colors.white
             ),
-            child: Image.network(widget.imageList![index]["myDrawingUrl"], fit: BoxFit.contain),
+            child: Image.network(widget.imageList![imageIndex]["myDrawingUrl"], fit: BoxFit.contain),
             /*Text(
               '그림 $index',
               style: TextStyle(
