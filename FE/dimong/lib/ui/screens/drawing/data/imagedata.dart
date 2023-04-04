@@ -5,53 +5,48 @@ import 'package:dimong/core/utils/api_routes.dart';
 
 class DinosaurApiClient {
   final dio = DataServerDio.instance();
+  Map<String, dynamic> nullValue = {
+    "recommendation1": null,
+    "recommendation2": null,
+    "recommendation3": null,
+  };
 
   // 실시간 전송
   Future sendImage(dynamic imageFile) async {
-    print(imageFile.path);
+    print("실시간 통신중");
     try {
       final formData = FormData.fromMap({
         "userId": 1,
         "file": await MultipartFile.fromFile(imageFile.path,
             filename: 'free_image.jpg'),
       });
-      print(formData);
-
       final response = await dio.post(Paths.recommendThreeLive, data: formData);
       // if (response.data["found"] == false) {
       //   return null;
       // } else {
-      print('res: ${response.data}');
+      print('[실시간] 이미지 보내서 데이터 받아옴! ${response.data}');
+      print(response.data["similarDinosaurList"]);
+      // print(response.runtimeType);
 
-      print(response.runtimeType);
       if (response.data["found"] == true) {
+        print("[실시간] found가 true일 때");
         final dinosaursJson = response.data["similarDinosaurList"];
         print(dinosaursJson);
         Map<String, dynamic> map = {};
         for (num i = 0; i < 3; i++) {
           map['recommendation${i + 1}'] = dinosaursJson[i];
         }
-        print("잘 들어가써?$map");
-
-        print(map.runtimeType);
         final sendImageResponse = SendImageResponse.fromJson(map);
         // final dinosaursJson = response.data["similarDinosaurList"];
         print(sendImageResponse);
-        print(sendImageResponse.runtimeType);
+        // print(sendImageResponse.runtimeType);
         final sendDrawingResponse = SendDrawingResponse.fromJson(map);
         print(sendDrawingResponse.recommendation1);
-        // print(dinosaursJson.runtimeType);
-        // print(dinosaursJson['dinosaurId']);
-        // Map<dynamic, dynamic> map = dinosaursJson
-        //     .fold({}, (previous, current) => previous..addAll(current));
-
-        // Map<String, dynamic> map =
-        //     Map.fromEntries(dinosaursJson.expand((element) => element.entries));
-        // print('map 변환 잘 됐나 $map');
-        // return sendImageResponse;
+        print('실시간 통신 끝!');
         return sendDrawingResponse;
       } else {
-        return response.data;
+        final sendDrawingResponse = SendDrawingResponse.fromJson(nullValue);
+        return sendDrawingResponse;
       }
       // }
     } catch (e) {
@@ -62,25 +57,45 @@ class DinosaurApiClient {
 
   // 이미지 최종 저장
   Future saveImage(dynamic imageFile) async {
-    print(imageFile.runtimeType);
-    print(imageFile.path);
     try {
+      print("저장 시도중");
       final formData = FormData.fromMap({
         "userId": 1,
         "file": await MultipartFile.fromFile(imageFile.path,
             filename: 'free_image.jpg'),
       });
-      print(formData);
       final response = await dio.post(Paths.recommendThree, data: formData);
-      print(response);
-      print(response.runtimeType);
-      final dinosaursJson = response.data;
-      print(dinosaursJson);
-      print(dinosaursJson['dinosaurId']);
-      final sendImageResponse = SendImageResponse.fromJson(dinosaursJson);
-      print(sendImageResponse.runtimeType);
-      // print("하잉 ${sendDrawingResponse.recommendation1}");
-      return sendImageResponse;
+      print("[저장] 이미지 보내서 데이터 받아옴! ${response.data}");
+      print(response.data["similarDinosaurList"]);
+
+      if (response.data["found"] == true) {
+        print("[저장] found가 true일 때");
+        final dinosaursJson = response.data["similarDinosaurList"];
+        print(dinosaursJson);
+        Map<String, dynamic> map = {};
+        for (num i = 0; i < 3; i++) {
+          map['recommendation${i + 1}'] = dinosaursJson[i];
+        }
+        final sendImageResponse = SendImageResponse.fromJson(map);
+        // final dinosaursJson = response.data["similarDinosaurList"];
+        print(sendImageResponse);
+        // print(sendImageResponse.runtimeType);
+        final sendDrawingResponse = SendDrawingResponse.fromJson(map);
+        print(sendDrawingResponse.recommendation1);
+        print('저장 통신 끝! ');
+        return sendDrawingResponse;
+      } else {
+        final sendDrawingResponse = SendDrawingResponse.fromJson(nullValue);
+        return sendDrawingResponse;
+      }
+      //
+      // final dinosaursJson = response.data;
+      // print(dinosaursJson);
+      // print(dinosaursJson['dinosaurId']);
+      // final sendImageResponse = SendImageResponse.fromJson(dinosaursJson);
+      // print(sendImageResponse.runtimeType);
+      // // print("하잉 ${sendDrawingResponse.recommendation1}");
+      // return sendImageResponse;
     } catch (e) {
       // Handle the error as needed
       throw e;

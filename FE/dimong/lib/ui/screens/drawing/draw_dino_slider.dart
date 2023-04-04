@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../../widgets/connect_route.dart';
+
 class DinoDrawCard extends StatefulWidget {
   const DinoDrawCard({super.key});
 
@@ -10,6 +12,7 @@ class DinoDrawCard extends StatefulWidget {
 
 class _DinoDrawCardState extends State<DinoDrawCard> {
   int _currentIndex = 0;
+  var nav = ConnectRoute;
   //  별명, 이름, 공룡 이미지
   final List DinoList = [
     {

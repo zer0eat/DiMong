@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:dimong/ui/screens/drawing/rank_dino_slider.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/connect_route.dart';
+
 class DrawDetailPage extends StatelessWidget {
   final RankData;
   final imageData;
@@ -14,18 +16,29 @@ class DrawDetailPage extends StatelessWidget {
   // }
   @override
   Widget build(BuildContext context) {
-    print(imageData);
-    print(imageData.runtimeType);
+    var nav = ConnectRoute();
+    print(
+        '내가 그린 그림 디테일페이지 \n이건 이미지 데이터##$imageData##,\n이건 순위 데이터##$RankData###');
+    // print(imageData);
+    // print(imageData.runtimeType);
     String jsonString = jsonEncode(RankData);
     Map<String, dynamic> response = jsonDecode(jsonString) ?? {};
-    print('넘어왔낭');
-    print(response);
+    print('그림 디테일 페이지 넘어왔낭');
+    // print(response);
     return Scaffold(
       appBar: AppBar(
         // 뒤로가기 버튼
-        leading: const BackButton(
-          color: Color(0xFFACC864),
-        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.home_rounded,
+              size: 35,
+              color: Color(0xFFACC864),
+            ),
+            onPressed: () => {nav.toNavBar(context, 2)},
+          ),
+        ],
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
