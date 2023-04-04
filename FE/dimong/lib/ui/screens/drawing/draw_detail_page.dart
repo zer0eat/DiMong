@@ -43,7 +43,13 @@ class DrawDetailPage extends StatelessWidget {
         elevation: 0.0,
       ),
       body: Column(children: [
-        Text("이 공룡들과 비슷해요!"),
+        Text(
+          "이 공룡들과 비슷해요!",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+          ),
+        ),
         RankDinoCard(dinos: response),
         SizedBox(
           height: 30,

@@ -29,21 +29,21 @@ class _RankDinoCardState extends State<RankDinoCard> {
       return const Text(
         '🥇',
         style: TextStyle(
-          fontSize: 25.0,
+          fontSize: 40.0,
         ),
       );
     } else if (recoIndex == 'recommendation2') {
       return const Text(
         '🥈',
         style: TextStyle(
-          fontSize: 25.0,
+          fontSize: 40.0,
         ),
       );
     } else if (recoIndex == 'recommendation3') {
       return const Text(
         '🥉',
         style: TextStyle(
-          fontSize: 25.0,
+          fontSize: 40.0,
         ),
       );
     } else {
@@ -72,9 +72,8 @@ class _RankDinoCardState extends State<RankDinoCard> {
   // print(dinoList);
   Widget build(BuildContext context) {
     // Widget myImage;
-
     var nav = ConnectRoute();
-    print("리스트화! $dinoList");
+    // print("리스트화! $dinoList");
     return Column(children: [
       const SizedBox(
         height: 20,
@@ -116,39 +115,58 @@ class _RankDinoCardState extends State<RankDinoCard> {
                       nav.toDinoDetail(context, item["dinosaurId"]);
                     }
                   },
-                  child: Center(
-                    child: Container(
-                      child: Stack(
-                        children: [
-                          Positioned(
-                              top: 10,
-                              child: _rankEmoji(item["recommendation"])),
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Image.asset(
-                                    item["dinosaurName"] == null
-                                        ? 'assets/images/analyzing.png'
-                                        : 'assets/images/dino/${item["dinosaurName"]}.png',
-                                    height: 130,
-                                  ),
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Image.asset(
+                                item["dinosaurName"] == null
+                                    ? 'assets/images/captureAgain.png'
+                                    : 'assets/images/dino/${item["dinosaurName"]}.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                bottom: 15,
+                              ),
+                              child: Text(
+                                item["dinosaurName"] ?? '비슷한 공룡을 찾지 못했어요',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  item["dinosaurName"] ?? '비슷한 공룡을 찾지 못했어요',
-                                  style: TextStyle(
-                                    color: Color(0xFFACC864),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ]),
-                        ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        left: 10,
+                        top: 10,
+                        child: _rankEmoji(item["recommendation"]),
+                      ),
+                      //
+                      // Expanded(
+                      //
+                      // )
+
+                      // Positioned(
+                      //     top: 10,
+                      //     child: Expanded(child: _rankEmoji(item["recommendation"]))),
+                      // Image.asset(
+                      //   item["dinosaurName"] == null
+                      //       ? 'assets/images/analyzing.png'
+                      //       : 'assets/images/dino/${item["dinosaurName"]}.png',
+                      //   height: 130,
+                      // ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                    ],
                   ),
                 ),
               );
