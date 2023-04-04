@@ -98,6 +98,36 @@ class _DicDinoState extends State<DicDino> {
                     padding: const EdgeInsets.all(10.0),
                     child: Stack(children: [
                       DinoGrid(items: snapshot.data),
+                      Container(
+                      alignment: Alignment.topRight,
+                      margin: const EdgeInsets.all(16.0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color(0xFFACC864),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          icon: Icon(Icons.question_mark_rounded,
+                            color: Colors.white,),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: Colors.transparent,
+                                  content: Image.asset('assets/images/dino_guide.png'),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),)
                       // FabMenu(),
                     ]),
                   ),
