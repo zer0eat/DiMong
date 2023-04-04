@@ -16,16 +16,23 @@ class DinoDetail extends StatefulWidget {
 class _DinoDetailState extends State<DinoDetail> {
   final DinoDetailUseCase _useCase = DinoDetailUseCase();
   AudioPlayer _audioPlayer =  AudioPlayer();
+  AudioPlayer _gptPlayer = AudioPlayer();
   PlayerState _playerState = PlayerState.stopped;
-  var gptUrl;
+  PlayerState _gptPlayerState = PlayerState.stopped;
+
   late Source audioUrl;
   @override
   void initState(){
     super.initState();
-    gptUrl = _useCase.loadInfo(widget.id);
+    _useCase.loadInfo(widget.id);
     _audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
       setState(() {
         _playerState = state;
+      });
+    });
+    _gptPlayer.onPlayerStateChanged.listen((PlayerState state) {
+      setState(() {
+        _gptPlayerState = state;
       });
     });
   }
@@ -33,6 +40,8 @@ class _DinoDetailState extends State<DinoDetail> {
   void dispose(){
     _audioPlayer.release();
     _audioPlayer.dispose();
+    _gptPlayer.release();
+    _gptPlayer.dispose();
     super.dispose();
   }
 
@@ -163,7 +172,6 @@ class _DinoDetailState extends State<DinoDetail> {
     return StreamBuilder<SendInfoResponse>(
         stream: _useCase.dataStream,
         builder: (context, snapshot) {
-
           if(snapshot.hasData && _useCase.isLoading == false){
             final data =snapshot.data;
             final showAbility =[
@@ -280,12 +288,14 @@ class _DinoDetailState extends State<DinoDetail> {
                                         height: 50.0,
                                         child: IconButton(
                                           icon: Image.asset('assets/images/gpt.png'),
-                                          onPressed: () {
-                                            final gptAudio = UrlSource(gptUrl);
-                                            if (_playerState == PlayerState.playing) {
-                                              _audioPlayer.pause();
+                                          onPressed: () async{
+                                            final gptData = await _repository.receiveAudio(data!.dinosaurId!);
+                                            print("key: ${gptData.keys}");
+                                            Source gptAudio = UrlSource(gptData!['audioUrl']);
+                                            if (_gptPlayerState == PlayerState.playing) {
+                                              _gptPlayer.pause();
                                             } else {
-                                              _audioPlayer.play(gptAudio);
+                                              _gptPlayer.play(gptAudio);
                                             }
                                           },
                                         ),
