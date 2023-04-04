@@ -25,13 +25,6 @@ class _BadgeModalState extends State<BadgeModal>{
     super.dispose();
   }
 
-  BoxDecoration _colorButton() {
-    return BoxDecoration(
-      shape: BoxShape.circle,
-      color: Colors.white.withOpacity(0.4),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<SendBadgeResponse>>(
@@ -49,7 +42,7 @@ class _BadgeModalState extends State<BadgeModal>{
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Color(0xffd0ffd7), Color(0xffcaffbd)],
+                    colors: [Color(0xCCACC864), Color(0x33E1F1B6)],
                   ),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -60,13 +53,12 @@ class _BadgeModalState extends State<BadgeModal>{
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          margin: EdgeInsets.only(right:10.0),
-                          decoration: _colorButton(),
-                          child: Center(
-                            child: IconButton(iconSize: 30, icon: const Icon(Icons.cancel_outlined, color: Color(0xff398427),),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            width: 40.0,
+                            height: 40.0,
+                            child: IconButton(iconSize: 40, icon: const Icon(Icons.cancel_outlined, color: Color(0xff476930),),
                               onPressed: () => Navigator.of(context).pop(),),),
                         ),
                       ],
@@ -74,19 +66,18 @@ class _BadgeModalState extends State<BadgeModal>{
                     SizedBox(height: 16),
                     Expanded(
                       child: GridView.count(
-                        mainAxisSpacing: 8.0,
-                        crossAxisCount: 5,
-                        childAspectRatio: 0.4, // <-- Set the aspect ratio
+                        crossAxisCount: 3,
+                        childAspectRatio: 1, // <-- Set the aspect ratio
                         children: List.generate(data.length,
-                              (index) => GridTile(
-                                child: MyCardWidget(
-                                  imageUrl: data[index].badgeImageUrl,
-                                ),
+                              (index) => MyCardWidget(
+                                badgeName: data[index].badgeName,
+                                collected: data[index].collected,
+                                create: data[index].createdAt,
                               ),
                         ),
+                        padding: EdgeInsets.all(10),
                       ),
                     ),
-
                   ],
                 ),
               );

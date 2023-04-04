@@ -3,6 +3,7 @@ import 'package:dimong/ui/screens/capture/data/repository.dart';
 import 'package:dimong/ui/screens/capture/logic/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dimong/ui/widgets/camera.dart';
 import 'package:dimong/ui/modals/modal.dart';
@@ -46,23 +47,13 @@ class _GalleryPageState extends State<GalleryPage> {
     );
   }
 
-  void _showGifModal() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Container(
-        color: Colors.transparent,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/loading.gif',
-              height: 200,
-              width: 200,
-            ),
-          ],
-        ),
-      ),
-    );
+  void _showModal() async {
+    /*await showModalBottomSheet(
+       context: context,
+       builder: (context) => CameraModal()
+     );*/
+    await showCupertinoModalPopup(
+        context: context, builder: (context) => GalleryModal());
   }
 
   @override
@@ -145,7 +136,7 @@ class _GalleryPageState extends State<GalleryPage> {
                                     _connectRoute.toDinoDetail(context,
                                         viewModel.dinosaurs!.dinosaurId!);
                                   } else {
-                                    GalleryModal();
+                                    _showModal();
                                   }
                                 }
                               }
