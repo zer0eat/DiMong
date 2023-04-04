@@ -22,6 +22,10 @@ class _DicDinoState extends State<DicDino> {
     _useCase.loadData();
   }
 
+  Future<void> _refreshData() async {
+    await _useCase.loadData();
+  }
+
   @override
   Widget build(BuildContext context) {
     int isIndex = 0;
@@ -35,20 +39,15 @@ class _DicDinoState extends State<DicDino> {
             print(data.runtimeType);
             return SafeArea(
               child: Scaffold(
-                // appBar: PreferredSize(
-                //   preferredSize: const Size.fromHeight(10),
-                //   child: Container(
-                //     color: Colors.transparent,
-                //     padding: const EdgeInsets.symmetric(
-                //       vertical: 10.0,),
-                //   ),
-                // ),
-                body: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Stack(children: [
-                    DinoGrid(items: snapshot.data),
-                    FabMenu(),
-                  ]),
+                body: RefreshIndicator(
+                  onRefresh: _refreshData,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Stack(children: [
+                      DinoGrid(items: snapshot.data),
+                      FabMenu(),
+                    ]),
+                  ),
                 ),
               ),
             );
@@ -60,3 +59,4 @@ class _DicDinoState extends State<DicDino> {
         });
   }
 }
+
