@@ -73,14 +73,7 @@ class _DinoGridState extends State<DinoGrid> {
                               ),
                             ),
                           ),
-                          Positioned(
-                              right: 1,
-                              top: 1,
-                              child: Text(item.dinosaurTaste! == '초식' ? '🌿' : '🍖',
-                                style: TextStyle(
-                                  fontSize: 25.0,
-                                ),)
-                          ),
+
                           item.collected! ? Positioned.fill(
                             child: Image.asset(
                               'assets/images/dino/${item.dinosaurName}.png',
@@ -88,9 +81,17 @@ class _DinoGridState extends State<DinoGrid> {
                             ),
                           ) : Positioned.fill(
                             child: Image.asset(
-                              'assets/images/dino/물음표.png',
+                              'assets/images/dino/${item.dinosaurName}_black.png',
                               fit: BoxFit.contain,
                             ),
+                          ),
+                          Positioned(
+                              right: 1,
+                              top: 1,
+                              child: Text(item.dinosaurTaste! == '초식' ? '🌿' : '🍖',
+                                style: TextStyle(
+                                  fontSize: 25.0,
+                                ),)
                           ),
                           Positioned(
                             left: 1,

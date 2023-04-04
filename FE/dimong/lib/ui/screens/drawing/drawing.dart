@@ -14,7 +14,7 @@ class DrawingDino extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/draw_bg2.png"),
-              opacity: 0.5,
+              opacity: 0.7,
               fit: BoxFit.cover,
             ),
           ),
@@ -26,14 +26,11 @@ class DrawingDino extends StatelessWidget {
                 Image.asset(
 
                   'assets/images/analyzing.png',
-                  width: 100,
-                  height: 100,
+                  width: 140,
+                  height: 140,
                 ),
                 // 내 맘대로 그리기
                 Container(
-                  margin: const EdgeInsets.only(
-                    top: 10,
-                  ),
                   child: const Text(
                     '공룡 뱃지 모으기',
                     style: TextStyle(
@@ -47,7 +44,7 @@ class DrawingDino extends StatelessWidget {
                 // 내 맘대로 그리기 설명
                 Container(
                   margin: const EdgeInsets.only(
-                    top: 30,
+                    top: 10,
                   ),
                   child: const Text(
                     '도감 공룡들을 그려 \n뱃지를 모아보세요!',
@@ -58,11 +55,41 @@ class DrawingDino extends StatelessWidget {
                     ),
                   ),
                 ),
-
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(0xFFACC864),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 5.0,
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.question_mark_rounded,
+                      color: Colors.white,),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.transparent,
+                            content: Image.asset('assets/images/drwa_guide.png'),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
                 // 그리러가기 버튼
                 Container(
                   margin: const EdgeInsets.only(
-                    top: 30,
+                    top: 80,
+                    bottom: 130,
                   ),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -85,14 +112,12 @@ class DrawingDino extends StatelessWidget {
                       child: const Text('Draw Now!',
                         style: TextStyle(
                           color: Colors.white,
-                          // fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),)),
                 ),
 
-                SizedBox(
-                  height: 70,
-                ),
+
 
                 // 주제 맞춰 그리기
                 // Container(

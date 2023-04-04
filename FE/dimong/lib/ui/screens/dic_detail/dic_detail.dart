@@ -378,7 +378,7 @@ class _DinoDetailState extends State<DinoDetail> {
                       ),
                       Positioned(
                         top: 100.0,
-                        left: 100.0,
+                        left: MediaQuery.of(context).size.width / 2 - 100.0,
                         child: Container(
                           width: 200.0,
                           height: 200.0,
