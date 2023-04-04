@@ -78,7 +78,7 @@ class DrawingDino extends StatelessWidget {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             backgroundColor: Colors.transparent,
-                            content: Image.asset('assets/images/drwa_guide.png'),
+                            content: Image.asset('assets/images/draw_guide.png'),
                           );
                         },
                       );

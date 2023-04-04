@@ -14,11 +14,13 @@ class MyCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(child: Card(
+      color: Colors.white.withOpacity(0.9 ),
+      elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(50),
       ),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
