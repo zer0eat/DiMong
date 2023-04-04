@@ -29,21 +29,21 @@ class _RankDinoCardState extends State<RankDinoCard> {
       return const Text(
         '🥇',
         style: TextStyle(
-          fontSize: 40.0,
+          fontSize: 35.0,
         ),
       );
     } else if (recoIndex == 'recommendation2') {
       return const Text(
         '🥈',
         style: TextStyle(
-          fontSize: 40.0,
+          fontSize: 35.0,
         ),
       );
     } else if (recoIndex == 'recommendation3') {
       return const Text(
         '🥉',
         style: TextStyle(
-          fontSize: 40.0,
+          fontSize: 35.0,
         ),
       );
     } else {
@@ -149,23 +149,6 @@ class _RankDinoCardState extends State<RankDinoCard> {
                         top: 10,
                         child: _rankEmoji(item["recommendation"]),
                       ),
-                      //
-                      // Expanded(
-                      //
-                      // )
-
-                      // Positioned(
-                      //     top: 10,
-                      //     child: Expanded(child: _rankEmoji(item["recommendation"]))),
-                      // Image.asset(
-                      //   item["dinosaurName"] == null
-                      //       ? 'assets/images/analyzing.png'
-                      //       : 'assets/images/dino/${item["dinosaurName"]}.png',
-                      //   height: 130,
-                      // ),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
                     ],
                   ),
                 ),
@@ -176,7 +159,8 @@ class _RankDinoCardState extends State<RankDinoCard> {
         carouselController: carouselController,
         options: CarouselOptions(
           autoPlay: true,
-          aspectRatio: 10 / 7,
+          height: 200,
+          // aspectRatio: 10 / 7,
           viewportFraction: 0.7,
           enlargeCenterPage: true,
           onPageChanged: (index, reason) {

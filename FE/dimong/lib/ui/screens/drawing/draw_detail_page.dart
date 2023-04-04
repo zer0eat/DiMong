@@ -24,7 +24,7 @@ class DrawDetailPage extends StatelessWidget {
     String jsonString = jsonEncode(RankData);
     Map<String, dynamic> response = jsonDecode(jsonString) ?? {};
     print('그림 디테일 페이지 넘어왔낭');
-    // print(response);
+    print(response);
     return Scaffold(
       appBar: AppBar(
         // 뒤로가기 버튼
@@ -54,7 +54,32 @@ class DrawDetailPage extends StatelessWidget {
         SizedBox(
           height: 30,
         ),
-        Container(height: 300, child: Image.memory(imageData)),
+        SizedBox(
+          height: 300,
+          child: Stack(
+            children: [
+              Container(child: Image.memory(imageData)),
+              Positioned(
+                right: 10,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('획득!'),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Image.asset(
+                        'assets/badges/${response["recommendation1"]["dinosaurName"]}.png',
+                        height: 50,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ]),
     );
   }
