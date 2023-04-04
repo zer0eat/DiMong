@@ -1,5 +1,7 @@
+import 'package:dimong/core/domain/dino.dart';
 import 'package:flutter/material.dart';
 import '../myimage.dart';
+import '../data/data_drawing.dart';
 import 'package:dimong/ui/widgets/connect_route.dart';
 
 class MypageGrid extends StatefulWidget {
@@ -12,6 +14,7 @@ class MypageGrid extends StatefulWidget {
 
 class _MypageGridState extends State<MypageGrid> {
   ConnectRoute _connectRoute = ConnectRoute();
+  MyDrawingApiClient _myDrawingApiClient = MyDrawingApiClient();
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -25,10 +28,14 @@ class _MypageGridState extends State<MypageGrid> {
       ),
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap:(){
+          onTap:() async{
               print(widget.imageList![index].runtimeType);
               print("그림 정보: ${widget.imageList![index]}");
-              _connectRoute.toMyImage(context, widget.imageList![index], widget.imageList![index]["myDrawingUrl"]);
+              final res = await _myDrawingApiClient.sendDrawing(widget.imageList![index]['drawingId'], 1);
+              print("그림 상세: ${res.runtimeType}");
+              print("그림 상세 url: ${res.drawingImageUrl}");
+              print("그림 상세 리스트: ${res.similarList.runtimeType}");
+              _connectRoute.toMyImage(context, res.similarList, res.drawingImageUrl);
           },
           child:Container(
             decoration: BoxDecoration(

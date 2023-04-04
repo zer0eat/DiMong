@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../mypage/widgets/mypage_slider.dart';
 
 class MyImagePage extends StatelessWidget {
-  final Map<String, dynamic> drawInfo;
-  final imageData;
-  const MyImagePage({Key? key, required this.drawInfo, this.imageData})
+  final List<dynamic> drawInfo;
+  final String imageData;
+  const MyImagePage({Key? key, required this.drawInfo, required this.imageData})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

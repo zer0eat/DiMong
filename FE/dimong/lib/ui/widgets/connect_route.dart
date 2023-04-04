@@ -32,7 +32,7 @@ class ConnectRoute{
   Future<void> toGalleryStack(BuildContext context, File? imageFile) async{
     await Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryPage(file: imageFile!)));
   }
-  Future<void> toMyImage(BuildContext context, Map<String,dynamic> arguments, dynamic imageData) async{
+  Future<void> toMyImage(BuildContext context, List<dynamic> arguments, dynamic imageData) async{
     final index = arguments;
     await Navigator.push(context, MaterialPageRoute(builder: (context) => MyImagePage(drawInfo: arguments, imageData: imageData)));
   }
