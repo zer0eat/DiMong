@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MyCardWidget extends StatelessWidget {
-  final String? imageUrl;
+  final bool? collected;
+  final String? badgeName;
 
   MyCardWidget({
-    this.imageUrl,
+    this.collected,
+    this.badgeName,
   });
 
   @override
@@ -14,22 +16,21 @@ class MyCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (imageUrl != null)
-              Image.network(
-                imageUrl!,
-                height: 80,
+            if (collected == false)
+              Image.asset(
+                'assets/egg/${badgeName}.png',
                 width: double.infinity,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
-            if (imageUrl == null)
-              Container(
-                height: 80,
+            if (collected == true)
+              Image.asset(
+                'assets/badges/${badgeName}.png',
                 width: double.infinity,
-                color: Colors.grey.withOpacity(0.5),
+                fit: BoxFit.contain,
               ),
           ],
         ),
