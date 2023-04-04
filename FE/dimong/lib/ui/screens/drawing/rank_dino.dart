@@ -10,7 +10,7 @@ class RankDino extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('데이터가 오나');
+    print('실시간 랭킹 페이지 데이터가 오나');
     String jsonString = jsonEncode(dinoRanking);
     Map<String, dynamic> response = jsonDecode(jsonString) ?? {};
 
@@ -41,9 +41,9 @@ class RankDino extends StatelessWidget {
       }
     }
 
-    print('오긴하나?');
-    print(response);
-    print(response.runtimeType);
+    print('실시간 랭킹 위젯 $response');
+    // print(response);
+    // print(response.runtimeType);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [

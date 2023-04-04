@@ -48,7 +48,9 @@ class DrawFreePageState extends State<DrawFreePage> {
       return;
     }
     final sendData = await saveImageToTempDirectory(data);
-    final SendImageResponse saveDrawingResponse =
+    // final SendDrawingResponse saveDrawingResponse =
+    //     await dinosaurApiClient.saveImage(sendData);
+    final SendDrawingResponse saveDrawingResponse =
         await dinosaurApiClient.saveImage(sendData);
 
     Navigator.push(
