@@ -40,6 +40,7 @@ class _MypageCardState extends State<MypageCard> {
       return const Text('순위없음');
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +54,11 @@ class _MypageCardState extends State<MypageCard> {
     print("card[0]: ${drawingInfo[0]}");
     print("속 값: ${drawingInfo[0].runtimeType}");
     ConnectRoute _connectRoute = ConnectRoute();
-    List<dynamic> idList = [drawingInfo[0]['dinosaurId'], drawingInfo[1]['dinosaurId'], drawingInfo[2]['dinosaurId'],];
+    List<dynamic> idList = [
+      drawingInfo[0]['dinosaurId'],
+      drawingInfo[1]['dinosaurId'],
+      drawingInfo[2]['dinosaurId'],
+    ];
     print(idList);
     print(idList[0].runtimeType);
     return Column(
@@ -79,26 +84,25 @@ class _MypageCardState extends State<MypageCard> {
               ),
               child: GestureDetector(
                 onTap: () {
-                  if (drawingInfo[index]['dinosaurId']>=0) {
-                    _connectRoute.toDinoDetail(context, drawingInfo[index]['dinosaurId']);
+                  if (drawingInfo[index]['dinosaurId'] >= 0) {
+                    _connectRoute.toDinoDetail(
+                        context, drawingInfo[index]['dinosaurId']);
                   }
                 },
                 child: Center(
                   child: Container(
                     child: Stack(
                       children: [
-                        Positioned(
-                            top: 10,
-                            child: rankEmoji(index)),
+                        Positioned(top: 10, child: rankEmoji(index)),
                         Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
                                 child: Image.asset(
                                   drawingInfo[index]['dinosaurName'] == null
-                                      ? 'assets/images/analyzing.png'
-                                  : 'assets/images/dino/${drawingInfo[index]['dinosaurName']}.png',
-                                      //: 'assets/images/dino/티라노사우루스.png',
+                                      ? 'assets/images/captureAgain.png'
+                                      : 'assets/images/dino/${drawingInfo[index]['dinosaurName']}.png',
+                                  //: 'assets/images/dino/티라노사우루스.png',
                                   height: 130,
                                 ),
                               ),
@@ -106,7 +110,8 @@ class _MypageCardState extends State<MypageCard> {
                                 height: 10,
                               ),
                               Text(
-                                drawingInfo[index]['dinosaurName'] ?? '비슷한 공룡을 찾지 못했어요',
+                                drawingInfo[index]['dinosaurName'] ??
+                                    '비슷한 공룡을 찾지 못했어요',
                                 style: TextStyle(
                                   color: Color(0xFFACC864),
                                   fontWeight: FontWeight.bold,
@@ -140,6 +145,6 @@ class _MypageCardState extends State<MypageCard> {
           carouselController: _controller,
         ),
       ],
-            );
+    );
   }
 }

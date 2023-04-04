@@ -74,7 +74,7 @@ class RankDino extends StatelessWidget {
                           StackTrace? stackTrace) {
                         return Image.asset(
                           fit: BoxFit.contain,
-                          'assets/images/analyzing.png',
+                          'assets/images/captureAgain.png',
                         );
                       },
                     ),
