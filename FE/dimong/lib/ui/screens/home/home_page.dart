@@ -38,13 +38,15 @@ class _HomePageState extends State<HomePage>
               ),
             // ),
 
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text(
-                '사진 찍어 공룡 찾아 도감도 완성하고\n그림도 그려 뱃지를 모아보세요.',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+            const Center(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  '사진 찍어 공룡 찾아 도감도 완성하고\n그림도 그려 뱃지를 모아보세요.',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
