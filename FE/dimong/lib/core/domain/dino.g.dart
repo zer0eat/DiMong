@@ -137,3 +137,21 @@ Map<String, dynamic> _$SendProfileResponseToJson(
       'userProfileImage': instance.userProfileImage,
       'myDrawingList': instance.myDrawingList,
     };
+
+DrawingDetailResponse _$DrawingDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    DrawingDetailResponse(
+      drawingId: json['drawingId'] as int?,
+      drawingImageUrl: json['drawingImageUrl'] as String?,
+      userId: json['userId'] as int?,
+      similarList: json['similarList'],
+    );
+
+Map<String, dynamic> _$DrawingDetailResponseToJson(
+        DrawingDetailResponse instance) =>
+    <String, dynamic>{
+      'drawingId': instance.drawingId,
+      'drawingImageUrl': instance.drawingImageUrl,
+      'userId': instance.userId,
+      'similarList': instance.similarList,
+    };

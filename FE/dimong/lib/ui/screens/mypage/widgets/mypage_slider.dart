@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:dimong/ui/widgets/connect_route.dart';
 
 class MypageCard extends StatefulWidget {
-  final Map<String, dynamic> dinos;
+  final List<dynamic> dinos;
   const MypageCard({Key? key, required this.dinos});
 
   @override
@@ -48,76 +48,73 @@ class _MypageCardState extends State<MypageCard> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> drawingInfo = widget.dinos;
-    List similarSlider = [drawingInfo['similarDinosaurId1'], drawingInfo['similarDinosaurId2'], drawingInfo['similarDinosaurId3'],];
+    List<dynamic> drawingInfo = widget.dinos;
+    print("card 출력: $drawingInfo");
+    print("card[0]: ${drawingInfo[0]}");
+    print("속 값: ${drawingInfo[0].runtimeType}");
     ConnectRoute _connectRoute = ConnectRoute();
+    List<dynamic> idList = [drawingInfo[0]['dinosaurId'], drawingInfo[1]['dinosaurId'], drawingInfo[2]['dinosaurId'],];
+    print(idList);
+    print(idList[0].runtimeType);
     return Column(
       children: [
         CarouselSlider.builder(
-          itemCount: similarSlider.length,
+          itemCount: drawingInfo.length,
           itemBuilder: (context, index, realIndex) {
-            final int itemId = similarSlider[index];
-            return InkWell(
-              onTap: () {
-                if(similarSlider[index]!=null){
-                  _connectRoute.toDinoDetail(context, similarSlider[index]);
-                }
-              },
-              child: Container(
-                margin: EdgeInsets.only(
-                  bottom: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(16.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      blurRadius: 5.0,
-                      spreadRadius: 0.0,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    if (similarSlider[index]!=null) {
-                      _connectRoute.toDinoDetail(context, similarSlider[index]);
-                    }
-                  },
-                  child: Center(
-                    child: Container(
-                      child: Stack(
-                        children: [
-                          Positioned(
-                              top: 10,
-                              child: rankEmoji(index)),
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Image.asset(
-                                    similarSlider[index] == null
-                                        ? 'assets/images/analyzing.png'
-                                        //: 'assets/images/dino/${similarSlider[index]}.png',
-                                        : 'assets/images/dino/티라노사우루스.png',
-                                    height: 130,
-                                  ),
+            return Container(
+              margin: EdgeInsets.only(
+                bottom: 10,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(16.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    blurRadius: 5.0,
+                    spreadRadius: 0.0,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  if (drawingInfo[index]['dinosaurId']>=0) {
+                    _connectRoute.toDinoDetail(context, drawingInfo[index]['dinosaurId']);
+                  }
+                },
+                child: Center(
+                  child: Container(
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            top: 10,
+                            child: rankEmoji(index)),
+                        Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                child: Image.asset(
+                                  drawingInfo[index]['dinosaurName'] == null
+                                      ? 'assets/images/analyzing.png'
+                                  : 'assets/images/dino/${drawingInfo[index]['dinosaurName']}.png',
+                                      //: 'assets/images/dino/티라노사우루스.png',
+                                  height: 130,
                                 ),
-                                SizedBox(
-                                  height: 10,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                drawingInfo[index]['dinosaurName'] ?? '비슷한 공룡을 찾지 못했어요',
+                                style: TextStyle(
+                                  color: Color(0xFFACC864),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
                                 ),
-                                Text(
-                                  similarSlider[index] ?? '비슷한 공룡을 찾지 못했어요',
-                                  style: TextStyle(
-                                    color: Color(0xFFACC864),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ]),
-                        ],
-                      ),
+                              ),
+                            ]),
+                      ],
                     ),
                   ),
                 ),
