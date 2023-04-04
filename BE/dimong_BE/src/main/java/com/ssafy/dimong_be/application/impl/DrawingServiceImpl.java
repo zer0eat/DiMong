@@ -37,7 +37,7 @@ public class DrawingServiceImpl implements DrawingService {
 
 	@Override
 	public MyDrawingResponseDto getDrawing(Long drawingId) {
-		Drawing drawing = drawingRepository.findById(drawingId)
+		Drawing drawing = drawingRepository.findByIdWithJpql(drawingId)
 			.orElseThrow(() -> new EntityNotFoundException(
 				"drawingId(" + drawingId + ")에 해당하는 그림이 없습니다.",
 				ErrorCode.ENTITY_NOT_FOUND)

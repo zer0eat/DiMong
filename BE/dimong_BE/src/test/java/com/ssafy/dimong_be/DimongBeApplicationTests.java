@@ -70,7 +70,8 @@ class DimongBeApplicationTests {
 	public void findDrawingByIdWithJpql() {
 		StringBuilder sb = new StringBuilder();
 
-		Drawing drawing = drawingRepository.findByIdWithJpql(1L);
+		Drawing drawing = drawingRepository.findByIdWithJpql(1L)
+			.orElseThrow();
 
 		Dinosaur dinosaur1 = drawing.getSimilarDinosaur1();
 		Dinosaur dinosaur2 = drawing.getSimilarDinosaur2();
