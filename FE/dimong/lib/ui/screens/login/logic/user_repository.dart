@@ -1,4 +1,4 @@
-import './user_profile.dart';
+import '../../ui/screens/login/domain/user_profile.dart';
 import './store_user_repository.dart';
 
 abstract class UserRepository {

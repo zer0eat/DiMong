@@ -1,4 +1,4 @@
-import './user_profile.dart';
+import '../../ui/screens/login/domain/user_profile.dart';
 import './user_repository.dart';
 
 class UserService {
