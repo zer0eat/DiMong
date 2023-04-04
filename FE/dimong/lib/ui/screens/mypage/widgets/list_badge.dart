@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class MyCardWidget extends StatelessWidget {
   final bool? collected;
   final String? badgeName;
+  final String? create;
 
   MyCardWidget({
     this.collected,
     this.badgeName,
+    this.create,
   });
 
   @override
@@ -27,11 +29,17 @@ class MyCardWidget extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
             if (collected == true)
-              Image.asset(
-                'assets/badges/${badgeName}.png',
-                width: double.infinity,
-                fit: BoxFit.contain,
+              Tooltip(
+                waitDuration: Duration(milliseconds: 500),
+                showDuration: Duration(seconds: 2),
+                message: "이름: ${badgeName}\n생성일자: ${create}",
+                child: Image.asset(
+                  'assets/badges/${badgeName}.png',
+                  width: double.infinity,
+                  fit: BoxFit.contain,
+                ),
               ),
+
           ],
         ),
       ),
