@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurQueryRepository;
 import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurRepository;
+import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
+import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.user_dinosaur.UserDinosaurRepository;
 
 @RunWith(SpringRunner.class)
@@ -26,6 +28,9 @@ class DimongBeApplicationTests {
 
 	@Autowired
 	private DinosaurQueryRepository dinosaurQueryRepository;
+
+	@Autowired
+	private DrawingRepository drawingRepository;
 
 	@Test
 	void contextLoads() {
@@ -58,6 +63,23 @@ class DimongBeApplicationTests {
 			System.out.println();
 
 		});
+	}
+
+	@Test
+	@DisplayName("JPQL을 이용한 Drawing 조회 테스트")
+	public void findDrawingByIdWithJpql() {
+		StringBuilder sb = new StringBuilder();
+
+		Drawing drawing = drawingRepository.findByIdWithJpql(1L);
+
+		Dinosaur dinosaur1 = drawing.getSimilarDinosaur1();
+		Dinosaur dinosaur2 = drawing.getSimilarDinosaur2();
+		Dinosaur dinosaur3 = drawing.getSimilarDinosaur3();
+
+		System.out.println("dino1 : " + dinosaur1.getDinosaurName());
+		System.out.println("dino2 : " + dinosaur2.getDinosaurName());
+		System.out.println("dino3 : " + dinosaur3.getDinosaurName());
+
 	}
 
 }
