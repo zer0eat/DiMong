@@ -1,19 +1,19 @@
-import 'package:dimong/core/domain/dino.dart';
-import 'package:dio/dio.dart';
-import 'dart:convert';
 import 'package:dimong/core/api/api.dart';
+import 'package:dimong/core/domain/dino.dart';
 import 'package:dimong/core/utils/api_routes.dart';
+import 'package:dimong/core/local_storage/secure_storage.dart';
 
 class DetailApiClient {
   final dio = DataServerDio.instance();
-
+  SecureStorage _secureStorage = SecureStorage();
   Future<SendInfoResponse> sendId(int? id) async {
     try {
       print("id: $id");
+      final userId = await _secureStorage.getUserId();
       final response = await dio.get(Paths.dinoDetail+'$id',
       data: {
         "dinosaurId": id
-      },queryParameters: {"userId": 1}
+      },queryParameters: {"userId": userId}
       );
       print("when response in data: $response");
       print("status: ${response.statusCode}");

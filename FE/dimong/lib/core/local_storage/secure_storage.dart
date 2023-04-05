@@ -53,6 +53,7 @@ class SecureStorage {
 
   Future<int> getUserId() async {
     final String? userIdStr = await _storage.read(key: _userIdKey);
+    if(userIdStr == null) return -1;
     int userId = int.tryParse(userIdStr!) ?? -1;
     return userId;
   }
