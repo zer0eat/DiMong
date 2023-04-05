@@ -15,27 +15,27 @@ class _HomeSliderCardState extends State<HomeSliderCard> {
   //  별명, 이름, 공룡 이미지
   final List DinoList = [
     {
-      "id": 0,
+      "id": 1,
       "name": "공룡백과",
       "image_path": "assets/images/dic_dino.png",
       "go" : "Go!",
 
 },
     {
-      "id": 1,
+      "id": 2,
       "name": "그림그리기",
       "image_path": "assets/images/painting.png",
       "go" : "Go!",
 
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "미술관",
       "image_path": "assets/images/gallery.png",
       "go" : "Go!",
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "내정보",
       "image_path": "assets/images/myinfo.png",
       "go" : "Go!",
