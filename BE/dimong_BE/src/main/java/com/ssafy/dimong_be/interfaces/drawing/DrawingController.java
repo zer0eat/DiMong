@@ -19,6 +19,7 @@ import com.ssafy.dimong_be.application.DinosaurService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.FileUploadService;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
+import com.ssafy.dimong_be.interfaces.common.DrawingListDto;
 import com.ssafy.dimong_be.interfaces.common.FileDto;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
 import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurRecommendationResponseDto;
@@ -39,11 +40,30 @@ public class DrawingController {
 	private final BadgeService badgeService;
 	private final FileUploadService fileUploadService;
 
-	@GetMapping("/v1/drawings/{drawingId}")
+	/*
+	ver.1) 내 그림 상세 조회
+	 */
+	// @GetMapping("/v1/drawings/{drawingId}")
+	// public ResponseEntity<MyDrawingResponseDto> getMyDrawing(@PathVariable Long drawingId) {
+	// 	return ResponseEntity.ok(drawingService.getDrawing(drawingId));
+	// }
+
+	/*
+	ver.2) 내 그림 상세 조회 & 갤러리 상세 조회
+	 */
+	@GetMapping("/v2/drawings/{drawingId}")
 	public ResponseEntity<MyDrawingResponseDto> getMyDrawing(@PathVariable Long drawingId) {
 		return ResponseEntity.ok(drawingService.getDrawing(drawingId));
 	}
 
+	@GetMapping("/v1/drawings")
+	public ResponseEntity<List<DrawingListDto>> getGalleryDrawingList() {
+		return ResponseEntity.ok(drawingService.getDrawingList());
+	}
+
+	/*
+	그림 그려서 실시간 공룡 추천
+	 */
 	@PostMapping("/v1/drawings/dinosaurs/live")
 	@Transactional
 	public ResponseEntity<DrawingRecommendationResponseDto> getRecommendation(@RequestParam("file") MultipartFile file, Long userId) {
@@ -67,6 +87,9 @@ public class DrawingController {
 		return ResponseEntity.ok(drawingRecommendationResponseDto);
 	}
 
+	/*
+	공룡 추천, 내 그림 저장, 뱃지 획득
+	 */
 	@PostMapping("/v1/drawings/dinosaurs")
 	@Transactional
 	public ResponseEntity<DrawingRecommendationResponseDto> saveDrawingAndGetRecommendation(@RequestParam("file") MultipartFile file, Long userId) throws

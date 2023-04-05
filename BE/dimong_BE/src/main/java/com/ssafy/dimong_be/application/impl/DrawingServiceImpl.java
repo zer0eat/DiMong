@@ -1,5 +1,6 @@
 package com.ssafy.dimong_be.application.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.ssafy.dimong_be.application.exception.ErrorCode;
 import com.ssafy.dimong_be.application.exception.business.EntityNotFoundException;
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
+import com.ssafy.dimong_be.interfaces.common.DrawingListDto;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
 import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurRecommendationResponseDto;
 import com.ssafy.dimong_be.interfaces.drawing.MyDrawingResponseDto;
@@ -24,6 +26,16 @@ import lombok.extern.slf4j.Slf4j;
 public class DrawingServiceImpl implements DrawingService {
 
 	private final DrawingRepository drawingRepository;
+
+	@Override
+	public List<DrawingListDto> getDrawingList() {
+		List<Drawing> drawingList = drawingRepository.findAll();
+
+		List<DrawingListDto> response = new ArrayList<>();
+		drawingList.forEach(drawing -> response.add(DrawingListDto.fromEntity(drawing)));
+
+		return response;
+	}
 
 	@Override
 	public List<Drawing> getDrawingList(Long userId) {
@@ -47,6 +59,7 @@ public class DrawingServiceImpl implements DrawingService {
 			.drawingId(drawingId)
 			.drawingImageUrl(drawing.getDrawingImageUrl())
 			.userId(drawing.getUserId())
+			.userNickname(drawing.getUser().getUserNickname())
 			.build();
 
 		myDrawingResponseDto.addSimilarList(

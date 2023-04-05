@@ -12,7 +12,6 @@ import com.ssafy.dimong_be.application.BadgeService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.UserService;
 import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
-import com.ssafy.dimong_be.interfaces.common.MypageResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
