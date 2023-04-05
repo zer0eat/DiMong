@@ -16,6 +16,7 @@ public enum ErrorCode { // Response body에 담기는 값. 프론트에 보여�
 	USER_NOT_FOUND(400, "C008", "존재하지 않는 사용자입니다."),
 	GITHUB_USER_ALREADY_EXIST(400, "C009", "이미 존재하는 Github 사용자입니다."),
 	DINOSAUR_ENTITY_NOT_FOUND(400, "C010", "해당하는 공룡이 없습니다."),
+	USER_ALREADY_EXIST(400, "C011", "이미 존재하는 사용자입니다."),
 
 
 	// Member
