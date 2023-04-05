@@ -59,24 +59,35 @@ class DrawDetailPage extends StatelessWidget {
           child: Stack(
             children: [
               Container(child: Image.memory(imageData)),
-              Positioned(
-                right: 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('획득!'),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Image.asset(
-                        'assets/badges/${response["recommendation1"]["dinosaurName"]}.png',
-                        height: 50,
+              if (response["recommendation1"]["dinosaurName"] != null)
+                Positioned(
+                  right: 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('획득!'),
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(90),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 2,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ), // changes position of shado]),
+                        child: Image.asset(
+                          'assets/badges/${response["recommendation1"]["dinosaurName"]}.png',
+                          height: 38,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
             ],
           ),
         ),
