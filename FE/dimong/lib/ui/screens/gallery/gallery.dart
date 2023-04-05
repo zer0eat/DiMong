@@ -28,17 +28,13 @@ class _GalleryState extends State<Gallery> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-    final String displayName = authProvider.user.displayName!;
-    final photoUrl = authProvider.user.photoURL;
-    //print(authProvider.user.displayName);
-    //print(authProvider.user.photoURL);
-    //print('1111111');
-    return StreamBuilder<SendProfileResponse>(
+    return StreamBuilder<List<AllDrawingResponse>>(
         stream: _useCase.dataStream,
         builder: (context, snapshot){
           if (snapshot.hasData && _useCase.isLoading == false){
             final data =snapshot.data;
+            print("gallery: data 확인, ${data![0].drawingId}");
+            print("gallery: data 확인, ${data![0].myDrawingUrl}");
             return SafeArea(
               child: Scaffold(
                 body: RefreshIndicator(
@@ -70,7 +66,7 @@ class _GalleryState extends State<Gallery> {
                                           ),
                                         ),
                                       ),
-                                      GalleryGrid(imageList: data!.myDrawingList!)
+                                      GalleryGrid(imageList: data!)
                                     ],
                                   ),
                                 ),

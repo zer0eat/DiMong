@@ -1,10 +1,10 @@
 import 'package:dimong/core/domain/dino.dart';
 import 'package:flutter/material.dart';
-import '../../mypage/data/data_drawing.dart';
+import '../../gallery//data/data_drawing.dart';
 import 'package:dimong/ui/widgets/connect_route.dart';
 
 class GalleryGrid extends StatefulWidget {
-  final List<dynamic>? imageList;
+  final List<AllDrawingResponse>? imageList;
   final VoidCallback? onReachedEnd;
   GalleryGrid({Key? key, required this.imageList, this.onReachedEnd}) : super(key: key);
 
@@ -14,7 +14,7 @@ class GalleryGrid extends StatefulWidget {
 
 class _GalleryGridState extends State<GalleryGrid> {
   ConnectRoute _connectRoute = ConnectRoute();
-  MyDrawingApiClient _myDrawingApiClient = MyDrawingApiClient();
+  GalleryDrawingApiClient _galleryDrawingApiClient = GalleryDrawingApiClient();
   final ScrollController _scrollController = ScrollController();
   late bool _isLoading;
 
@@ -66,8 +66,7 @@ class _GalleryGridState extends State<GalleryGrid> {
           onTap: () async {
             print(widget.imageList![index].runtimeType);
             print("그림 정보: ${widget.imageList![index]}");
-            final res =
-            await _myDrawingApiClient.sendDrawing(widget.imageList![imageIndex]['drawingId']);
+            final res = await _galleryDrawingApiClient.sendDrawing(widget.imageList![imageIndex].drawingId);
             print("그림 상세: ${res.runtimeType}");
             print("그림 상세 url: ${res.drawingImageUrl}");
             print("그림 상세 리스트: ${res.similarList.runtimeType}");
@@ -83,7 +82,7 @@ class _GalleryGridState extends State<GalleryGrid> {
                       blurRadius: 5.0)
                 ],
                 color: Colors.white),
-            child: Image.network(widget.imageList![imageIndex]["myDrawingUrl"],
+            child: Image.network(widget.imageList![imageIndex].myDrawingUrl!,
                 fit: BoxFit.contain),
           ),
         );

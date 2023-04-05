@@ -185,3 +185,15 @@ Map<String, dynamic> _$SendIdResponseToJson(SendIdResponse instance) =>
       'userId': instance.userId,
       'accessToken': instance.accessToken,
     };
+
+AllDrawingResponse _$AllDrawingResponseFromJson(Map<String, dynamic> json) =>
+    AllDrawingResponse(
+      drawingId: json['drawingId'] as int?,
+      myDrawingUrl: json['myDrawingUrl'] as String?,
+    );
+
+Map<String, dynamic> _$AllDrawingResponseToJson(AllDrawingResponse instance) =>
+    <String, dynamic>{
+      'drawingId': instance.drawingId,
+      'myDrawingUrl': instance.myDrawingUrl,
+    };

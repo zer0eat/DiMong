@@ -229,3 +229,18 @@ class SendIdResponse {
 
   Map<String, dynamic> toJson() => _$SendIdResponseToJson(this);
 }
+
+@JsonSerializable()
+class AllDrawingResponse {
+  @JsonKey(name: 'drawingId')
+  final int? drawingId;
+  @JsonKey(name: 'myDrawingUrl')
+  final String? myDrawingUrl;
+
+  AllDrawingResponse({required this.drawingId, required this.myDrawingUrl});
+
+  factory AllDrawingResponse.fromJson(Map<String, dynamic> json) =>
+      _$AllDrawingResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AllDrawingResponseToJson(this);
+}
