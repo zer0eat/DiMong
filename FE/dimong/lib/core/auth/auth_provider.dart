@@ -48,7 +48,12 @@ class AuthProvider with ChangeNotifier {
 
         final bool isNewUser = authResult.additionalUserInfo!.isNewUser;
         if (isNewUser) {
-          await _createUserInFirestore(user);
+          print("new user");
+          await _secureStorage.setUserId(-1);
+        }
+        else{
+          print("User Presented");
+          await _secureStorage.setUserId(-2);
         }
         await _updateTokens(authResult);
       }
@@ -113,6 +118,10 @@ class AuthProvider with ChangeNotifier {
         final bool isNewUser = authResult.additionalUserInfo!.isNewUser;
         if (isNewUser) {
           await _createUserInFirestore(user);
+          await _secureStorage.setUserId(-1);
+        }
+        else{
+          await _secureStorage.setUserId(-2);
         }
         await _updateTokens(authResult);
       }
