@@ -5,9 +5,9 @@ import '../auth/auth_provider.dart';
 import '../local_storage/secure_storage.dart';
 
 AuthProvider authProvider = AuthProvider();
-Future<String?> getIdToken(AuthProvider authProvider) async {
-  final idToken = await SecureStorage().getIdToken();
-  return idToken;
+Future<String?> getRefreshToken(AuthProvider authProvider) async {
+  final refreshToken = await SecureStorage().getRefreshToken();
+  return refreshToken;
 }
 
 //AI server
@@ -21,12 +21,12 @@ class ImageServerDio {
     //dio.options.baseUrl = 'http://10.0.2.2:5000/';
     dio.options.connectTimeout = Duration(milliseconds: 5000);
     dio.options.receiveTimeout = Duration(milliseconds: 3000);
-    final idToken = getIdToken(authProvider);
+    final accessToken = getRefreshToken(authProvider);
     // Set up the headers for the Dio instance
     dio.options.headers = {
       HttpHeaders.contentTypeHeader: 'multipart/form-data',
       HttpHeaders.acceptHeader: 'application/json',
-      HttpHeaders.authorizationHeader: 'Bearer $idToken',
+      HttpHeaders.authorizationHeader: 'Bearer $accessToken',
     };
 
     // Add any interceptors or other configurations as needed
@@ -63,11 +63,11 @@ class DataServerDio {
     dio.options.baseUrl = 'http://j8a105.p.ssafy.io:8086/';
     dio.options.connectTimeout = Duration(milliseconds: 5000);
     dio.options.receiveTimeout = Duration(milliseconds: 5000);
-    final idToken = getIdToken(authProvider);
+    final accessToken = getRefreshToken(authProvider);
     // Set up the headers for the Dio instance
     dio.options.headers = {
       HttpHeaders.acceptHeader: 'application/json',
-      HttpHeaders.authorizationHeader: 'Bearer $idToken',
+      HttpHeaders.authorizationHeader: 'Bearer $accessToken',
     };
 
     // Add any interceptors or other configurations as needed

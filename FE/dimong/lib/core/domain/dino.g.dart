@@ -155,3 +155,31 @@ Map<String, dynamic> _$DrawingDetailResponseToJson(
       'userId': instance.userId,
       'similarList': instance.similarList,
     };
+
+SendProfileRequest _$SendProfileRequestFromJson(Map<String, dynamic> json) =>
+    SendProfileRequest(
+      providerId: json['providerId'] as String?,
+      userNickname: json['userNickname'] as String?,
+      userEmail: json['userEmail'] as String?,
+      userProfileImage: json['userProfileImage'] as String?,
+    );
+
+Map<String, dynamic> _$SendProfileRequestToJson(SendProfileRequest instance) =>
+    <String, dynamic>{
+      'providerId': instance.providerId,
+      'userNickname': instance.userNickname,
+      'userEmail': instance.userEmail,
+      'userProfileImage': instance.userProfileImage,
+    };
+
+SendIdResponse _$SendIdResponseFromJson(Map<String, dynamic> json) =>
+    SendIdResponse(
+      userId: json['userId'] as int?,
+      accessToken: json['accessToken'] as String?,
+    );
+
+Map<String, dynamic> _$SendIdResponseToJson(SendIdResponse instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'accessToken': instance.accessToken,
+    };

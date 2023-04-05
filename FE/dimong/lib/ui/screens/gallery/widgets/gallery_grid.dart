@@ -31,7 +31,7 @@ class _GalleryGridState extends State<GalleryGrid> {
           onTap:() async{
             print(widget.imageList![index].runtimeType);
             print("그림 정보: ${widget.imageList![index]}");
-            final res = await _myDrawingApiClient.sendDrawing(widget.imageList![imageIndex]['drawingId'], 1);
+            final res = await _myDrawingApiClient.sendDrawing(widget.imageList![imageIndex]['drawingId']);
             print("그림 상세: ${res.runtimeType}");
             print("그림 상세 url: ${res.drawingImageUrl}");
             print("그림 상세 리스트: ${res.similarList.runtimeType}");

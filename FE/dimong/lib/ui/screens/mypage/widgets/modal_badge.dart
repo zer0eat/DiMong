@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 
 
 class BadgeModal extends StatefulWidget {
-  final int id;
-  const BadgeModal({Key? key, required this.id}) : super(key: key);
+  const BadgeModal({Key? key}) : super(key: key);
 
   @override
   _BadgeModalState createState() => _BadgeModalState();
@@ -18,7 +17,7 @@ class _BadgeModalState extends State<BadgeModal>{
   @override
   void initState(){
     super.initState();
-    _useCase.loadBadge(widget.id);
+    _useCase.loadBadge();
   }
   @override
   void dispose(){

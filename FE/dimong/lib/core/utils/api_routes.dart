@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Paths {
   // to server
-
+  static const sendProfile = '/api/v1/signup/';
   static const dinoList = '/api/v4/dinosaurs'; // 공룡 주소
   static const dinoDetail = '/api/v2/dinosaurs/'; // 공룡 상세
   static const gptAudio = '/api/v1/dinosaurs/story/';

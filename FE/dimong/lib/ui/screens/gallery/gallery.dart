@@ -1,32 +1,29 @@
 import 'package:dimong/core/domain/dino.dart';
-import 'package:dimong/ui/screens/login/login_page.dart';
-import 'package:dimong/ui/screens/mypage/logic/usecase.dart';
-import 'package:dimong/ui/screens/mypage/widgets/modal_badge.dart';
+import 'package:dimong/ui/screens/gallery/logic/usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:dimong/ui/screens/mypage/widgets/mypage_grid.dart';
+import 'package:dimong/ui/screens/gallery/widgets/gallery_grid.dart';
 
 class Gallery extends StatefulWidget {
-  final int? userId;
-  const Gallery({Key? key, required this.userId}) : super(key: key);
+  const Gallery({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _GalleryState();
 }
 
 class _GalleryState extends State<Gallery> {
-  final MyPageUseCase _useCase = MyPageUseCase();
+  final GalleryUseCase _useCase = GalleryUseCase();
   late SendProfileResponse _profileResponse;
   @override
   void initState(){
     super.initState();
-    _useCase.loadData(widget.userId);
+    _useCase.loadData();
   }
   
   Future<void> _refreshData() async {
-    await _useCase.loadData(widget.userId);
+    await _useCase.loadData();
   }
 
   @override
@@ -34,7 +31,6 @@ class _GalleryState extends State<Gallery> {
     final authProvider = Provider.of<AuthProvider>(context);
     final String displayName = authProvider.user.displayName!;
     final photoUrl = authProvider.user.photoURL;
-    final int myId = widget.userId!;
     //print(authProvider.user.displayName);
     //print(authProvider.user.photoURL);
     //print('1111111');
@@ -47,7 +43,7 @@ class _GalleryState extends State<Gallery> {
               child: Scaffold(
                 body: RefreshIndicator(
                   onRefresh: () async {
-                    await _useCase.loadData(widget.userId);
+                    await _useCase.loadData();
                   },
                   child: ListView(
                     children: [
@@ -74,7 +70,7 @@ class _GalleryState extends State<Gallery> {
                                           ),
                                         ),
                                       ),
-                                      MypageGrid(imageList: data!.myDrawingList!)
+                                      GalleryGrid(imageList: data!.myDrawingList!)
                                     ],
                                   ),
                                 ),

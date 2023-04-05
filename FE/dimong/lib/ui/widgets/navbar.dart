@@ -87,8 +87,8 @@ class _NavBarState extends State<NavBar>
         children: <Widget>[
           DicDino(),
           DrawingDino(),
-          Gallery(userId: 1),
-          MyPage(userId: 1),
+          Gallery(),
+          MyPage(),
         ],
       ),
     );

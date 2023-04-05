@@ -3,16 +3,14 @@ import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:dimong/core/api/api.dart';
 import 'package:dimong/core/utils/api_routes.dart';
-import 'package:dimong/core/local_storage/secure_storage.dart';
 
-class MyDrawingApiClient {
+class DrawingApiClient {
   final dio = DataServerDio.instance();
-  SecureStorage _secureStorage = SecureStorage();
+
   Future<DrawingDetailResponse> sendDrawing(int? drawingId) async {
     try {
       //String dinosaurEra = period!;
       //print("period: $period");
-      //final userId = await _secureStorage.getUserId();
       final userId =1;
       final response = await dio.get(Paths.myDrawingDetail + '$drawingId',
           data:{
@@ -24,9 +22,9 @@ class MyDrawingApiClient {
       print("data.dart: response.data = ${response.data}");
       final dinosaursJson =  response.data;
       print(dinosaursJson);
-      final drawingDetailResponse = DrawingDetailResponse.fromJson(dinosaursJson);
-      print(drawingDetailResponse.runtimeType);
-      return drawingDetailResponse;
+      final drawingetailResponse = DrawingDetailResponse.fromJson(dinosaursJson);
+      print(drawingetailResponse.runtimeType);
+      return drawingetailResponse;
     } catch (e) {
       // Handle the error as needed
       throw e;
