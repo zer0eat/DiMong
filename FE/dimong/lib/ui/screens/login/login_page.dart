@@ -57,8 +57,8 @@ class LoginPage extends StatelessWidget {
           ),
           Positioned(
             top: screenHeight * 0.3,
-            left: screenWidth * 0.30,
-            child: Image.asset('assets/images/login_btn_google.png',
+            left: screenWidth * 0.5 - 75,
+            child: Image.asset('assets/images/logo.png',
             width: 150,)
           ),
         ],
