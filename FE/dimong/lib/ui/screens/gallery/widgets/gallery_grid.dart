@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dimong/core/domain/dino.dart';
 import 'package:flutter/material.dart';
-import '../../gallery//data/data_drawing.dart';
+import '../../gallery//data/data.dart';
 import 'package:dimong/ui/widgets/connect_route.dart';
 
 class GalleryGrid extends StatefulWidget {
@@ -14,7 +15,7 @@ class GalleryGrid extends StatefulWidget {
 
 class _GalleryGridState extends State<GalleryGrid> {
   ConnectRoute _connectRoute = ConnectRoute();
-  GalleryDrawingApiClient _galleryDrawingApiClient = GalleryDrawingApiClient();
+  GalleryApiClient _galleryApiClient = GalleryApiClient();
   final ScrollController _scrollController = ScrollController();
   late bool _isLoading;
 
@@ -66,11 +67,11 @@ class _GalleryGridState extends State<GalleryGrid> {
           onTap: () async {
             print(widget.imageList![index].runtimeType);
             print("그림 정보: ${widget.imageList![index]}");
-            final res = await _galleryDrawingApiClient.sendDrawing(widget.imageList![imageIndex].drawingId);
+            final res = await _galleryApiClient.sendDrawing(widget.imageList![imageIndex].drawingId);
             print("그림 상세: ${res.runtimeType}");
             print("그림 상세 url: ${res.drawingImageUrl}");
             print("그림 상세 리스트: ${res.similarList.runtimeType}");
-            _connectRoute.toMyImage(context, res.similarList, res.drawingImageUrl);
+            _connectRoute.toOtherImage(context, res.drawingId!);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -82,8 +83,13 @@ class _GalleryGridState extends State<GalleryGrid> {
                       blurRadius: 5.0)
                 ],
                 color: Colors.white),
-            child: Image.network(widget.imageList![imageIndex].myDrawingUrl!,
-                fit: BoxFit.contain),
+            child: CachedNetworkImage(
+              imageUrl: widget.imageList![imageIndex].myDrawingUrl!,
+              fit: BoxFit.contain,
+              //data!.userProfileImage!,
+              //placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
         );
       },
