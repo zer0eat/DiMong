@@ -32,7 +32,7 @@ class MyCardWidget extends StatelessWidget {
               ),
             if (collected == true)
               Tooltip(
-                waitDuration: Duration(milliseconds: 500),
+                waitDuration: Duration(microseconds: 10),
                 showDuration: Duration(seconds: 2),
                 message: "이름: ${badgeName}\n생성일자: ${create}",
                 child: Image.asset(

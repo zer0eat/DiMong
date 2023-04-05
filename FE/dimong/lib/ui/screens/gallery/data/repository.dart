@@ -4,7 +4,7 @@ import 'package:dimong/core/domain/dino.dart';
 class GalleryRepository {
   final GalleryApiClient galleryApiClient = GalleryApiClient();
 
-   Future<SendProfileResponse> sendList() async {
+   Future<List<AllDrawingResponse>> sendList() async {
      return await galleryApiClient.sendList();
    }
 

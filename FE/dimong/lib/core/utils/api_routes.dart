@@ -8,8 +8,8 @@ class Paths {
   static const dinoDetail = '/api/v2/dinosaurs/'; // 공룡 상세
   static const gptAudio = '/api/v1/dinosaurs/story/';
   static const myInfo = '/api/v1/mypage/'; // 내정보
-  static const drawingList = '/api/v1/mypage/{userId}/drawings'; // 내 그림 목록
   static const myDrawingDetail = '/api/v2/drawings/'; // 내 그림 상세
+  static const allDrawing = '/api/v1/drawings'; // 내 그림 상세
   static const drawingGuide = '/api/v1/dinosaurs/random'; // 그려보기 가이드
   static const recommendThree = '/api/v1/drawings/dinosaurs'; // 그려보기 3개
   static const recommendThreeLive =

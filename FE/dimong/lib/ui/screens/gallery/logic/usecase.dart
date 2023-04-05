@@ -6,8 +6,8 @@ import '../data/repository.dart';
 class GalleryUseCase extends ChangeNotifier {
   final GalleryRepository _repository = GalleryRepository();
   bool isLoading = false;
-  final _dataController = StreamController<SendProfileResponse>.broadcast();
-  Stream<SendProfileResponse> get dataStream => _dataController.stream;
+  final _dataController = StreamController<List<AllDrawingResponse>>.broadcast();
+  Stream<List<AllDrawingResponse>> get dataStream => _dataController.stream;
 
   Future<void> loadData() async{
     isLoading = true;

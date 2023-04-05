@@ -5,7 +5,7 @@ import 'package:dimong/core/api/api.dart';
 import 'package:dimong/core/utils/api_routes.dart';
 import 'package:dimong/core/local_storage/secure_storage.dart';
 
-class DrawingApiClient {
+class GalleryDrawingApiClient {
   final dio = DataServerDio.instance();
   SecureStorage _secureStorage = SecureStorage();
   Future<DrawingDetailResponse> sendDrawing(int? drawingId) async {
