@@ -24,8 +24,7 @@ class DrawingDino extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-
-                  'assets/images/analyzing.png',
+                  'assets/images/draw_img.png',
                   width: 140,
                   height: 140,
                 ),
