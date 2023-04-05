@@ -48,7 +48,7 @@ public class DrawingController {
 	// }
 
 	/*
-	ver.2) 내 그림 상세 조회 + 갤러리 상세 조회
+	ver.2) 내 그림 상세 조회 & 갤러리 상세 조회
 	 */
 	@GetMapping("/v2/drawings/{drawingId}")
 	public ResponseEntity<MyDrawingResponseDto> getMyDrawing(@PathVariable Long drawingId) {

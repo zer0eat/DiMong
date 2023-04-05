@@ -47,6 +47,7 @@ public class DrawingServiceImpl implements DrawingService {
 			.drawingId(drawingId)
 			.drawingImageUrl(drawing.getDrawingImageUrl())
 			.userId(drawing.getUserId())
+			.userNickname(drawing.getUser().getUserNickname())
 			.build();
 
 		myDrawingResponseDto.addSimilarList(

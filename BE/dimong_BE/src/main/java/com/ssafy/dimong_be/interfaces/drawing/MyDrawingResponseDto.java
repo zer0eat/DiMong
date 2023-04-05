@@ -16,6 +16,7 @@ public class MyDrawingResponseDto implements Serializable {
 	private Long drawingId;
 	private String drawingImageUrl;
 	private Long userId;
+	private String userNickname;
 
 	private final List<DinosaurRecommendationResponseDto> similarList = new ArrayList<>();
 
