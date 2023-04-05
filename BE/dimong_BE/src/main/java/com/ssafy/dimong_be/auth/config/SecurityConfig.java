@@ -69,7 +69,8 @@ public class SecurityConfig {
 
 			.securityMatchers(requestMatcherConfigurer ->
 				requestMatcherConfigurer
-					.requestMatchers("/api/**"))
+					.requestMatchers("/api/v*/**")
+			)
 
 			.cors(httpSecurityCorsConfigurer ->
 				httpSecurityCorsConfigurer
