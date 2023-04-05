@@ -19,6 +19,7 @@ import com.ssafy.dimong_be.application.DinosaurService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.FileUploadService;
 import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
+import com.ssafy.dimong_be.interfaces.common.DrawingListDto;
 import com.ssafy.dimong_be.interfaces.common.FileDto;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
 import com.ssafy.dimong_be.interfaces.dinosaur.DinosaurRecommendationResponseDto;
@@ -53,6 +54,11 @@ public class DrawingController {
 	@GetMapping("/v2/drawings/{drawingId}")
 	public ResponseEntity<MyDrawingResponseDto> getMyDrawing(@PathVariable Long drawingId) {
 		return ResponseEntity.ok(drawingService.getDrawing(drawingId));
+	}
+
+	@GetMapping("/v1/drawings")
+	public ResponseEntity<List<DrawingListDto>> getGalleryDrawingList() {
+		return ResponseEntity.ok(drawingService.getDrawingList());
 	}
 
 	/*

@@ -21,8 +21,8 @@ import com.ssafy.dimong_be.domain.model.user.ProviderType;
 import com.ssafy.dimong_be.domain.model.user.User;
 import com.ssafy.dimong_be.domain.model.user.UserRepository;
 import com.ssafy.dimong_be.domain.model.user_badge.UserBadgeRepository;
-import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
-import com.ssafy.dimong_be.interfaces.common.MypageResponseDto;
+import com.ssafy.dimong_be.interfaces.common.DrawingListDto;
+import com.ssafy.dimong_be.interfaces.mypage.MypageResponseDto;
 import com.ssafy.dimong_be.interfaces.user.AuthResponseDto;
 import com.ssafy.dimong_be.interfaces.user.OAuthProviderDto;
 
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 			.build();
 
 		// badgeList.forEach(userBadge -> mypageResponseDto.addUserBadgeDto(UserBadgeDto.fromEntity(userBadge.getBadge())));
-		drawingList.forEach(drawing -> mypageResponseDto.addMyDrawingDto(MyDrawingDto.fromEntity(drawing)));
+		drawingList.forEach(drawing -> mypageResponseDto.addMyDrawingDto(DrawingListDto.fromEntity(drawing)));
 
 		return mypageResponseDto;
 	}
