@@ -1,6 +1,6 @@
-import 'package:dimong/core/domain/dino.dart';
 import 'package:dio/dio.dart';
 import 'package:dimong/core/api/api.dart';
+import 'package:dimong/core/domain/dino.dart';
 import 'package:dimong/core/utils/api_routes.dart';
 import 'package:dimong/core/local_storage/secure_storage.dart';
 
@@ -16,10 +16,12 @@ class DinosaurApiClient {
   // 실시간 전송
   Future sendImage(dynamic imageFile) async {
     print("실시간 통신중");
+    final accessToken = await _secureStorage.getRefreshToken(); // get the access token from Secure Storage or SharedPreferences
+    dio.options.headers['Authorization'] = 'Bearer $accessToken';
+    final userId = await _secureStorage.getUserId();
     try {
       final formData = FormData.fromMap({
-        "userId": 1,
-        //"userId": await _secureStorage.getUserId(),
+        "userId": userId,
         "file": await MultipartFile.fromFile(imageFile.path,
             filename: 'free_image.jpg'),
       });
@@ -62,8 +64,9 @@ class DinosaurApiClient {
   Future saveImage(dynamic imageFile) async {
     try {
       print("저장 시도중");
+      final userId = await _secureStorage.getUserId();
       final formData = FormData.fromMap({
-        "userId": 1,
+        "userId": userId,
         "file": await MultipartFile.fromFile(imageFile.path,
             filename: 'free_image.jpg'),
       });
