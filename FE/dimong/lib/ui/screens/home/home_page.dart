@@ -51,57 +51,24 @@ class _HomePageState extends State<HomePage>
                   ),
                 ),
               ),
-              // const Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 10),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     crossAxisAlignment: CrossAxisAlignment.center,
-              //     children: [
-              //     CurrencyCard(
-              //     name: '공룡백과',
-              //     icon: Icons.menu_book_rounded,
-              //     isInverted: false,
-              //     dino: 'assets/images/dic_dino.png',
-              //       route: RoutePaths.navBar,
-              //       argument: 0,
-              //   ),
-              //   SizedBox(height: 16),
-              //   CurrencyCard(
-              //     name: '공룡그리기',
-              //     icon: Icons.palette_rounded,
-              //     isInverted: true,
-              //     dino: 'assets/images/painting.png',
-              //     route: RoutePaths.navBar,
-              //     argument: 1,
-              //   ),
-              //   SizedBox(height: 16),
-              //   CurrencyCard(
-              //       name: '내정보',
-              //       icon: Icons.person_rounded,
-              //       isInverted: false,
-              //       dino: 'assets/images/dic_etc.png',
-              //     route: RoutePaths.navBar,
-              //     argument: 2,),
-              //     ]),
-              //    ),
-                    HomeSliderCard(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/analyzing.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                        Image.asset(
-                          'assets/images/dimong.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                      ],
+                HomeSliderCard(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/analyzing.png',
+                      width: 100,
+                      height: 100,
+                    ),
+                    Image.asset(
+                      'assets/images/dimong.png',
+                      width: 100,
+                      height: 100,
                     ),
                   ],
+                ),
+              ],
                 ),
               ),
             ),

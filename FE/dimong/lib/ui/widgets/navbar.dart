@@ -14,6 +14,8 @@ import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-item.dart';
 
+import '../screens/gallery/gallery.dart';
+
 // NavBar Widget을 생성
 class NavBar extends StatefulWidget {
   final int index;
@@ -32,7 +34,7 @@ class _NavBarState extends State<NavBar>
     super.initState();
     _tabController = TabController(
       initialIndex: widget.index,
-      length: 3,
+      length: 4,
       vsync: this,
     );
   }
@@ -46,7 +48,7 @@ class _NavBarState extends State<NavBar>
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    const labels = ["Dino", "Draw", "MyPage"];
+    const labels = ["Dino", "Draw", "Gallery", "MyPage"];
     final initIndex = widget.index;
     return Scaffold(
       bottomNavigationBar: MotionTabBar(
@@ -56,6 +58,7 @@ class _NavBarState extends State<NavBar>
         icons: const [
           Icons.menu_book_rounded,
           Icons.color_lens,
+          Icons.grid_view_rounded,
           Icons.person,
         ],
 
@@ -84,6 +87,7 @@ class _NavBarState extends State<NavBar>
         children: <Widget>[
           DicDino(),
           DrawingDino(),
+          Gallery(userId: 1),
           MyPage(userId: 1),
         ],
       ),
