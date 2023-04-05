@@ -1,5 +1,6 @@
 import 'dart:developer' as developer;
 import 'package:dimong/core/domain/dino.dart';
+import 'package:dimong/ui/screens/login/backgroundwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
@@ -9,6 +10,7 @@ import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/ui/widgets/background.dart';
 import 'package:dimong/core/local_storage/secure_storage.dart';
 import 'package:dimong/ui/screens/login/data/data.dart';
+import 'backgroundwidget.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -21,11 +23,7 @@ class LoginPage extends StatelessWidget {
     return Material(
       child: Stack(
         children: [
-          BackgroundWidget(
-            imagePath: 'assets/images/background_image1.png',
-            backgroundColor: Colors.white,
-            alignment: Alignment.bottomCenter,
-          ),
+          BackgroundImageWidget(),
           Positioned(
             top: screenHeight * 0.5,
             left: 0,
@@ -60,14 +58,8 @@ class LoginPage extends StatelessWidget {
           Positioned(
             top: screenHeight * 0.3,
             left: screenWidth * 0.30,
-            child: Text(
-              '디몽',
-              style: TextStyle(
-                fontSize: 80.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
+            child: Image.asset('assets/images/login_btn_google.png',
+            width: 150,)
           ),
         ],
       ),
