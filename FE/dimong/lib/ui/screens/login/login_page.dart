@@ -1,4 +1,5 @@
 import 'dart:developer' as developer;
+import 'package:dimong/core/domain/dino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
@@ -6,10 +7,14 @@ import 'package:dimong/core/auth/auth_provider.dart';
 import 'package:dimong/ui/screens/login/google_login_page.dart';
 import 'package:dimong/ui/screens/home/home_page.dart';
 import 'package:dimong/ui/widgets/background.dart';
+import 'package:dimong/core/local_storage/secure_storage.dart';
+import 'package:dimong/ui/screens/login/data/data.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SecureStorage _secureStorage = SecureStorage();
+    LoginApiClient _loginApiClient = LoginApiClient();
     final authProvider = Provider.of<AuthProvider>(context);
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -31,6 +36,11 @@ class LoginPage extends StatelessWidget {
               onPressed: () async {
                 await authProvider.loginWithGoogle();
                 if (authProvider.isSignedIn) {
+                  //로그인 기록이 없으면 라이브러리에 정보를 저장한다.
+                  SendProfileRequest _sendProfileRequest = SendProfileRequest(providerId: authProvider.user.uid, userNickname: authProvider.user.displayName, userEmail: authProvider.user.email, userProfileImage: authProvider.user.photoURL);
+                  //final res = await _loginApiClient.sendId(_sendProfileRequest);
+                  //_secureStorage.setUserId(res.userId);
+                  //_secureStorage.setRefreshToken(res.accessToken);
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => HomePage()),

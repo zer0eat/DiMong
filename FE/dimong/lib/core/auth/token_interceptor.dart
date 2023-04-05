@@ -26,10 +26,10 @@ class TokenInterceptor extends Interceptor {
   // request를 보내기 전, token 검증
   @override
   FutureOr onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    final idToken = await authProvider.getIdToken();
+    final accessToken = await authProvider.getRefreshToken();
 
-    if (idToken != null) {
-      options.headers[HttpHeaders.authorizationHeader] = 'Bearer $idToken';
+    if (accessToken != null) {
+      options.headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
     }
     return handler.next(options);
   }
@@ -39,12 +39,12 @@ class TokenInterceptor extends Interceptor {
   FutureOr onError(DioError err, ErrorInterceptorHandler handler) async {
     if (_isTokenExpiredError(err)) {
       // If the error is due to an expired token, refresh the token and retry the request
-      final newToken = await _refreshTokenAsync();
+      final newAccessToken = await _refreshTokenAsync();
 
-      if (newToken != null) {
+      if (newAccessToken != null) {
         // Retry the request with the new token
         final request = err.requestOptions;
-        request.headers[HttpHeaders.authorizationHeader] = 'Bearer $newToken';
+        request.headers[HttpHeaders.authorizationHeader] = 'Bearer $newAccessToken';
         return dio.request(request.path, options: Options(headers: request.headers));
       }
     }
@@ -68,18 +68,17 @@ class TokenInterceptor extends Interceptor {
 
     // Refresh the token
     try {
+      // refresh the token when it is expired.
       final response = await dio.post('/auth/refresh_token', data: {'refreshToken': refreshToken});
 
       if (response.statusCode == HttpStatus.ok) {
         final jsonResponse = jsonDecode(response.data);
-        final newToken = jsonResponse['idToken'];
         final newRefreshToken = jsonResponse['refreshToken'];
 
-        await authProvider.setIdToken(newToken);
         await secureStorage.setRefreshToken(newRefreshToken);
 
         _refreshToken = newRefreshToken;
-        completer.complete(newToken);
+        completer.complete(newRefreshToken);
       }
     } catch (e) {
       print(e);

@@ -10,9 +10,9 @@ class BadgeUseCase extends ChangeNotifier {
   final _dataController = StreamController<List<SendBadgeResponse>>.broadcast();
   Stream<List<SendBadgeResponse>> get dataStream => _dataController.stream;
 
-  Future<void> loadBadge(int? dinosaurId) async {
+  Future<void> loadBadge() async {
     isLoading = true;
-    final data = await _repository.sendBadge(dinosaurId);
+    final data = await _repository.sendBadge();
     _dataController.sink.add(data);
     isLoading = false;
   }

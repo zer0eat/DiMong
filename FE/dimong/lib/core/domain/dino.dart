@@ -193,3 +193,37 @@ class DrawingDetailResponse {
 
   Map<String, dynamic> toJson() => _$DrawingDetailResponseToJson(this);
 }
+
+@JsonSerializable()
+class SendProfileRequest {
+  @JsonKey(name: 'providerId')
+  final String? providerId;
+  @JsonKey(name: 'userNickname')
+  final String? userNickname;
+  @JsonKey(name: 'userEmail')
+  final String? userEmail;
+  @JsonKey(name: 'userProfileImage')
+  final String? userProfileImage;
+
+  SendProfileRequest({required this.providerId, required this.userNickname, required this.userEmail, required this.userProfileImage});
+
+  factory SendProfileRequest.fromJson(Map<String, dynamic> json) =>
+      _$SendProfileRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendProfileRequestToJson(this);
+}
+
+@JsonSerializable()
+class SendIdResponse {
+  @JsonKey(name: 'userId')
+  final int? userId;
+  @JsonKey(name: 'accessToken')
+  final String? accessToken;
+
+  SendIdResponse({required this.userId, required this.accessToken});
+
+  factory SendIdResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendIdResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendIdResponseToJson(this);
+}

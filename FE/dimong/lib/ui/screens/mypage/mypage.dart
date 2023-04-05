@@ -12,8 +12,7 @@ import 'widgets/Badge_card.dart';
 import './widgets/mypage_slider.dart';
 
 class MyPage extends StatefulWidget {
-  final int? userId;
-  const MyPage({Key? key, required this.userId}) : super(key: key);
+  const MyPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _MyPageState();
@@ -26,14 +25,13 @@ class _MyPageState extends State<MyPage> {
   @override
   void initState(){
     super.initState();
-    _useCase.loadData(widget.userId);
+    _useCase.loadData();
   }
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final String displayName = authProvider.user.displayName!;
     final photoUrl = authProvider.user.photoURL;
-    final int myId = widget.userId!;
     //print(authProvider.user.displayName);
     //print(authProvider.user.photoURL);
     //print('1111111');
@@ -156,7 +154,7 @@ class _MyPageState extends State<MyPage> {
                                         context: context,
                                         isScrollControlled: true,
                                         builder: (BuildContext context) {
-                                          return BadgeModal(id: myId);
+                                          return BadgeModal();
                                         },
                                       );
                                     },

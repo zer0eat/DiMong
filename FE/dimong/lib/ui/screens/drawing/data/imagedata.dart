@@ -2,9 +2,11 @@ import 'package:dimong/core/domain/dino.dart';
 import 'package:dio/dio.dart';
 import 'package:dimong/core/api/api.dart';
 import 'package:dimong/core/utils/api_routes.dart';
+import 'package:dimong/core/local_storage/secure_storage.dart';
 
 class DinosaurApiClient {
   final dio = DataServerDio.instance();
+  SecureStorage _secureStorage = SecureStorage();
   Map<String, dynamic> nullValue = {
     "recommendation1": null,
     "recommendation2": null,
@@ -17,6 +19,7 @@ class DinosaurApiClient {
     try {
       final formData = FormData.fromMap({
         "userId": 1,
+        //"userId": await _secureStorage.getUserId(),
         "file": await MultipartFile.fromFile(imageFile.path,
             filename: 'free_image.jpg'),
       });
