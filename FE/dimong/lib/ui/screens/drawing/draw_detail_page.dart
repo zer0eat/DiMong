@@ -59,7 +59,7 @@ class DrawDetailPage extends StatelessWidget {
           child: Stack(
             children: [
               Container(child: Image.memory(imageData)),
-              if (response["recommendation1"]["dinosaurName"] != null)
+              if (response["recommendation1"] != null)
                 Positioned(
                   right: 10,
                   child: Column(
