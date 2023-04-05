@@ -30,6 +30,12 @@ class _HomeSliderCardState extends State<HomeSliderCard> {
     },
     {
       "id": 2,
+      "name": "미술관",
+      "image_path": "assets/images/painting.png",
+      "go" : "Go!",
+    },
+    {
+      "id": 3,
       "name": "내정보",
       "image_path": "assets/images/myinfo.png",
       "go" : "Go!",
