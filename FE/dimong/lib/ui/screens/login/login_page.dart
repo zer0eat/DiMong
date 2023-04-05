@@ -34,15 +34,18 @@ class LoginPage extends StatelessWidget {
               onPressed: () async {
                 await authProvider.loginWithGoogle();
                 if (authProvider.isSignedIn) {
+                  SendProfileRequest _sendProfileRequest = SendProfileRequest(providerId: authProvider.user.uid, userNickname: authProvider.user.displayName, userEmail: authProvider.user.email, userProfileImage: authProvider.user.photoURL);
                   //로그인 기록이 없으면 라이브러리에 정보를 저장한다.
                   int id = await _secureStorage.getUserId();
-                  SendProfileRequest _sendProfileRequest = SendProfileRequest(providerId: authProvider.user.uid, userNickname: authProvider.user.displayName, userEmail: authProvider.user.email, userProfileImage: authProvider.user.photoURL);
-                  late final res;
+                  print("userid 알려줘: $id");
+                  var res;
                   if(id == -1) {
-                      res = await _loginApiClient.sendSignUp(_sendProfileRequest);
-                    }
-                  else{
+                    print("signup");
+                    res = await _loginApiClient.sendSignUp(_sendProfileRequest);
+                  }
+                  else if(id==-2){
                     res = await _loginApiClient.sendLogin(_sendProfileRequest);
+                    print("login");
                   }
                   await _secureStorage.setUserId(res.userId);
                   await _secureStorage.setRefreshToken(res.accessToken);
