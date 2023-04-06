@@ -64,7 +64,7 @@ class _BadgeModalState extends State<BadgeModal>{
                                 builder: (BuildContext context) {
                                   return AlertDialog(
                                     backgroundColor: Colors.transparent,
-                                    content: Image.asset('assets/images/dino_guide.png'),
+                                    content: Image.asset('assets/images/badge_guide.png'),
                                   );
                                 },
                               );
