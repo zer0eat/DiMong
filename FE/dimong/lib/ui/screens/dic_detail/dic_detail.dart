@@ -198,6 +198,23 @@ class _DinoDetailState extends State<DinoDetail> {
                   ),
                   backgroundColor: Colors.transparent,
                   elevation: 0.0,
+                  actions:[
+                  IconButton(
+                    icon: Icon(Icons.question_mark_rounded,
+                    color: Colors.white),
+                    iconSize: 30.0, // 아이콘 크기를 지정함
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.transparent,
+                            content: Image.asset('assets/images/detail_guide.png'),
+                          );
+                        },
+                      );
+                    },
+                  ),]
                 ),
                 extendBodyBehindAppBar: true,
                 body: Center(
@@ -398,6 +415,7 @@ class _DinoDetailState extends State<DinoDetail> {
                           ),
                         ),
                       ),
+
                     ],
                   ),
                 )

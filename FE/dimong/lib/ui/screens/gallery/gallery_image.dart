@@ -54,7 +54,7 @@ class _GalleryImagePageState extends State<GalleryImagePage> {
           elevation: 0.0,
           actions: [
           TextButton(
-          child: Text('공유하기', style: TextStyle(color: Color(0xffACC864), fontSize: 18, fontWeight: FontWeight.bold)),
+          child: Text('공유하기', style: TextStyle(color: Color(0xffACC864), fontSize: 25, fontWeight: FontWeight.bold)),
           onPressed: () async{
           print('111');
           await shareScreenshot();
@@ -62,10 +62,15 @@ class _GalleryImagePageState extends State<GalleryImagePage> {
           ],
           ),
           body: Column(children: [
-          Text("이 공룡들과 비슷해요!"),
-          MypageCard(dinos: data!.similarList!),
+            SizedBox(height: 10,),
+            Text("이 공룡들과 비슷해요!",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),),
+            MypageCard(dinos: data!.similarList!),
           SizedBox(
-          height: 30,
+          height: 20,
           ),
           Container(height: 300, child: CachedNetworkImage(
           imageUrl: data.drawingImageUrl!,
@@ -77,7 +82,7 @@ class _GalleryImagePageState extends State<GalleryImagePage> {
           SizedBox(
           height:20
           ),
-          Container(child: Text('${data.userNickname}', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),))
+          Container(child: Text('${data.userNickname}', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),))
           ]),
 
           ),

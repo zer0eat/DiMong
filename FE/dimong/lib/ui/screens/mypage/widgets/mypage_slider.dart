@@ -63,6 +63,9 @@ class _MypageCardState extends State<MypageCard> {
     print(idList[0].runtimeType);
     return Column(
       children: [
+        const SizedBox(
+          height: 20,
+        ),
         CarouselSlider.builder(
           itemCount: drawingInfo.length,
           itemBuilder: (context, index, realIndex) {
@@ -115,7 +118,7 @@ class _MypageCardState extends State<MypageCard> {
                                   style: TextStyle(
                                     color: Color(0xFFACC864),
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: 25,
                                   ),
                                 ),
                               ]),

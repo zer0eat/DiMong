@@ -127,7 +127,8 @@ class _DicDinoState extends State<DicDino> {
                             );
                           },
                         ),
-                      ),)
+                      ),
+                      )
                       // FabMenu(),
                     ]),
                   ),

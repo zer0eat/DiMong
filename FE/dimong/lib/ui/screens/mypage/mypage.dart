@@ -86,91 +86,68 @@ class _MyPageState extends State<MyPage> {
                                     style: const TextStyle(
                                       color: Color(0xFF444444),
                                       fontWeight: FontWeight.bold,
-                                      // fontSize: 20,
+                                      fontSize: 20,
                                     ),
                                   ),
                                 ),
-                                ElevatedButton(
-                                  child: Text('로그아웃'),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    primary: Color(0xFFACC864), // Background color
-                                    onPrimary: Colors.white,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 6,
-                                      horizontal: 15,
-                                    ),// Text Color (Foreground color)
-                                  ),
-
-                                  onPressed: () async {
-                                    // 눌렀을 때 두 번째 route로 이동합니다.
-                                    await authProvider.logout();
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => LoginPage()),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Column(
-                              children: [
-                                /*Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                  child:
-                                  Text(
-                                      '뱃지 목록',
-                                      style: TextStyle(
-                                        color: Color(0xFFACC864),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      )
-                                  ),
-                                ),*/
-                                //BadgeCards()
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                  child: ElevatedButton(
-                                    child: Text('뱃지 목록'),
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(50),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      child: Text('뱃지 목록',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                        ),),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                        ),
+                                        primary: Color(0xFFACC864), // Background color
+                                        onPrimary: Colors.white,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 6,
+                                          horizontal: 15,
+                                        ),// Text Color (Foreground color)
                                       ),
-                                      primary: Color(0xFFACC864), // Background color
-                                      onPrimary: Colors.white,
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 6,
-                                        horizontal: 15,
-                                      ),// Text Color (Foreground color)
+                                      onPressed: () async{
+                                        await showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          builder: (BuildContext context) {
+                                            return BadgeModal();
+                                          },
+                                        );
+                                      },
                                     ),
-                                    onPressed: () async{
-                                      await showModalBottomSheet(
-                                        context: context,
-                                        isScrollControlled: true,
-                                        builder: (BuildContext context) {
-                                          return BadgeModal();
-                                        },
-                                      );
-                                    },
-                                  )
-                                  ,
-                                  /*IconButton(
-                              iconSize: 50,
-                              icon: Image.asset('assets/images/badge.png'),
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  isScrollControlled: true,
-                                  builder: (BuildContext context) {
-                                    return BadgeModal(id: 1);
-                                  },
-                                );
-                              },
-                            ),*/
+                                    SizedBox(width: 20,),
+                                    ElevatedButton(
+                                      child: Text('로그아웃',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                        ),
+                                        primary: Color(0xFFACC864), // Background color
+                                        onPrimary: Colors.white,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 6,
+                                          horizontal: 15,
+                                        ),// Text Color (Foreground color)
+                                      ),
+
+                                      onPressed: () async {
+                                        // 눌렀을 때 두 번째 route로 이동합니다.
+                                        await authProvider.logout();
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => LoginPage()),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -188,7 +165,7 @@ class _MyPageState extends State<MyPage> {
                                       style: TextStyle(
                                         color: Color(0xFFACC864),
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20,
+                                        fontSize: 30,
                                       ),
                                     ),
                                   ),
