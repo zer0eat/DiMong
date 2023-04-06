@@ -73,13 +73,36 @@ class _MyImagePageState extends State<MyImagePage> {
                       SizedBox(
                         height: 30,
                       ),
-                      Container(height: 300, child: CachedNetworkImage(
-                        imageUrl: data.drawingImageUrl!,
-                        fit: BoxFit.cover,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      SizedBox(
+                        height: 300,
+                        child: Stack(
+                          children:[
+                            Container(height: 300, child: CachedNetworkImage(
+                            imageUrl: data.drawingImageUrl!,
+                            fit: BoxFit.cover,
+                            //placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                          ),
+                          ),
+                            Positioned(
+                              right: 0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.delete_forever_rounded,
+                                        color: Color(0x99000000)
+                                    ),iconSize: 40,
+                                    onPressed: () {
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      ),
+
                       /*SizedBox(
                           height:20
                       ),
