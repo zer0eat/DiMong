@@ -1,6 +1,6 @@
 package com.ssafy.dimong_be.interfaces.common;
 
-import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
+import com.ssafy.dimong_be.domain.model.drawing.Drawing;
 
 import lombok.Builder;
 import lombok.Getter;
