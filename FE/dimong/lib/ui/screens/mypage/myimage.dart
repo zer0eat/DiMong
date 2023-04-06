@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:path_provider/path_provider.dart';
-
 import './logic/usecase_detail.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../mypage/widgets/mypage_slider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:dimong/core/domain/dino.dart';
+import './delete_modal.dart';
 
 class MyImagePage extends StatefulWidget{
   final int drawingId;
@@ -29,7 +30,10 @@ class _MyImagePageState extends State<MyImagePage> {
     super.initState();
     _useCase.loadData(widget.drawingId);
   }
-
+  void _showModal(int id) async {
+    await showCupertinoModalPopup(
+        context: context, builder: (context) => DeleteModal(id: id),);
+  }
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DrawingDetailResponse>(
@@ -93,7 +97,10 @@ class _MyImagePageState extends State<MyImagePage> {
                                     icon: Icon(Icons.delete_forever_rounded,
                                         color: Color(0x99000000)
                                     ),iconSize: 40,
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      _showModal(data.drawingId!);
+                                      print("지우기 1단계");
+
                                     },
                                   ),
                                 ],

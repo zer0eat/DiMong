@@ -53,7 +53,7 @@ class DrawFreePageState extends State<DrawFreePage> {
     final SendDrawingResponse saveDrawingResponse =
         await dinosaurApiClient.saveImage(sendData);
 
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) =>
