@@ -42,6 +42,9 @@ class LoginApiClient {
           data: {
           "providerType": "google",
             "providerId": _sendProfileRequest.providerId,
+            "userNickname": _sendProfileRequest.userNickname,
+            "userEmail": _sendProfileRequest.userEmail,
+            "userProfileImage": _sendProfileRequest.userProfileImage,
           }
       );
       print("when response in data: $response");

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Paths {
   // to server
   static const sendSignUp = '/api/auth/v1/signup/';
-  static const sendLogin = '/api/auth/v1/login';
+  static const sendLogin = '/api/auth/v2/login';
   static const dinoList = '/api/v4/dinosaurs'; // 공룡 주소
   static const dinoDetail = '/api/v2/dinosaurs/'; // 공룡 상세
   static const gptAudio = '/api/v1/dinosaurs/story/';
