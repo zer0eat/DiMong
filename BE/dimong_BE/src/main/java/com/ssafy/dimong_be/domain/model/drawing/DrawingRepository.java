@@ -1,4 +1,4 @@
-package com.ssafy.dimong_be.domain.model.drwaing;
+package com.ssafy.dimong_be.domain.model.drawing;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,5 +20,7 @@ public interface DrawingRepository extends JpaRepository<Drawing, Long> {
 		+ "INNER JOIN FETCH Dinosaur dino3 ON d.similarDinosaurId3 = dino3.dinosaurId "
 		+ "WHERE d.drawingId = :drawingId")
 	Optional<Drawing> findByIdWithJpql(@Param("drawingId") Long drawingId);
+
+
 
 }

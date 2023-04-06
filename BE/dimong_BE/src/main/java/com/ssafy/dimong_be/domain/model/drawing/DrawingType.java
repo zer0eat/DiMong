@@ -1,4 +1,4 @@
-package com.ssafy.dimong_be.domain.model.drwaing;
+package com.ssafy.dimong_be.domain.model.drawing;
 
 import lombok.Getter;
 

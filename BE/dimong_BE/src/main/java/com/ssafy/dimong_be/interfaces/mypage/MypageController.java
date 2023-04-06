@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.dimong_be.application.BadgeService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.UserService;
-import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
+import com.ssafy.dimong_be.domain.model.drawing.Drawing;
 
 import lombok.RequiredArgsConstructor;
 

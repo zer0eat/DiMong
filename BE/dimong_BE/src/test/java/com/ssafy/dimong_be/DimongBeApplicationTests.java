@@ -12,8 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ssafy.dimong_be.domain.model.dinosaur.Dinosaur;
 import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurQueryRepository;
 import com.ssafy.dimong_be.domain.model.dinosaur.DinosaurRepository;
-import com.ssafy.dimong_be.domain.model.drwaing.Drawing;
-import com.ssafy.dimong_be.domain.model.drwaing.DrawingRepository;
+import com.ssafy.dimong_be.domain.model.drawing.Drawing;
+import com.ssafy.dimong_be.domain.model.drawing.DrawingRepository;
 import com.ssafy.dimong_be.domain.model.user_dinosaur.UserDinosaurRepository;
 
 @RunWith(SpringRunner.class)
