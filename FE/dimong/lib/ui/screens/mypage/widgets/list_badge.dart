@@ -23,7 +23,7 @@ class MyCardWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
             ),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(11),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

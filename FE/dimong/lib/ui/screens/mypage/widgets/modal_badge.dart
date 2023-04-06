@@ -46,23 +46,38 @@ class _BadgeModalState extends State<BadgeModal>{
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 16),
+                    SizedBox(height: 13),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            width: 40.0,
-                            height: 40.0,
-                            child: IconButton(iconSize: 40, icon: const Icon(Icons.cancel_outlined, color: Color(0xff476930),),
-                              onPressed: () => Navigator.of(context).pop(),),),
+                          alignment: Alignment.topLeft,
+                          child: IconButton(
+                            icon: Icon(Icons.question_mark_rounded,
+                                color: Color(0x99444444)
+                            ),iconSize: 35,
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    backgroundColor: Colors.transparent,
+                                    content: Image.asset('assets/images/dino_guide.png'),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(iconSize: 40, icon: const Icon(Icons.cancel_rounded, color: Color(0x99444444),),
+                            onPressed: () => Navigator.of(context).pop(),),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
                     Expanded(
                       child: GridView.count(
                         crossAxisCount: 3,

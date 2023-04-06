@@ -46,12 +46,16 @@ class _MyImagePageState extends State<MyImagePage> {
                       // 뒤로가기 버튼
                       leading: const BackButton(
                         color: Color(0xFFACC864),
+                        // style: ButtonStyle(iconSize: ),
                       ),
                       backgroundColor: Colors.transparent,
                       elevation: 0.0,
                       actions: [
                         TextButton(
-                            child: Text('공유하기', style: TextStyle(color: Color(0xffACC864), fontSize: 18, fontWeight: FontWeight.bold)),
+                            child: Text('공유하기',
+                              style: TextStyle(
+                                color: Color(0xffACC864),
+                                fontSize: 25, fontWeight: FontWeight.bold)),
                             onPressed: () async{
                               print('111');
                               await shareScreenshot();
@@ -59,7 +63,12 @@ class _MyImagePageState extends State<MyImagePage> {
                       ],
                     ),
                     body: Column(children: [
-                      Text("이 공룡들과 비슷해요!"),
+                      SizedBox(height: 10,),
+                      Text("이 공룡들과 비슷해요!",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                        ),),
                       MypageCard(dinos: data!.similarList!),
                       SizedBox(
                         height: 30,

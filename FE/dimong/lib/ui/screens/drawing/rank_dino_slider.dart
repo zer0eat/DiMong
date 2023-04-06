@@ -135,7 +135,7 @@ class _RankDinoCardState extends State<RankDinoCard> {
                               child: Text(
                                 item["dinosaurName"] ?? '비슷한 공룡을 찾지 못했어요',
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: Color(0xFFACC864),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
                                 ),

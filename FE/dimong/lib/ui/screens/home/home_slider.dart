@@ -93,11 +93,8 @@ class _HomeSliderCardState extends State<HomeSliderCard> {
                                 style: TextStyle(
                                   color: Color(0xFF476930),
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 25,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 5,
                               ),
                               Text(
                                 item["go"],

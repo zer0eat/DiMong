@@ -60,7 +60,7 @@ class DrawingDino extends StatelessWidget {
                 Container(
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: const Color(0xFFACC864),
+                    color: const Color(0xff48642B),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
