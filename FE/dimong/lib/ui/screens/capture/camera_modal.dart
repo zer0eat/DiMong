@@ -39,6 +39,7 @@ class CameraModal extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.normal,
+                    fontFamily: 'KCCDodamdodam',
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -59,7 +60,9 @@ class CameraModal extends StatelessWidget {
                   },
                   child: Text(
                     '다시 찍기',
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: TextStyle(color: Colors.black, fontSize: 20,
+                      fontFamily: 'KCCDodamdodam',
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xffACC864),

@@ -40,6 +40,7 @@ class GalleryModal extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.normal,
+                  fontFamily: 'KCCDodamdodam',
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -60,7 +61,9 @@ class GalleryModal extends StatelessWidget {
                   },
                   child: Text(
                     '불러오기',
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: TextStyle(color: Colors.black, fontSize: 20,
+                      fontFamily: 'KCCDodamdodam',
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xffACC864),
