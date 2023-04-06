@@ -24,7 +24,7 @@ FROM joengenduvel/jre17 as builder
 WORKDIR application
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} application.jar
-RUN java -Djarmode=layertools -jar application.jar extract
+RUN java -Djarmode=layertools -Duser.timezone=Asia/Seoul -jar application.jar extract
 
 FROM joengenduvel/jre17
 WORKDIR application
