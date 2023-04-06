@@ -25,6 +25,7 @@ import com.ssafy.dimong_be.domain.model.user_badge.UserBadgeRepository;
 import com.ssafy.dimong_be.interfaces.common.DrawingListDto;
 import com.ssafy.dimong_be.interfaces.mypage.MypageResponseDto;
 import com.ssafy.dimong_be.interfaces.user.AuthResponseDto;
+import com.ssafy.dimong_be.interfaces.user.OAuthProviderDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -101,24 +102,24 @@ public class UserServiceImpl implements UserService {
 	/*
 	ver.1) 로그인
 	 */
-	// @Override
-	// public AuthResponseDto login(OAuthProviderDto oAuthProviderDto) {
-	// 	//DB에서 조회
-	// 	User user = userRepository.findByProviderId(oAuthProviderDto.getProviderId())
-	// 		.orElseThrow(() -> new EntityNotFoundException(
-	// 			"providerId(" + oAuthProviderDto.getProviderId() + ")에 해당하는 사용자가 존재하지 않습니다.",
-	// 			ErrorCode.USER_NOT_FOUND
-	// 		));
-	//
-	// 	//accessToken 발급
-	// 	Date now = new Date();
-	// 	AuthToken authToken= authTokenProvider.createAuthToken(String.valueOf(user.getUserId()), user.getUserRole().getCode(), new Date(now.getTime() + appProperties.getAuth().getTokenExpiry()));
-	//
-	// 	//authentication 저장
-	// 	SecurityContextHolder.getContext().setAuthentication(authTokenProvider.getAuthentication(authToken));
-	//
-	// 	return AuthResponseDto.fromEntity(user, authToken.getToken());
-	// }
+	@Override
+	public AuthResponseDto login(OAuthProviderDto oAuthProviderDto) {
+		//DB에서 조회
+		User user = userRepository.findByProviderId(oAuthProviderDto.getProviderId())
+			.orElseThrow(() -> new EntityNotFoundException(
+				"providerId(" + oAuthProviderDto.getProviderId() + ")에 해당하는 사용자가 존재하지 않습니다.",
+				ErrorCode.USER_NOT_FOUND
+			));
+
+		//accessToken 발급
+		Date now = new Date();
+		AuthToken authToken= authTokenProvider.createAuthToken(String.valueOf(user.getUserId()), user.getUserRole().getCode(), new Date(now.getTime() + appProperties.getAuth().getTokenExpiry()));
+
+		//authentication 저장
+		SecurityContextHolder.getContext().setAuthentication(authTokenProvider.getAuthentication(authToken));
+
+		return AuthResponseDto.fromEntity(user, authToken.getToken());
+	}
 
 	/*
 	ver.2) 로그인

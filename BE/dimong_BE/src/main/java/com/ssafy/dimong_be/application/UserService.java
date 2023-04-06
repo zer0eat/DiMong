@@ -16,7 +16,7 @@ public interface UserService {
 
 	AuthResponseDto signup(OAuth2UserInfo userInfo, ProviderType providerType);
 
-	// AuthResponseDto login(OAuthProviderDto oAuthProviderDto);
+	AuthResponseDto login(OAuthProviderDto oAuthProviderDto);
 
 	AuthResponseDto login(OAuth2UserInfo userInfo, ProviderType providerType);
 

@@ -25,10 +25,10 @@ public class UserController {
 		return ResponseEntity.ok(userService.signup(signupRequestDto.toOAuth2UserInfo(providerType), OAuth2UserInfo.getProviderType(providerType)));
 	}
 
-	// @PostMapping("/v1/login")
-	// public ResponseEntity<AuthResponseDto> login(@RequestBody OAuthProviderDto oAuthProviderDto) {
-	// 	return ResponseEntity.ok(userService.login(oAuthProviderDto));
-	// }
+	@PostMapping("/v1/login")
+	public ResponseEntity<AuthResponseDto> login(@RequestBody OAuthProviderDto oAuthProviderDto) {
+		return ResponseEntity.ok(userService.login(oAuthProviderDto));
+	}
 
 	@PostMapping("/v2/login")
 	public ResponseEntity<AuthResponseDto> login(@RequestBody SignupRequestDto signupRequestDto) {
