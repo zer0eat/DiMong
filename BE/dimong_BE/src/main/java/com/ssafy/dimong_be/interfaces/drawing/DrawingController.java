@@ -19,7 +19,7 @@ import com.ssafy.dimong_be.application.BadgeService;
 import com.ssafy.dimong_be.application.DinosaurService;
 import com.ssafy.dimong_be.application.DrawingService;
 import com.ssafy.dimong_be.application.FileUploadService;
-import com.ssafy.dimong_be.domain.model.drwaing.DrawingType;
+import com.ssafy.dimong_be.domain.model.drawing.DrawingType;
 import com.ssafy.dimong_be.interfaces.common.DrawingListDto;
 import com.ssafy.dimong_be.interfaces.common.FileDto;
 import com.ssafy.dimong_be.interfaces.common.MyDrawingDto;
@@ -57,6 +57,9 @@ public class DrawingController {
 		return ResponseEntity.ok(drawingService.getDrawing(drawingId));
 	}
 
+	/*
+	모두의 갤러리 기능 (그림 전체 조회)
+	 */
 	@GetMapping("/v1/drawings")
 	public ResponseEntity<List<DrawingListDto>> getGalleryDrawingList() {
 		return ResponseEntity.ok(drawingService.getDrawingList());
@@ -142,6 +145,9 @@ public class DrawingController {
 		return ResponseEntity.ok(drawingRecommendationResponseDto);
 	}
 
+	/*
+	내 그림 삭제
+	 */
 	@DeleteMapping("/v1/drawings/{drawingId}")
 	public ResponseEntity deleteMyDrawing(@PathVariable Long drawingId) {
 		drawingService.deleteDrawing(drawingId);
