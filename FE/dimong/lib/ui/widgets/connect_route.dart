@@ -7,6 +7,7 @@ import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
 import 'package:dimong/ui/screens/capture/camera_page.dart';
 import 'package:dimong/ui/screens/capture/gallery_page.dart';
 import 'package:dimong/ui/screens/mypage/myimage.dart';
+import 'package:dimong/ui/screens/mypage/mypage.dart';
 import 'package:dimong/ui/screens/gallery/gallery_image.dart';
 
 class ConnectRoute{
@@ -36,7 +37,9 @@ class ConnectRoute{
   Future<void> toMyImage(BuildContext context, int drawingId) async{
     await Navigator.push(context, MaterialPageRoute(builder: (context) => MyImagePage(drawingId: drawingId)));
   }
-
+  Future<void> toMyPage(BuildContext context) async{
+    await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavBar(index: 4)));
+  }
   Future<void> toOtherImage(BuildContext context, int drawingId) async{
     await Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryImagePage(drawingId: drawingId)));
   }

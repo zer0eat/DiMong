@@ -11,9 +11,9 @@ class MyPageApiClient {
     try {
       final userId = await _secureStorage.getUserId();
       final response = await dio.get(Paths.myInfo + '$userId',
-      data:{
-        "userId": userId
-      });
+          data:{
+            "userId": userId
+          });
       print("data.dart: response = $response");
       print(response.runtimeType);
       print("data.dart: response.data = ${response.data}");
@@ -26,7 +26,7 @@ class MyPageApiClient {
       throw e;
     }
   }
-  
+
   Future<DrawingDetailResponse> sendDrawing(int? drawingId) async {
     try {
       //String dinosaurEra = period!;
@@ -50,7 +50,27 @@ class MyPageApiClient {
       throw e;
     }
   }
-
+  Future<Map<String, dynamic>> deleteMyDrawing(int? drawingId) async {
+    try {
+      //String dinosaurEra = period!;
+      //print("period: $period");
+      final userId = await _secureStorage.getUserId();
+      final response = await dio.delete(Paths.allDrawing + '/$drawingId',
+          data:{
+            "userId": userId,
+            "drawingId": drawingId,
+          });
+      print("data.dart: response = $response");
+      print(response.runtimeType);
+      print("data.dart: response.data = ${response.data}");
+      final dinosaursJson =  response.data;
+      print(dinosaursJson);
+      return dinosaursJson;
+    } catch (e) {
+      // Handle the error as needed
+      throw e;
+    }
+  }
   Future<List<SendBadgeResponse>> sendBadge() async {
     try {
       final userId = await _secureStorage.getUserId();
