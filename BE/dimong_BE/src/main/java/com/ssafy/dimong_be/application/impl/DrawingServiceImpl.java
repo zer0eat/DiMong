@@ -77,4 +77,9 @@ public class DrawingServiceImpl implements DrawingService {
 		return myDrawingResponseDto;
 	}
 
+	@Override
+	public void deleteDrawing(Long drawingId) {
+		drawingRepository.deleteById(drawingId);
+	}
+
 }

@@ -17,4 +17,6 @@ public interface DrawingService {
 
 	MyDrawingResponseDto getDrawing(Long drawingId);
 
+	void deleteDrawing(Long drawingId);
+
 }
