@@ -23,3 +23,14 @@ services:
     #   - ./AI/AI_API/app:/code/app
 
     restart: "no"
+
+  spring-boot:
+    build:
+      context: ./BE/dimong_BE
+      args:
+        JAR_FILE: build/libs/*.jar
+
+    ports:
+      - "8086:8086"
+    container_name: backend
+
