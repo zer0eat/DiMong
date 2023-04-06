@@ -12,7 +12,7 @@ services:
     environment:
       PORT: 8000
 
-    container_name: ai
+    container_name: dev_ai
 
     # image: fastapi
     # command: sh -c "pwd && cd app && pwd && ls && tail -f /dev/null"
