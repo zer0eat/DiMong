@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  # fastapi:
+  #   build:
+  #     # Dockerfile 빌드
+  #     context: ./AI/AI_API # Dockerfile 빌드 경로
+  #     # dockerfile: ./Dockerfile # dockerfile의 파일명이 dockerfile이 아닐 경우 파일명을 입력해야합니다.
+  #   ports:
+  #     - 8000:8000
+
+  #   environment:
+  #     PORT: 8000
+
+  #   container_name: ai
+
+  #   # image: fastapi
+  #   # command: sh -c "pwd && cd app && pwd && ls && tail -f /dev/null"
+  #   command: sh -c "cd app && uvicorn main:app --proxy-headers --host 0.0.0.0 --port 8000"
+
+
+  #   # volumes:
+  #   #   - ./AI/AI_API/app:/code/app
+
+  #   restart: "no"
+
+  spring-boot:
+    build:
+      context: ./dimong_BE
+      args:
+        JAR_FILE: build/libs/*.jar
+
+    ports:
+      - "8086:8086"
+    container_name: backend
