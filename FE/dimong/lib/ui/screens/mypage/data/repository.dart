@@ -8,6 +8,10 @@ class MyPageRepository {
      return await myPageApiClient.sendMyList();
    }
 
+  Future<DrawingDetailResponse> sendDrawing(int? drawingId) async {
+    return await myPageApiClient.sendDrawing(drawingId);
+  }
+
   Future<List<SendBadgeResponse>> sendBadge() async {
     return await myPageApiClient.sendBadge();
   }

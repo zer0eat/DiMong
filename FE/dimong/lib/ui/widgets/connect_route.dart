@@ -7,6 +7,7 @@ import 'package:dimong/ui/screens/dic_detail/dic_detail.dart';
 import 'package:dimong/ui/screens/capture/camera_page.dart';
 import 'package:dimong/ui/screens/capture/gallery_page.dart';
 import 'package:dimong/ui/screens/mypage/myimage.dart';
+import 'package:dimong/ui/screens/gallery/gallery_image.dart';
 
 class ConnectRoute{
   Future<void> toPage(BuildContext context, String route) async{
@@ -32,10 +33,14 @@ class ConnectRoute{
   Future<void> toGalleryStack(BuildContext context, File? imageFile) async{
     await Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryPage(file: imageFile!)));
   }
-  Future<void> toMyImage(BuildContext context, List<dynamic> arguments, dynamic imageData) async{
-    final index = arguments;
-    await Navigator.push(context, MaterialPageRoute(builder: (context) => MyImagePage(drawInfo: arguments, imageData: imageData)));
+  Future<void> toMyImage(BuildContext context, int drawingId) async{
+    await Navigator.push(context, MaterialPageRoute(builder: (context) => MyImagePage(drawingId: drawingId)));
   }
+
+  Future<void> toOtherImage(BuildContext context, int drawingId) async{
+    await Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryImagePage(drawingId: drawingId)));
+  }
+
   Future<void> toPages(BuildContext context, String route, dynamic arguments) async{
     final index = arguments;
     await Navigator.pushReplacementNamed(context, '$route'+'/'+'$index');

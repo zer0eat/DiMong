@@ -26,6 +26,31 @@ class MyPageApiClient {
       throw e;
     }
   }
+  
+  Future<DrawingDetailResponse> sendDrawing(int? drawingId) async {
+    try {
+      //String dinosaurEra = period!;
+      //print("period: $period");
+      final userId = await _secureStorage.getUserId();
+      final response = await dio.get(Paths.myDrawingDetail + '$drawingId',
+          data:{
+            "userId": userId,
+            "drawingId": drawingId,
+          });
+      print("data.dart: response = $response");
+      print(response.runtimeType);
+      print("data.dart: response.data = ${response.data}");
+      final dinosaursJson =  response.data;
+      print(dinosaursJson);
+      final drawingetailResponse = DrawingDetailResponse.fromJson(dinosaursJson);
+      print(drawingetailResponse.runtimeType);
+      return drawingetailResponse;
+    } catch (e) {
+      // Handle the error as needed
+      throw e;
+    }
+  }
+
   Future<List<SendBadgeResponse>> sendBadge() async {
     try {
       final userId = await _secureStorage.getUserId();

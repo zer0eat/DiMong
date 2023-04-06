@@ -8,4 +8,7 @@ class GalleryRepository {
      return await galleryApiClient.sendList();
    }
 
+  Future<DrawingDetailResponse> sendDrawing(int? drawingId) async {
+    return await galleryApiClient.sendDrawing(drawingId);
+  }
 }

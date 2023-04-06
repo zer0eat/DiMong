@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dimong/core/domain/dino.dart';
 import 'package:dimong/ui/screens/login/login_page.dart';
 import 'package:dimong/ui/screens/mypage/logic/usecase.dart';
@@ -32,9 +33,6 @@ class _MyPageState extends State<MyPage> {
     final authProvider = Provider.of<AuthProvider>(context);
     final String displayName = authProvider.user.displayName!;
     final photoUrl = authProvider.user.photoURL;
-    //print(authProvider.user.displayName);
-    //print(authProvider.user.photoURL);
-    //print('1111111');
     return StreamBuilder<SendProfileResponse>(
       stream: _useCase.dataStream,
       builder: (context, snapshot){
@@ -52,9 +50,6 @@ class _MyPageState extends State<MyPage> {
                         children: [
                           Container(
                             child: Column(
-                              // mainAxisSize: MainAxisSize.max,
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              // crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
@@ -68,12 +63,15 @@ class _MyPageState extends State<MyPage> {
                                       padding: const EdgeInsets.all(2.0),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(60),
-                                        child: Image.network(
-                                          authProvider.user.photoURL!,
+                                        child:
+                                        CachedNetworkImage(
+                                          imageUrl: authProvider.user.photoURL!,
                                           //data!.userProfileImage!,
                                           width: 100,
                                           height: 100,
                                           fit: BoxFit.cover,
+                                          //placeholder: (context, url) => CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) => Icon(Icons.error),
                                         ),
                                       ),
                                     ),
