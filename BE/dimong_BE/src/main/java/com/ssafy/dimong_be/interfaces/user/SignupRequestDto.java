@@ -10,6 +10,7 @@ import com.ssafy.dimong_be.domain.model.user.ProviderType;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
 // @Setter
@@ -22,19 +23,8 @@ public class SignupRequestDto implements Serializable {
 	private String userProfileImage;
 	private ProviderType providerType;
 
-	public static ProviderType getProviderType(String providerType) {
-		switch (providerType.toUpperCase()) {
-			case "GOOGLE":
-				return ProviderType.GOOGLE;
-			// case "FACEBOOK":
-			// 	this.providerType = ProviderType.FACEBOOK;
-			// case "NAVER":
-			// 	this.providerType = ProviderType.NAVER;
-			// case "GITHUB":
-			// 	this.providerType = ProviderType.GITHUB;
-		}
-
-		return null;
+	public void setProviderType(String providerType) {
+		this.providerType = OAuth2UserInfo.getProviderType(providerType);
 	}
 
 	public OAuth2UserInfo toOAuth2UserInfo(String providerType) {
@@ -45,7 +35,7 @@ public class SignupRequestDto implements Serializable {
 		attributes.put("userEmail", this.userEmail);
 		attributes.put("userProfileImage", this.userProfileImage);
 
-		return OAuth2UserInfoFactory.getOAuth2UserInfo(this.getProviderType(providerType), attributes);
+		return OAuth2UserInfoFactory.getOAuth2UserInfo(OAuth2UserInfo.getProviderType(providerType), attributes);
 	}
 
 }

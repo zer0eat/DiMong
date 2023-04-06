@@ -6,6 +6,7 @@ import com.ssafy.dimong_be.domain.model.user.User;
 import com.ssafy.dimong_be.interfaces.mypage.MypageResponseDto;
 import com.ssafy.dimong_be.interfaces.user.AuthResponseDto;
 import com.ssafy.dimong_be.interfaces.user.OAuthProviderDto;
+import com.ssafy.dimong_be.interfaces.user.SignupRequestDto;
 
 public interface UserService {
 
@@ -15,6 +16,8 @@ public interface UserService {
 
 	AuthResponseDto signup(OAuth2UserInfo userInfo, ProviderType providerType);
 
-	AuthResponseDto login(OAuthProviderDto oAuthProviderDto);
+	// AuthResponseDto login(OAuthProviderDto oAuthProviderDto);
+
+	AuthResponseDto login(OAuth2UserInfo userInfo, ProviderType providerType);
 
 }

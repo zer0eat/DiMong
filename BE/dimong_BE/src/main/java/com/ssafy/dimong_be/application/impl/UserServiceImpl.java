@@ -2,6 +2,7 @@ package com.ssafy.dimong_be.application.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,6 @@ import com.ssafy.dimong_be.domain.model.user_badge.UserBadgeRepository;
 import com.ssafy.dimong_be.interfaces.common.DrawingListDto;
 import com.ssafy.dimong_be.interfaces.mypage.MypageResponseDto;
 import com.ssafy.dimong_be.interfaces.user.AuthResponseDto;
-import com.ssafy.dimong_be.interfaces.user.OAuthProviderDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public AuthResponseDto signup(OAuth2UserInfo userInfo, ProviderType providerType) {
 		// 이미 가입된 회원인지 검증
-		if (userRepository.existsByProviderTypeAndProviderId(providerType, userInfo.getId())) {
+		if (userRepository.existsByProviderIdAndProviderType(userInfo.getId(), providerType)) {
 			throw new EntityAlreadyExistException (
 				"providerId(" + userInfo.getId() + ")에 해당하는 사용자가 이미 존재합니다.",
 				ErrorCode.USER_ALREADY_EXIST
@@ -98,18 +98,54 @@ public class UserServiceImpl implements UserService {
 		return AuthResponseDto.fromEntity(user, authToken.getToken());
 	}
 
+	/*
+	ver.1) 로그인
+	 */
+	// @Override
+	// public AuthResponseDto login(OAuthProviderDto oAuthProviderDto) {
+	// 	//DB에서 조회
+	// 	User user = userRepository.findByProviderId(oAuthProviderDto.getProviderId())
+	// 		.orElseThrow(() -> new EntityNotFoundException(
+	// 			"providerId(" + oAuthProviderDto.getProviderId() + ")에 해당하는 사용자가 존재하지 않습니다.",
+	// 			ErrorCode.USER_NOT_FOUND
+	// 		));
+	//
+	// 	//accessToken 발급
+	// 	Date now = new Date();
+	// 	AuthToken authToken= authTokenProvider.createAuthToken(String.valueOf(user.getUserId()), user.getUserRole().getCode(), new Date(now.getTime() + appProperties.getAuth().getTokenExpiry()));
+	//
+	// 	//authentication 저장
+	// 	SecurityContextHolder.getContext().setAuthentication(authTokenProvider.getAuthentication(authToken));
+	//
+	// 	return AuthResponseDto.fromEntity(user, authToken.getToken());
+	// }
+
+	/*
+	ver.2) 로그인
+	 */
 	@Override
-	public AuthResponseDto login(OAuthProviderDto oAuthProviderDto) {
-		//DB에서 조회
-		User user = userRepository.findByProviderId(oAuthProviderDto.getProviderId())
-			.orElseThrow(() -> new EntityNotFoundException(
-				"providerId(" + oAuthProviderDto.getProviderId() + ")에 해당하는 사용자가 존재하지 않습니다.",
-				ErrorCode.USER_NOT_FOUND
-			));
+	public AuthResponseDto login(OAuth2UserInfo userInfo, ProviderType providerType) {
+		//////////수정////////////
+		Optional<User> userOptional = userRepository.findByProviderIdAndProviderType(userInfo.getId(), providerType);
+
+		User user;
+
+		if (!userOptional.isPresent()) { //회원 정보가 없으면
+			//DB에 저장
+			user = userRepository.saveAndFlush(OAuth2UserInfo.toEntity(userInfo, providerType));
+		} else {
+			user = userOptional.get();
+		}
+		/////////////////////////
+
 
 		//accessToken 발급
 		Date now = new Date();
-		AuthToken authToken= authTokenProvider.createAuthToken(String.valueOf(user.getUserId()), user.getUserRole().getCode(), new Date(now.getTime() + appProperties.getAuth().getTokenExpiry()));
+		AuthToken authToken= authTokenProvider.createAuthToken(
+			String.valueOf(user.getUserId()),
+			user.getUserRole().getCode(),
+			new Date(now.getTime() + appProperties.getAuth().getTokenExpiry())
+		);
 
 		//authentication 저장
 		SecurityContextHolder.getContext().setAuthentication(authTokenProvider.getAuthentication(authToken));
