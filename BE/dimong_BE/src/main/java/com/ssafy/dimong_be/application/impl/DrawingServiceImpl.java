@@ -81,6 +81,38 @@ public class DrawingServiceImpl implements DrawingService {
 	}
 
 	@Override
+	public MyDrawingResponseDto getDrawing_ver3(Long drawingId) {
+		Drawing drawing = drawingRepository.findByIdWithJpql(drawingId)
+			.orElseThrow(() -> new EntityNotFoundException(
+				"drawingId(" + drawingId + ")에 해당하는 그림이 없습니다.",
+				ErrorCode.ENTITY_NOT_FOUND)
+			);
+
+		MyDrawingResponseDto myDrawingResponseDto = MyDrawingResponseDto.builder()
+			.drawingId(drawingId)
+			.drawingImageUrl(drawing.getDrawingImageUrl())
+			.userId(drawing.getUserId())
+			.userNickname(drawing.getUser().getUserNickname())
+			.build();
+
+		if (drawing.getSimilarDinosaurId1() != null) { //공룡이 아닐 경우에만 list 추가
+			myDrawingResponseDto.addSimilarList(
+				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur1())
+			);
+
+			myDrawingResponseDto.addSimilarList(
+				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur2())
+			);
+
+			myDrawingResponseDto.addSimilarList(
+				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur3())
+			);
+		}
+
+		return myDrawingResponseDto;
+	}
+
+	@Override
 	public void deleteDrawing(Long drawingId) {
 		drawingRepository.deleteById(drawingId);
 	}
