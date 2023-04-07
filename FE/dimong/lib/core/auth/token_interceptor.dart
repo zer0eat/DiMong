@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
+import '../utils/api_routes.dart';
 import 'auth_provider.dart';
 import '../local_storage/secure_storage.dart';
 
@@ -54,7 +54,7 @@ class TokenInterceptor extends Interceptor {
 
   bool _isTokenExpiredError(DioError error) {
     final statusCode = error.response?.statusCode;
-    return statusCode == HttpStatus.unauthorized || statusCode == HttpStatus.forbidden;
+    return statusCode == HttpStatus.unauthorized;
   }
 
   Future<String> _refreshTokenAsync() async {
@@ -69,7 +69,7 @@ class TokenInterceptor extends Interceptor {
     // Refresh the token
     try {
       // refresh the token when it is expired.
-      final response = await dio.post('/auth/refresh_token', data: {'refreshToken': refreshToken});
+      final response = await dio.post(Paths.giveToken, data: {'refreshToken': refreshToken});
 
       if (response.statusCode == HttpStatus.ok) {
         final jsonResponse = jsonDecode(response.data);

@@ -40,6 +40,7 @@ class _GalleryImagePageState extends State<GalleryImagePage> {
         builder: (context, snapshot){
           if(snapshot.hasData && _useCase.isLoading == false){
             final data = snapshot.data;
+            List <dynamic>? listCheck =data!.similarList;
             return Screenshot(
                 controller: _controller,
                     key: _screenshotKey,
@@ -63,13 +64,15 @@ class _GalleryImagePageState extends State<GalleryImagePage> {
           ),
           body: Column(children: [
             SizedBox(height: 10,),
-            Text("이 공룡들과 비슷해요!",
+            Text( data!.similarList!.isEmpty
+                ? "비슷한 공룡을 찾지 못했어요!"
+                : '이 공룡들과 비슷해요',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
             ),),
             MypageCard(dinos: data!.similarList!),
-          SizedBox(
+            SizedBox(
           height: 20,
           ),
           Container(height: 300, child: CachedNetworkImage(
