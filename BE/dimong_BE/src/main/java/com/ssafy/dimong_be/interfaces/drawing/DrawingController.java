@@ -58,6 +58,14 @@ public class DrawingController {
 	}
 
 	/*
+	ver.3) 내 그림 상세 조회 & 갤러리 상세 조회
+	 */
+	@GetMapping("/v3/drawings/{drawingId}")
+	public ResponseEntity<MyDrawingResponseDto> getMyDrawing_ver3(@PathVariable Long drawingId) {
+		return ResponseEntity.ok(drawingService.getDrawing_ver3(drawingId));
+	}
+
+	/*
 	모두의 갤러리 기능 (그림 전체 조회)
 	 */
 	@GetMapping("/v1/drawings")
