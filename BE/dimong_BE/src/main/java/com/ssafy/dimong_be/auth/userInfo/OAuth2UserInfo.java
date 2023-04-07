@@ -28,23 +28,6 @@ public abstract class OAuth2UserInfo {
 
 	public abstract String getImageUrl();
 
-	// public ProviderType providerType;
-
-	public static ProviderType getProviderType(String providerType) {
-		switch (providerType.toUpperCase()) {
-			case "GOOGLE":
-				return ProviderType.GOOGLE;
-			// case "FACEBOOK":
-			// 	this.providerType = ProviderType.FACEBOOK;
-			// case "NAVER":
-			// 	this.providerType = ProviderType.NAVER;
-			// case "GITHUB":
-			// 	this.providerType = ProviderType.GITHUB;
-		}
-
-		return null;
-	}
-
 	public static User toEntity(OAuth2UserInfo oAuth2UserInfo, ProviderType providerType) {
 		return User.builder()
 			.userNickname(oAuth2UserInfo.getName())

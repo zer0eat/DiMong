@@ -8,10 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	boolean existsByProviderIdAndProviderType(String providerId, ProviderType providerType);
+	boolean existsByProviderTypeAndProviderId(ProviderType providerType, String providerId);
 
 	Optional<User> findByProviderId(String providerId);
-
-	Optional<User> findByProviderIdAndProviderType(String providerId, ProviderType providerType);
 
 }
