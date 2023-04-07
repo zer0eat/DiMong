@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class OAuth2UserInfoFactory {
+
 	public static OAuth2UserInfo getOAuth2UserInfo(ProviderType providerType, Map<String, Object> attributes) {
 		switch (providerType) {
 			case GOOGLE:
@@ -23,4 +24,5 @@ public class OAuth2UserInfoFactory {
 				throw new IllegalArgumentException("Invalid Provider Type.");
 		}
 	}
+
 }
