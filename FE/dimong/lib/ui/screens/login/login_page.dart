@@ -1,6 +1,7 @@
 import 'dart:developer' as developer;
 import 'package:dimong/core/domain/dino.dart';
 import 'package:dimong/ui/screens/login/backgroundwidget.dart';
+import 'package:dimong/ui/widgets/connect_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dimong/core/auth/auth_provider.dart';
@@ -20,6 +21,7 @@ class LoginPage extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    ConnectRoute _connectRoute = ConnectRoute();
     return Material(
       child: Stack(
         children: [
@@ -38,15 +40,17 @@ class LoginPage extends StatelessWidget {
                   //로그인 기록이 없으면 라이브러리에 정보를 저장한다.
                   int id = await _secureStorage.getUserId();
                   print("userid 알려줘: $id");
-                  var res;
-                  if(id == -1) {
-                    print("signup");
-                    res = await _loginApiClient.sendSignUp(_sendProfileRequest);
-                  }
-                  else if(id==-2){
-                    res = await _loginApiClient.sendLogin(_sendProfileRequest);
-                    print("login");
-                  }
+                  // var res;
+                  // if(id == -1) {
+                  //   print("signup");
+                  //   res = await _loginApiClient.sendSignUp(_sendProfileRequest);
+                  // }
+                  // else if(id==-2){
+                  //   res = await _loginApiClient.sendLogin(_sendProfileRequest);
+                  //   print("login");
+                  // }
+                  var res = await _loginApiClient.sendLogin(_sendProfileRequest);
+                  print("login");
                   await _secureStorage.setUserId(res.userId);
                   await _secureStorage.setRefreshToken(res.accessToken);
                   print("refresh token received: ${res.accessToken}");
