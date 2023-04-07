@@ -63,7 +63,7 @@ public class DrawingServiceImpl implements DrawingService {
 			.userNickname(drawing.getUser().getUserNickname())
 			.build();
 
-		if (drawing.getSimilarDinosaurId1() != null) { //공룡이 아닐 경우에만 list 추가
+		// if (drawing.getSimilarDinosaurId1() != null) { //공룡이 아닐 경우에만 list 추가
 			myDrawingResponseDto.addSimilarList(
 				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur1())
 			);
@@ -75,7 +75,7 @@ public class DrawingServiceImpl implements DrawingService {
 			myDrawingResponseDto.addSimilarList(
 				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur3())
 			);
-		}
+		// }
 
 		return myDrawingResponseDto;
 	}
