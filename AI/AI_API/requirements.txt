@@ -1,0 +1,6 @@
+uvicorn
+fastapi
+torch
+torchvision
+python-multipart
+pydantic[dotenv]

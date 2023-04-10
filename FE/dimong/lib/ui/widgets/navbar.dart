@@ -50,48 +50,52 @@ class _NavBarState extends State<NavBar>
     final authProvider = Provider.of<AuthProvider>(context);
     const labels = ["Home", "Dino", "Draw", "Gallery", "MyPage"];
     final initIndex = widget.index;
-    return Scaffold(
-      bottomNavigationBar: MotionTabBar(
-        initialSelectedTab: labels[initIndex],
-        useSafeArea: true, // default: true, apply safe area wrapper
-        labels: labels,
-        icons: const [
-          Icons.home_rounded,
-          Icons.menu_book_rounded,
-          Icons.color_lens,
-          Icons.grid_view_rounded,
-          Icons.person,
-        ],
+    return MaterialApp(
+      theme: ThemeData(
+      fontFamily: 'KCCDodamdodam',),
+      home: Scaffold(
+        bottomNavigationBar: MotionTabBar(
+          initialSelectedTab: labels[initIndex],
+          useSafeArea: true, // default: true, apply safe area wrapper
+          labels: labels,
+          icons: const [
+            Icons.home_rounded,
+            Icons.menu_book_rounded,
+            Icons.color_lens,
+            Icons.grid_view_rounded,
+            Icons.person,
+          ],
 
-        tabSize: 50,
-        tabBarHeight: 55,
-        textStyle: const TextStyle(
-          fontSize: 14,
-          color: const Color(0xFFACC864),
-          fontWeight: FontWeight.w500,
+          tabSize: 50,
+          tabBarHeight: 55,
+          textStyle: const TextStyle(
+            fontSize: 14,
+            color: const Color(0xFFACC864),
+            fontWeight: FontWeight.w500,
+          ),
+          tabIconColor: const Color(0xFF6B6B6B),
+          tabIconSize: 28.0,
+          tabIconSelectedSize: 26.0,
+          tabSelectedColor: const Color(0xFFACC864),
+          tabIconSelectedColor: Colors.white,
+          tabBarColor: const Color(0xFFFFFFFF),
+          onTabItemSelected: (int value) {
+            setState(() {
+              _tabController!.index = value;
+            });
+          },
         ),
-        tabIconColor: const Color(0xFF6B6B6B),
-        tabIconSize: 28.0,
-        tabIconSelectedSize: 26.0,
-        tabSelectedColor: const Color(0xFFACC864),
-        tabIconSelectedColor: Colors.white,
-        tabBarColor: const Color(0xFFFFFFFF),
-        onTabItemSelected: (int value) {
-          setState(() {
-            _tabController!.index = value;
-          });
-        },
-      ),
-      body: TabBarView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: _tabController,
-        children: <Widget>[
-          ConnectHome(),
-          DicDino(),
-          DrawingDino(),
-          Gallery(),
-          MyPage(),
-        ],
+        body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: _tabController,
+          children: <Widget>[
+            ConnectHome(),
+            DicDino(),
+            DrawingDino(),
+            Gallery(),
+            MyPage(),
+          ],
+        ),
       ),
     );
   }

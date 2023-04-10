@@ -46,6 +46,7 @@ class DeleteModal extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.normal,
+                  fontFamily: 'KCCDodamdodam',
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -66,7 +67,9 @@ class DeleteModal extends StatelessWidget {
                       },
                       child: Text(
                         '네',
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        style: TextStyle(color: Colors.black, fontSize: 20,
+                          fontFamily: 'KCCDodamdodam',
+                        ),
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xffACC864),
@@ -86,7 +89,9 @@ class DeleteModal extends StatelessWidget {
                       },
                       child: Text(
                         '아니오',
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        style: TextStyle(color: Colors.black, fontSize: 20,
+                          fontFamily: 'KCCDodamdodam',
+                        ),
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xffACC864),
