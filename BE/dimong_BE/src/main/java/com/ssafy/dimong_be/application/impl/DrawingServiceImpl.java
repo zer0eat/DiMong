@@ -1,6 +1,7 @@
 package com.ssafy.dimong_be.application.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -62,17 +63,19 @@ public class DrawingServiceImpl implements DrawingService {
 			.userNickname(drawing.getUser().getUserNickname())
 			.build();
 
-		myDrawingResponseDto.addSimilarList(
-			DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur1())
-		);
+		// if (drawing.getSimilarDinosaurId1() != null) { //공룡이 아닐 경우에만 list 추가
+			myDrawingResponseDto.addSimilarList(
+				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur1())
+			);
 
-		myDrawingResponseDto.addSimilarList(
-			DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur2())
-		);
+			myDrawingResponseDto.addSimilarList(
+				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur2())
+			);
 
-		myDrawingResponseDto.addSimilarList(
-			DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur3())
-		);
+			myDrawingResponseDto.addSimilarList(
+				DinosaurRecommendationResponseDto.fromEntity(drawing.getSimilarDinosaur3())
+			);
+		// }
 
 		return myDrawingResponseDto;
 	}

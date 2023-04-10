@@ -15,9 +15,9 @@ public interface DrawingRepository extends JpaRepository<Drawing, Long> {
 
 	@Query("SELECT d, dino1 AS similarDinosaur1, dino2 AS similarDinosaur2, dino3 AS similarDinosaur3 "
 		+ "FROM Drawing d "
-		+ "INNER JOIN FETCH Dinosaur dino1 ON d.similarDinosaurId1 = dino1.dinosaurId "
-		+ "INNER JOIN FETCH Dinosaur dino2 ON d.similarDinosaurId2 = dino2.dinosaurId "
-		+ "INNER JOIN FETCH Dinosaur dino3 ON d.similarDinosaurId3 = dino3.dinosaurId "
+		+ "LEFT JOIN FETCH Dinosaur dino1 ON d.similarDinosaurId1 = dino1.dinosaurId "
+		+ "LEFT JOIN FETCH Dinosaur dino2 ON d.similarDinosaurId2 = dino2.dinosaurId "
+		+ "LEFT JOIN FETCH Dinosaur dino3 ON d.similarDinosaurId3 = dino3.dinosaurId "
 		+ "WHERE d.drawingId = :drawingId")
 	Optional<Drawing> findByIdWithJpql(@Param("drawingId") Long drawingId);
 
