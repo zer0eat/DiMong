@@ -1,10 +1,10 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\Users\alice\Downloads\flutter_windows_3.7.5-stable\flutter
-FLUTTER_APPLICATION_PATH=C:\Users\alice\Desktop\0405\FE\dimong
+FLUTTER_ROOT=C:\Users\SSAFY\Downloads\flutter
+FLUTTER_APPLICATION_PATH=C:\Users\SSAFY\Desktop\0407\FE\dimong
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
-FLUTTER_BUILD_NUMBER=1
+FLUTTER_BUILD_NUMBER=11
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false

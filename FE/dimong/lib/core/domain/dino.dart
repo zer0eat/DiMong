@@ -186,7 +186,7 @@ class DrawingDetailResponse {
   @JsonKey(name: 'userNickname')
   final String? userNickname;
   @JsonKey(name: 'similarList')
-  final dynamic similarList;
+  final List? similarList;
 
   DrawingDetailResponse({required this.drawingId, required this.drawingImageUrl, required this.userId, required this.userNickname, required this.similarList});
 

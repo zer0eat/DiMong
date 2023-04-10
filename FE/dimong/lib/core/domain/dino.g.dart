@@ -145,7 +145,7 @@ DrawingDetailResponse _$DrawingDetailResponseFromJson(
       drawingImageUrl: json['drawingImageUrl'] as String?,
       userId: json['userId'] as int?,
       userNickname: json['userNickname'] as String?,
-      similarList: json['similarList'],
+      similarList: json['similarList'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$DrawingDetailResponseToJson(
