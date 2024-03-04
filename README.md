@@ -29,8 +29,3 @@
 
 ![dimongsystemarichdrawiopng](./exec/image/readme/dimong_system_arich.drawio.png)
 
-## 팀원 소개
-
-|강효진|김소현|김영식|안태윤|양희진|이경진|
-| :---: | :----: | :---: | :---: | :---: | :---: |
-|BE|FE|AI |AI |FE |FE |
